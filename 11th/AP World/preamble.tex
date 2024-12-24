@@ -1,0 +1,20 @@
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{amsthm}
+\usepackage{pdfcomment}
+\usepackage{thmtools, thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{hyperref}
+
+\mdfsetup{skipabove=1em,skipbelow=0em}
+
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+mdframed={
+	linewidth=2pt,
+	rightline=false, topline=false, bottomline=false,
+	linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+}
+]{thmgreenbox}
+
+\declaretheorem[style=thmgreenbox, name=Definition, numberwithin=section]{definition}
+\author{Nikola Mazzola}
