@@ -4,6 +4,9 @@
 \usepackage{thmtools, thm-restate}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usetikzlibrary{intersections}
 
 \mdfsetup{skipabove=1em,skipbelow=0em}
 
@@ -15,6 +18,26 @@ mdframed={
 	linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
 }
 ]{thmgreenbox}
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{Blue!70!black}, bodyfont=\normalfont,
+mdframed={
+	linewidth=2pt,
+	rightline=false, topline=false, bottomline=false,
+	linecolor=DarkRed, backgroundcolor=LightBlue!5,
+}
+]{thmbluebox}
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{Red!70!black}, bodyfont=\normalfont,
+mdframed={
+	linewidth=2pt,
+	rightline=false, topline=false, bottomline=false,
+	linecolor=BrickRed, backgroundcolor=Rhodamine!5,
+}
+]{thmredbox}
 
-\declaretheorem[style=thmgreenbox, name=Definition, numberwithin=section]{definition}
+\declaretheorem[style=thmgreenbox, name=Ideology, numberwithin=section]{ideology}
+\declaretheorem[style=thmgreenbox, name=Concept, numberwithin=section]{concept}
+\declaretheorem[style=thmbluebox, name=Event, numberwithin=section]{event}
+\declaretheorem[style=thmredbox, name=Person, numberwithin=section]{person}
+
 \author{Nikola Mazzola}

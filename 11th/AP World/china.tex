@@ -1,0 +1,110 @@
+\chapter{China}\label{ch:china}
+\section*{East Asia, 960-1275 CE}
+\begin{wrapfigure}[8]{r}{0.5\textwidth}
+    \begin{tikzpicture}
+        \coordinate (A) at (-5,0) {};
+        \coordinate (B) at ( 5,0) {};
+        \coordinate (C) at (0,5.2) {};
+        \draw[name path=AC] (A) -- (C);
+        \draw[name path=BC] (B) -- (C);
+        \foreach \y/\A in {
+            0/Merchants:\\ Low status because they get rich from others' work.,
+            1/Peasants:\\ Worked the land for food and shelter,
+            2/Nobles:\\ Gave loyalty and army to the king,
+            3/King:\\ Gave land \\to nobles in\\ exchange of loyalty,} {
+            \path[name path=horiz] (A|-0,\y) -- (B|-0,\y);
+            \draw[name intersections={of=AC and horiz,by=P},
+                name intersections={of=BC and horiz,by=Q}] (P) -- (Q)
+                node[midway,above,align=center] {\A};
+        }
+    \end{tikzpicture}
+\end{wrapfigure}
+
+\section{Geography of China}
+Self-Sufficient:
+\begin{itemize}
+    \item Yellow and Yangtze Rivers
+    \item Fertile soil in the North and Southeast regions
+\end{itemize}
+Isolated Geography:
+\begin{itemize}
+    \item West: Plateau of Tibet and Himalayas
+    \item North: Gobi Desert
+    \item East: Pacific
+\end{itemize}
+Well connected through trade:
+\begin{itemize}
+    \item \href{ch:silkroads}{Silk Roads}
+    \item Ocean
+\end{itemize}
+\section{Chinese Economy}
+Trend: Feudalism (System of Obligation) endured throughout the economy
+
+Vast majority were peasants
+\begin{itemize}
+    \item Main source of taxes and labor for public works
+    \item No serfdom meant more freedom, they can leave or marry
+\end{itemize}
+
+\section{Chinese Ideologies}
+Trend: Confucian philosophy would dominate politics; however, Daoism and Buddhism was popular with the people too
+
+\newcommand{\mandatedef}{Gave a divine right to rule. }
+\begin{concept}[Mandate of Heaven] \label{concept:mandate}
+    \mandatedef
+    Used by Chinese rulers to legitimize power
+\end{concept}
+
+\newcommand{\daoismdef}{School believing the key to eliminating Chaos was to live in the present and find harmony with nature. }
+\begin{ideology}[Daoism (School of Way, Dao)] \label{ideology:daoism}
+    \daoismdef
+    \newcommand{\laozidef}{(c.570-530 BCE) Founder of Daoism, a legendary official.}
+    \begin{person}[Laozi] \label{person:laozi}
+        \laozidef
+    \end{person}
+    \begin{itemize}
+        \item Man should adjust his internal balance to the rhythm of the natural world.
+        \item Man should depart from society regularly to meditate and communicate with nature
+    \end{itemize}
+    \newcommand{\yinyangdef}{Opposing natural forces that represent the duality of nature nad the universe. }
+    \begin{concept}[Yin and Yang] \label{concept:yinyang}
+        \yinyangdef
+        Must accept that it is always there.
+    \end{concept}
+\end{ideology}
+
+\newcommand{\confucianismdef}{Stability occurs if society is organized based on the 5 relationships of superiors and inferiors}
+\begin{ideology}[Confucianism] \label{ideology:confucianism}
+    \confucianismdef
+    \begin{itemize}
+        \item Ruler and Subject
+        \item Father and Son
+        \item Husband and Wife
+        \item Older Brother and Younger Brother
+        \item Older Friend and Younger Friend
+    \end{itemize}
+    \newcommand{\confuciusdef}{(551-479 BCE) Founder of Confucianism}
+    \begin{person}[Confucius] \label{person:confucius}
+        \confuciusdef
+    \end{person}
+    \newcommand{\filialdef}{There is an obligation to family and to respect for ancestors, leaders, parents, and the older generation.}
+    \begin{concept}[Filial Piety] \label{concept:filial}
+        \filialdef
+    \end{concept}
+    \newcommand{\analectsdef}{Compilation of the teachings of Confucious}
+    \begin{concept}[Analects] \label{concept:analects}
+        \analectsdef
+    \end{concept}
+    Emperors used Confucianism to create loyal officials and to justify and maintain their rule
+    \begin{itemize}
+        \item Promotes Subject to Ruler relationship
+        \item Officials were trained to obey the emperor
+    \end{itemize}
+\end{ideology}
+\newcommand{\csexamdef}{One must master confucian philosohpy and adminstrative skills. }
+\begin{concept}[Civil Service Exam (CSE)] \label{concept:csexam}
+    \csexamdef
+    Created a meritocracy. All Chinese males (but merchants) could take it. Favored the upper class due to resource requirements.
+\end{concept}
+
+\pdfmarkupcomment[markup=Underline, color=blue]{Previous}{None} \hyperref[ch:song]{Next}

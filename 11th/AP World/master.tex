@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article} % see docs!
+\documentclass{report} % see docs!
 
 \input{./preamble.tex}
 
@@ -6,11 +6,9 @@
 \begin{document}
     \maketitle
     \tableofcontents
-    \newcommand{\hellodef}{A greeting or expression of goodwill.}
-    % Define the definition and store its content
-    \begin{definition}[Hello]\label{dfn:hello}
-        A greeting or expression of goodwill.
-    \end{definition}
-    This is an example of using \pdfmarkupcomment[markup=Underline, color=yellow]{hello}{\hellodef} in a document.
+    \part*{Context}
+    \input{china.tex}
+    \part{Unit 1: Global Tapestry (1200-1450)}
+    \input{song.tex}
     
 \end{document}
