@@ -1,0 +1,164 @@
+\setcounter{chapter}{-1}
+\chapter{Prerequisites}
+\section{Sets}
+\lecture{01}{Aug 18 10:15}{Sets}
+\begin{definition*}[Set]\label{def:set}
+    Collection of objects where objects can be almost anything (number, symbol, set, shape...)
+\end{definition*}
+\begin{note}
+    This definition can lead to paradoxes, but its fine. Axiomatic set theories avoid this (e.g., Zermelo-Fraenkel), but usually the subtleties are not necessary.
+\end{note}
+\begin{itemize}
+    \item A set is described by the objects that \textbf{belong} to it (are \textbf{in} it)
+    \item Sets are given (usually single, upper-cased, italicized, roman letter) names: $A, B, X, P, R, T$
+    \item An object in a set is a \textbf{member} or \textbf{element} of $A$
+    \item Belonging to (being a member of, being in) a set is denoted by $\in$ (e.g., $2 \in A$)
+\end{itemize}
+
+\begin{definition}[Equal]\label{def:equal}
+    Two sets, $A$ and $B$ are \textbf{equal} (denoted $A = B$) if every member of $A$ is also a member of $B$ and every member of $B$ is also a member of $A$
+    \begin{note}
+        There is no order of members in a set (no ``first,'' or ``last'' member)
+    \end{note}
+\end{definition}
+\subsection{Set-builder notation}
+\begin{itemize}
+    \item To describe a small set, we can list members explicitly with curly braces, separated by commas (e.g., $A={\smiley,\frownie,\bell}$) 
+    \item For larger (possibly infinite) sets we describe members using a predicate
+        \begin{itemize}
+            \item $A$ is the set of students in Quiz Bowl club
+            \item \N\ is the set of Natural numbers 
+        \end{itemize}
+    \item The set-builder notation, $\{x:\Phi(x)\}$, is a concise expression of this
+        \begin{itemize}
+            \item $A=\{x:x\ \text{is a student in Quiz Bowl club}\}$
+            \item $B=\{x:x^2=4\}$
+            \item $C=\{2k:k\in\N\}$
+        
+        \end{itemize}
+\end{itemize}
+\begin{definition*}[Predicate]\label{def:predicate}
+    A logical formula that evaluates to True ($\top$) or False ($\bot$)
+\end{definition*}
+\begin{definition*}[Domain of Discourse]\label{def:domain-of-discourse}
+    Universe of objects that can potentially be in the set if they satisfy the predicate
+
+    Usually implied from the context, but can be explicitly defined:
+    \[
+    E \in \N:(x\%2)=0\}
+    \]
+    where \N\ is the set of natural numbers (counting numbers):
+    \[
+    \N = {1,2,3,...}
+    \]
+    
+\end{definition*}
+
+\subsection{Logic}
+\begin{definition*}[Conditional Operator]\label{def:conditional-operator}
+    
+    Denoted $p \implies q$ (``if $p$ then $q$'' or ``$p$ implies $q$'')
+
+    \[
+    (p \implies q)=\begin{cases} \bot & \text{if}\ p=\top,q=\bot \\ \top & \text{otherwise} \end{cases}
+    \]
+\end{definition*}
+\begin{definition*}[Conjunction Operator]\label{def:conjunction-operator}
+    Denoted $p \land q$ (``$p$ \text{and} $q$'')
+
+    \[
+    (p \land q)=\begin{cases} \top & \text{if}\ p=\top,q=\top \\ \bot & \text{otherwise} \end{cases}
+    \]
+\end{definition*}
+\begin{definition*}[Disjunction Operator]\label{def:disjunction-operator}
+    Denoted $p \lor q$ (``$p \text{ or } q$'')
+
+    \[
+    (p \lor q) = \begin{cases} \bot & \text{if } p=\bot, q=\bot \\ \top & \text{otherwise} \end{cases}
+    \]
+\end{definition*}
+\begin{definition*}[Negation Operator]\label{def:negation-operator}
+    Denoted $\neg p$ (``not $p$'')
+
+    \[
+    (\neg p) = \begin{cases} \top & p=\bot \\ \bot & p=\top \end{cases}
+    \]
+    
+\end{definition*}
+
+\begin{definition*}[Biconditional Operator]\label{def:biconditional-operator}
+    Denoted $p\iff q$ (``$p$ if and only if $q$'')
+    \[
+    (p\iff q)=(p \implies q) \land (q \implies p)
+    \]
+    
+\end{definition*}
+
+\subsection{Set Notation and Terminology}
+Let $A,B$ be sets from the same \hyperref[def:domain-of-discourse]{domain of discourse}
+\begin{definition}[Subset]\label{def:subset}
+    $A$ is called a \textbf{subset} of $B$, denoted $A \subseteq B$, if
+    \[
+    (x \in A) \implies (x \in B)
+    \]
+\end{definition}
+\begin{note}
+    \[
+    A \subseteq A
+    \]
+    
+\end{note}
+\begin{definition}[Intersection]\label{def:intersection}
+    The \textbf{intersection} of $A$ and $B$, denoted $A \cap B$, is the set
+    \[
+    (A \cap B) = \{x:(x \in A) \land (x \in B)\}
+    \]
+\end{definition}
+\begin{definition}[Union]\label{def:union}
+    The \textbf{union} of $A$ and $B$, denoted $A \cup B$, is the set
+    \[
+    (A \cup B)=\{x:(x \in A)\lor (x \in B)\}
+    \]
+\end{definition}
+\begin{notation}
+    The \textbf{empty set}, denoted \O, contains no members
+\end{notation}
+\begin{note}
+        \[
+        \O \subseteq A
+        \]
+\end{note}
+
+\begin{definition}[Power Set]\label{def:power-set}
+    Let $A$ be a set; the \textbf{power set of} $A$, denoted $P(A)$, is the set of all subsets of $A$:
+    \[
+    P(A)=\{S:S \subseteq A\} 
+    \]
+\end{definition} 
+\begin{eg}
+    \begin{align*}
+    A&=\{\smiley,\frownie,\bell\} \\
+    P(A)&=\{\O,\{\smiley\},\{\frownie\},\{\bell\},\{\smiley,\frownie\},\{\smiley,\bell\},\{\frownie,\bell\},\{\smiley,\frownie,\bell\}\}
+    \end{align*}
+\end{eg}    
+\begin{definition}[Cartesian Product]\label{def:cartesian-product}
+    Let $A,B$ be sets; the \textbf{Cartesian product} of $A$ with $B$, denoted $A \times B$ is the set of all ordered pairs of items, the first taken from $A$ and the second taken from $B$
+    \[
+    A \times B = \{(x,y):x \in A, y \in B\}
+    \]
+\end{definition}
+\begin{eg}
+    \begin{align*}
+    A&=\{\smiley,\frownie,\bell\},B=\{\hexagon,\halfnote\} \\
+    A \times B &= \{(\smiley,\hexagon),(\smiley,\halfnote),(\frownie,\hexagon),(\frownie,\halfnote),(\bell,\hexagon),(\bell,\halfnote)\}
+    \end{align*}
+\end{eg}
+\begin{note}
+    We denote an ordered pair with parenthesis, not curly braces
+    \begin{itemize}
+        \item $(x,y)$ is not the same as ${x,y}$ because order maters
+        \item ${x,y}={y,x}$ but $(x,y)\neq(y,x)$
+    \end{itemize}
+\end{note}
+
+

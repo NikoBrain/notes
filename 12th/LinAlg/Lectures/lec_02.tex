@@ -1,0 +1,106 @@
+\section{Proofs}
+\lecture{02}{Aug 19 12:41}{Proofs}
+\subsection{Deductive Reasoning}
+\begin{definition*}[Deductive Reasoning]\label{def:deductive-reasoning}
+    The process of making deductive arguments
+\end{definition*}
+\begin{definition*}[Deductive Argument]\label{def:deductive-argument}
+    Process of making a logical inference
+\end{definition*}
+\begin{definition*}[Inference]\label{def:inference}
+    Claim that a certain \hyperref[def:predicate]{predicate}, called the \textbf{conclusion}, follows from one or more \hyperref[def:predicate]{predicates}, called the \textbf{premises}.
+\end{definition*}
+Predicate $B$ \textbf{follows from} $A$ if it is impossible simultaneously for $A$ to be True and $B$ to be False
+
+An inference is \textbf{valid} if the conclusion follows from the premises
+
+A deductive argument is \textbf{sound} if the inference is valid and its premises are True
+
+\subsection{More Logic Notation and Terminology}
+\begin{definition*}[Universal Quantification Symbol ($\forall$)]\label{def:universal-quantification-symbol}
+    Denotes that a proposition is True for all members
+\end{definition*}
+\begin{eg}
+    \[
+    \forall x \in \N:x^2 \geq x
+    \]
+    Read: ``\textbf{for all} (every, any, each) $x$ in \N\ the predicate ($x^2 \geq x$) evaluates to True''
+\end{eg}
+\begin{definition*}[Existential Quantification Symbol($\exists$)]\label{def:existential-quantification-symbol}
+    Denotes that a proposition is True for at least one member
+\end{definition*}
+\begin{eg}
+    \[
+    \exists x \in \N:x^2<x
+    \]
+    Read: ``\textbf{there exists} an $x$ in \N\ such that the predicate $x^2<x$ evaluates to true''
+
+    
+\end{eg}
+\begin{note}
+        This is an example of a False proposition
+\end{note}
+
+\subsection{Contraposition}
+\begin{definition*}[Contraposition]\label{def:contraposition}
+    
+    Let $p,q$ be predicates and consider the conditional statement
+    \[
+    p \implies q
+    \]
+    The \textbf{contrapositive} form of the statement is
+    \[
+    \neg q \implies \neg p
+    \]
+
+    A conditional statement and its contrapositive form are \textbf{equivalent}
+    \[
+    (p \implies q) \iff (\neg q \implies \neg p)
+    \]
+    When judging truthfulness of a statement, it sometimes helps to consider its contrapositive
+\end{definition*}
+Also existing, but not as common are:
+\begin{itemize}
+    \item The \textbf{inverse}: $\neg p \implies \neg q$
+    \item The \textbf{converse}: $q \implies p$
+    \item The \textbf{complement}: $\neg(p \implies q)$
+\end{itemize}
+
+\subsection{Proofs}
+
+\begin{definition*}[Mathematical Proof]\label{def:proof}
+    A deductive argument about something related to math. Uses spken/written language, or even sketches/diagrams.
+
+    Usually rigorous (spells out assumptions and deductive steps as is convenient) but informal (some natural language with occasionally ambiguous symbols/rules) deductive reasoning
+\end{definition*}
+\begin{proposition}
+    Let $n,m \in \N$ and suppose $n,m$ are even; then $(n+m)$ is even
+\end{proposition}
+\begin{proof}\ 
+\begin{itemize}
+    \item Since $n$ is even $\exists k \in \N$ such that $n=2k$
+    \item Since $m$ is even $\exists q \in \N$ such that $n=2q$
+    \item Then $(n+m)=(2k+2q)=2(k+q)$
+    \item Therefore, $(n+m)$ is even
+\end{itemize}
+\begin{note}
+    We used a method called \textbf{direct proof}
+\end{note}
+\end{proof}
+\subsection{Mathematical Induction}
+\begin{definition*}[Mathematical Induction]\label{def:mathematical-induction}
+    If asked to prove that a certain proposition, $P(n)$ is true for any $n \in \N$, we will accept as proof the following inference, if sound:
+    \begin{equation}
+        \begin{array}{c}
+            P(1) = \text{T} \tag{1} \\
+            \left(P(k) \stackrel{2}{=} \text{T}\right) \Rightarrow \left(P(k+1) = \text{T}\right)
+        \end{array}
+        \stackrel{3}{\Rightarrow} P(n) = \text{T}, \forall n \in \mathbb{N}
+    \end{equation}
+
+    Where (1) is called the \textbf{base case}; (2) is called the \textbf{induction hypothesis}; (3) is the \textbf{induction step}
+\end{definition*}
+% A variant called \textbf{complete} (or strong/generalized) induction uses a stronger hypothesis in the induction step:
+% \[
+% (P(j),\forall j \leq k) \implies P(k+1)
+% \]
