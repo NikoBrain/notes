@@ -1,5 +1,5 @@
 \section{Proofs}
-\lecture{02}{Aug 19 12:41}{Proofs}
+\lecture{02}{Aug 19 10:15}{Proofs}
 \subsection{Deductive Reasoning}
 \begin{definition*}[Deductive Reasoning]\label{def:deductive-reasoning}
     The process of making deductive arguments
@@ -90,17 +90,71 @@ Also existing, but not as common are:
 \subsection{Mathematical Induction}
 \begin{definition*}[Mathematical Induction]\label{def:mathematical-induction}
     If asked to prove that a certain proposition, $P(n)$ is true for any $n \in \N$, we will accept as proof the following inference, if sound:
-    \begin{equation}
+    \begin{equation*}
         \begin{array}{c}
             P(1) = \text{T} \tag{1} \\
             \left(P(k) \stackrel{2}{=} \text{T}\right) \Rightarrow \left(P(k+1) = \text{T}\right)
         \end{array}
         \stackrel{3}{\Rightarrow} P(n) = \text{T}, \forall n \in \mathbb{N}
-    \end{equation}
-
+    \end{equation*}
     Where (1) is called the \textbf{base case}; (2) is called the \textbf{induction hypothesis}; (3) is the \textbf{induction step}
 \end{definition*}
-% A variant called \textbf{complete} (or strong/generalized) induction uses a stronger hypothesis in the induction step:
-% \[
-% (P(j),\forall j \leq k) \implies P(k+1)
-% \]
+A variant called \textbf{complete} (or strong/generalized) induction uses a stronger hypothesis in the induction step:
+\[
+(P(j),\forall j \leq k) \implies P(k+1)
+\]
+\begin{proposition}
+    For any $n \in \N$
+    \[
+    1+2+\cdots+n=\frac{n(n+1)}{2}
+    \]
+\end{proposition}
+\begin{proof}
+    By induction
+    \begin{itemize}
+        \item Base case: for $n=1$,$\frac{n(n+1)}{2}=1$
+        \item Induction step: suppose, for some $k \in \N$, $1+2+\cdots+k=\frac{k(k+1)}{2}$, then
+        \begin{align*}
+        1+2+\cdots+k+(k+1)&=\frac{k(k+1)}{2}+(k+1) \\
+        &=\frac{k(k+1)}{2}+\frac{2(k+1)}{2}=\frac{(k+1)(k+2)}{2}
+        \end{align*}
+    \end{itemize}
+\end{proof}
+\begin{proposition}
+    Let $n \in \N$, if $n^2$ is even then $n$ is even
+\end{proposition}
+\begin{proof} By Contraposition \\
+    Suppose $n$ were not even, then
+    \begin{itemize}
+        \item $n$ is odd, therefore
+        \item $\exists k \in \N$ such that $n=2k-1$, and therefore
+        \item $n^2=n\cdot n=(2k-1)(2k-1)=4k^2-4k+1=4(k^2-k)+1$
+        \item Let $p=4(k^2-k)$, then
+        \item $p\div2=2(k^2-k)$, therefore
+        \item $p$ is even, therefore
+        \item $n^2=p+1$ is odd
+        \item Since $n^2$ is not odd, $n$ cannot be not even
+    \end{itemize}
+\end{proof}
+\begin{proposition}
+    $\sqrt{2}$ is irrational
+\end{proposition}
+\begin{proof}
+    By contradiction \\
+    Suppose $\sqrt{2}$ is rational, then
+    \begin{itemize}
+        \item $\exists p,q \in \N$ such that $\sqrt{2}=\frac{p}{q}$ and $p$ and $q$ have no common factors,
+    \end{itemize}
+\end{proof}
+\subsection{Things that often need proving}
+\begin{itemize}
+    \item Existence: $\exists x \text{ such that } P(x)$ Proof by construction describes who the required $x$ is, and verifies $P(x)=\top$ (Don't need to actually find the thing)
+    \item Uniqueness: $\left(P(x) \land P(y)\right) \implies (x=y)$ Name two things with the property and show they must be equal
+\end{itemize}
+\subsection{Proof of Equivalence}
+To prove $P \iff Q$, prove both $P \implies Q$ and $Q \implies P$
+Related: show two sets $A,B$ are equal by showing $A \subseteq B$ and $B \subseteq A$
+To prove the following are equivalent (TFAE) you could prove a circular chain of implications
+\[
+\left(A \implies B\right) \land \left(B \implies C\right) \land \left(C \implies D\right) \land \left(D \implies A\right)
+\]

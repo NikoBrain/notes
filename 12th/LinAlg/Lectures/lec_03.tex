@@ -1,0 +1,313 @@
+\section{Operations}
+\lecture{03}{Aug 20 10:15}{Operations}
+
+\subsection{Function}
+
+\begin{definition}[Function]\label{def:function}
+    A function comprises three objects:
+    \begin{itemize}
+        \item A set, called the \textbf{domain}
+        \item Another set, called the \textbf{range}
+        \item A mapping of each member of the domain to a single member of the range, called its \textbf{image}
+    \end{itemize}
+\end{definition}
+
+\begin{notation}
+    Often we use lower-case Latin letters to name functions.
+    
+    The notation $f: D \to R$ reads ``$f$ is a function from the domain set $D$ into the range set $R$''.
+    
+    The image of $x \in D$ is denoted $f(x)$ (read ``$f$ of $x$'').
+\end{notation}
+
+\begin{definition}[Image of a Set]\label{def:image}
+    Let $f: D \to R$ be a function and let $U \subseteq D$.
+    
+    The set of images of members of $U$ is called the \textbf{image of $U$}, and denoted $f(U)$:
+    \[
+        f(U) = \{f(x) : x \in U\}
+    \]
+    
+    The set of images of all members of the domain, $f(D)$, is called the \textbf{image of the function}.
+\end{definition}
+
+\begin{eg}
+    Let $D = \{-2, 2, 3, 5, 7\}$ and let $h: D \to \N$ be the mapping
+    \[
+        h(-2) = 4, \quad h(2) = 4, \quad h(3) = 9, \quad h(5) = 25, \quad h(7) = 49
+    \]
+    
+    The domain and range are given explicitly. The image is evident from the mapping; the image of $h$ is the set
+    \[
+        S = \{4, 9, 25, 49\}
+    \]
+    
+    With $D$ and $S$ as above, let $f: D \to S$ be the mapping
+    \[
+        f(-2) = 4, \quad f(2) = 4, \quad f(3) = 9, \quad f(5) = 25, \quad f(7) = 49
+    \]
+    
+    Strictly speaking, $f: D \to S$ and $h: D \to \N$ are different functions (they have different ranges). This distinction is not that important.
+\end{eg}
+
+\subsection{Ways to Describe a Function}
+
+There are many different ways to describe a function:
+
+\begin{itemize}
+    \item \textbf{A table:}
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Domain & -2 & 2 & 3 & 5 & 7 \\
+        \hline
+        Image & 4 & 4 & 9 & 25 & 49 \\
+        \hline
+    \end{tabular}
+    \end{center}
+    
+    \item \textbf{A formula:} $f(x) = x^2$
+    
+    \item \textbf{A set of ordered pairs:} $f = \{(-2,4), (2,4), (3,9), (5,25), (7,49)\}$
+    
+    \item \textbf{A set of ordered pairs in set builder notation:}
+    \[
+        f = \{(x,y) : x \in \{-2, 2, 3, 5, 7\}, y = x^2\}
+    \]
+\end{itemize}
+
+\begin{note}
+    Not every set of ordered pairs describes a valid function. For example:
+    \[
+        \{(2,2), (2,3), (3,1)\}
+    \]
+    is not a function because the element $2$ in the domain maps to two different values.
+\end{note}
+
+\subsection{Bijection}
+
+\begin{definition}[Injective, Surjective, Bijective]\label{def:bijection}
+    Let $f: D \to R$ be a function.
+    \begin{enumerate}[label=(\roman*)]
+        \item $f$ is called \textbf{injective} (or \textbf{one-to-one}) if distinct members of $D$ are mapped to distinct members of $R$:
+        \[
+            \forall x, x' \in D, \quad x \neq x' \implies f(x) \neq f(x')
+        \]
+        
+        \item $f$ is called \textbf{surjective} (or \textbf{onto}) if every element of $R$ is the image of some element of $D$:
+        \[
+            \forall y \in R, \quad \exists x \in D : y = f(x)
+        \]
+        
+        \item $f$ is called \textbf{bijective} if it is both injective and surjective (one-to-one and onto).
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    Students are sometimes confused about the surjective part because, in calculus, it is customary to let the range of a function be implicitly defined as equal to its image, making every function surjective.
+\end{note}
+
+\subsection{Binary Operations}
+
+Remember the four basic arithmetic operations? What they have in common is that they each take two numbers as input and produce one number as output.
+
+\begin{definition}[Binary Operation]\label{def:binary-operation}
+    Let $A$ be a set. A \textbf{binary operation} on $A$ is a function whose domain is the \hyperref[def:cartesian-product]{Cartesian Product} $A \times A$.
+\end{definition}
+
+\begin{notation}
+    An operation is often denoted with a symbol, like $\star$, instead of a letter, and the image of a pair from the domain is denoted with the operator between the pair items:
+    \[
+        x \star y \quad \text{instead of} \quad f(x,y)
+    \]
+\end{notation}
+
+\begin{eg}
+    Some examples of binary operations $\star$ on $\N$ are:
+    \begin{itemize}
+        \item $a \star b \coloneqq a + b + 8$
+        \item $a \star b \coloneqq \max(a,b)$
+        \item $a \star b \coloneqq$ the digit in the ones place of $a + b^2$
+    \end{itemize}
+\end{eg}
+
+\subsection{Range of Operations and Closure}
+
+The sum and product of any two natural numbers is a natural number:
+\begin{align*}
+    \forall a,b \in \N, \quad a + b &\in \N \\
+    \forall a,b \in \N, \quad ab &\in \N
+\end{align*}
+
+This is not true for subtraction and division:
+\begin{align*}
+    \exists a,b \in \N : a - b &\notin \N \\
+    \exists a,b \in \N : a/b &\notin \N
+\end{align*}
+
+This convenient property of addition and multiplication is called \textbf{closure}.
+
+\begin{definition}[Closure]\label{def:closure}
+    A set $A$ is said to be \textbf{closed with respect to an operation} $\star$ if
+    \[
+        \forall a,b \in A, \quad (a \star b) \in A
+    \]
+\end{definition}
+
+\begin{eg}\ 
+    \begin{itemize}
+        \item The set $\N$ is closed with respect to addition and with respect to multiplication
+        \item The set $\N$ is not closed with respect to subtraction
+        \item The set $\Z = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}$ is closed with respect to subtraction
+    \end{itemize}
+\end{eg}
+
+\subsection{Associativity}
+
+\begin{definition}[Associative Operation]\label{def:associativity}
+    An operation $\star$ on a set $A$ is called \textbf{associative} if, $\forall a,b,c \in A$:
+    \[
+        (a \star b) \star c = a \star (b \star c)
+    \]
+\end{definition}
+
+\begin{eg}\ 
+    \begin{itemize}
+        \item Addition and multiplication are associative operations on $\Z$
+        \item Subtraction is not associative on $\Z$
+    \end{itemize}
+\end{eg}
+
+\begin{note} If $\star$ is an associative operation on $A$, it is customary to neglect parentheses:
+        \[
+            (a \star b) \star c = a \star (b \star c) = a \star b \star c
+        \]
+        It is implied in the definition of associativity that the set $A$ is closed with respect to $\star$.
+\end{note}
+
+\begin{problem*}[CFU]
+    If $\star$ is associative on $A$, is it true that $\forall a,b,c,d \in A$:
+    \[
+        (a \star b) \star (c \star d) = a \star (b \star c) \star d
+    \]
+    
+    Bonus CFU: can you prove your answer?
+\end{problem*}
+
+\begin{answer}
+    Yes.
+    \[
+        (a \star b) \star (c \star d) = ((a \star b) \star c) \star d = (a \star (b \star c)) \star d = a \star (b \star c) \star d
+    \]
+\end{answer}
+
+\begin{theorem}[Generalized Associativity]\label{thm:generalized-associativity}
+    Let $\star$ be an associative operation on a set $F$. Then, for any $a_1, a_2, \ldots, a_n \in F$, every possible parenthesis ordering of
+    \[
+        a_1 \star a_2 \star a_3 \star \cdots \star a_{n-1} \star a_n
+    \]
+    is equivalent to the left-associated ordering:
+    \[
+        (\cdots((a_1 \star a_2) \star a_3) \star \cdots \star a_n)
+    \]
+\end{theorem}
+
+\begin{proof}
+    By generalized (strong) induction.
+    
+    \textbf{Base case:} For $n = 1$ or $n = 2$ there is nothing to prove, and for $n = 3$, there are two possible orderings, and regular associativity guarantees that $(a_1 \star a_2) \star a_3$ is equal to the left-associated ordering $((a_1 \star a_2) \star a_3)$.
+    
+    \textbf{Inductive step:} For $n > 3$, we suppose that every parenthesis ordering of an expression with fewer than $n$ operands is equivalent to the left-associated ordering, and proceed to consider the expression with $n$ operands:
+    \[
+        E = a_1 \star a_2 \star \cdots \star a_n
+    \]
+    
+    Any ordering of parentheses ends with a final step:
+    \[
+        E = L \star R
+    \]
+    where $L$ is some parenthesis ordering of $a_1 \star \cdots \star a_q$ and $R$ is some parenthesis ordering of $a_{q+1} \star \cdots \star a_n$, and $q < n$.
+    
+    By the induction hypothesis, both $L$ and $R$ are equal to their respective left-associated orderings:
+    \begin{align*}
+        L &= (\cdots((a_1 \star a_2) \star \cdots) \star a_q) \\
+        R &= (\cdots((a_{q+1} \star a_{q+2}) \star \cdots) \star a_n)
+    \end{align*}
+    
+    If $q = n-1$, so that $R = a_n$, then $E = L \star R$ is already left-associated. Otherwise, write
+    \[
+        R = M \star a_n = (\cdots((a_{q+1} \star a_{q+2}) \star \cdots) \star a_{n-1}) \star a_n
+    \]
+    and
+    \[
+        E = L \star (M \star a_n) = (L \star M) \star a_n
+    \]
+    by regular associativity. By the induction hypothesis, since $L \star M$ includes $n-1$ operands, it is equivalent to the left-associated ordering of $a_1 \star \cdots \star a_{n-1}$, making $E = (L \star M) \star a_n$ the left-associated ordering of the original expression.
+\end{proof}
+
+\subsection{Neutrality}
+\begin{definition}[Neutral Element]\label{def:neutral-element}
+    Let $\star$ be an operation on the set $A$. An element $e \in A$ is called \textbf{neutral with respect to $\star$} if
+    \[
+        \forall a \in A, \quad a \star e = e \star a = a
+    \]
+\end{definition}
+
+\begin{theorem}[Uniqueness of the Neutral]\label{thm:uniqueness-neutral}
+    Let $\star$ be an operation on a set $A$. There is at most one element in $A$ that is neutral with respect to $\star$.
+\end{theorem}
+
+\begin{proof}
+    Suppose $p, q \in A$ are both neutral with respect to $\star$. In that case:
+    \begin{itemize}
+        \item $p \star q = q$, because $p$ is neutral
+        \item $p \star q = p$, because $q$ is neutral
+        \item Therefore, $p = q$
+    \end{itemize}
+\end{proof}
+
+\begin{note}
+    Since a neutral element in $A$ is unique, if it exists, we can call it \textbf{the} neutral.
+\end{note}
+
+\begin{problem*}[Exercise]
+    Let $\star$ denote the operation on $\N$ defined by $a \star b \coloneqq a^b$.
+    \begin{enumerate}[label=(\roman*)]
+        \item Is there, in $\N$, a neutral with respect to $\star$?
+        \item Can you prove your answer?
+    \end{enumerate}
+\end{problem*}
+
+\begin{answer}
+    \begin{enumerate}[label=(\roman*)]
+        \item No
+        \item Yes:
+        \begin{itemize}
+            \item If $a^x = a, \forall a \in \N$, then in particular $2^x = 2$ and therefore $x = 1$
+            \item So, the only candidate for being a neutral with respect to $\star$ is $1$
+            \item However, if $1$ is neutral with respect to $\star$, then $1^a = a, \forall a \in \N$, and in particular $1^2 = 2$
+            \item Which it is not
+            \item So there is no neutral element
+        \end{itemize}
+    \end{enumerate}
+\end{answer}
+
+\subsection{Invertible Elements}
+
+\begin{definition}[Invertible Element]\label{def:invertible-element}
+    Let $\star$ be an operation on $A$ and let $e \in A$ be the neutral with respect to $\star$. An element $a \in A$ is called \textbf{invertible} if there exists an element $b \in A$ such that
+    \begin{align*}
+        a \star b &= e \\
+        b \star a &= e
+    \end{align*}
+    
+    If such an element $b$ exists, it is called \textbf{an inverse of $a$}.
+\end{definition}
+
+\begin{eg}\
+    \begin{itemize}
+        \item Every element of $\Z$ is invertible with respect to addition
+        \item In $\N$, $1$ is the only invertible element with respect to multiplication
+        \item In $\Z$, $1$ and $-1$ are the only invertible elements with respect to multiplication
+    \end{itemize}
+\end{eg}

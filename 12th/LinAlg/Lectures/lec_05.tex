@@ -1,0 +1,142 @@
+\section{Consequences}
+\lecture{05}{Aug 22 10:15}{Consequences}
+
+\subsection{Properties of Zero}
+
+\begin{proposition}[Zero Property]\label{prop:zero-multiplication}
+    Let $F$ be a field. Then $\forall a \in F$, $a \cdot 0 = 0$.
+\end{proposition}
+
+\begin{proof}
+    Let $a \in F$. Then:
+    \begin{align*}
+    a \cdot \tilde{0} &= a \cdot \tilde{0} + \tilde{0} \\
+    &= a \cdot \tilde{0} + \left(a \cdot \tilde{0} + \left(-\left(a \cdot \tilde{0}\right)\right)\right) = \left(a \cdot \tilde{0} + a \cdot \tilde{0}\right) + \left(-\left(a \cdot \tilde{0}\right)\right) \\
+    &= a \cdot (\tilde{0} + \tilde{0}) + \left(-\left(a \cdot \tilde{0}\right)\right) = a \cdot \tilde{0} + \left(-\left(a \cdot \tilde{0}\right)\right) = \tilde{0}
+    \end{align*}
+\end{proof}
+\begin{proposition}[Zero Product Property]\label{prop:zero-product}
+    Let $F$ be a field. Then $\forall a, b \in F$:
+    \[
+        a \cdot b = 0 \implies a = 0 \text{ or } b = 0
+    \]
+\end{proposition}
+
+\begin{proof}
+    Either $a = 0$ or $a \neq 0$.
+    
+    If $a = 0$, then the conclusion is satisfied.
+    
+    If $a \neq 0$, then by field axiom (vii), $\exists a^{-1} \in F$ such that $a \cdot a^{-1} = a^{-1} \cdot a = 1$. Therefore:
+    \begin{align*}
+        b &= b \cdot 1 = b \cdot (a \cdot a^{-1}) = (b \cdot a) \cdot a^{-1} = 0 \cdot a^{-1} = 0
+    \end{align*}
+\end{proof}
+
+\begin{proposition}[Zero Non-Invertible]\label{prop:zero-non-invertible}
+    Let $F$ be a field. Then $0 \in F$ is not invertible with respect to multiplication.
+\end{proposition}
+
+\begin{proof}
+    Suppose, for contradiction, that $\exists a \in F$ such that $a \cdot 0 = 1$.
+    
+    Then by Proposition 1.2.1, $1 = a \cdot 0 = 0$.
+    
+    But by field axiom (viii), $0 \neq 1$, which is a contradiction.
+\end{proof}
+
+\subsection{Modular Arithmetic}
+
+The integers modulo $m$ is the set $\Z_m = \{0, 1, 2, \ldots, m-1\}$ with addition and multiplication defined by taking remainders after division by $m$.
+
+\begin{eg}
+    $\Z_2 = \{0, 1\}$ with operation tables:
+    \begin{center}
+    \begin{tabular}{c|cc} 
+        $+$ & 0 & 1 \\
+        \hline
+        0 & 0 & 1 \\
+        1 & 1 & 0
+    \end{tabular}
+    \qquad
+    \begin{tabular}{c|cc}
+        $\cdot$ & 0 & 1 \\
+        \hline
+        0 & 0 & 0 \\
+        1 & 0 & 1
+    \end{tabular}
+    \end{center}
+    This is a field.
+\end{eg}
+
+\begin{eg}
+    $\Z_3 = \{0, 1, 2\}$ with operation tables:
+    \begin{center}
+    \begin{tabular}{c|ccc}
+        $+$ & 0 & 1 & 2 \\
+        \hline
+        0 & 0 & 1 & 2 \\
+        1 & 1 & 2 & 0 \\
+        2 & 2 & 0 & 1
+    \end{tabular}
+    \qquad
+    \begin{tabular}{c|ccc}
+        $\cdot$ & 0 & 1 & 2 \\
+        \hline
+        0 & 0 & 0 & 0 \\
+        1 & 0 & 1 & 2 \\
+        2 & 0 & 2 & 1
+    \end{tabular}
+    \end{center}
+    This is a field.
+\end{eg}
+
+\begin{eg}
+    $\Z_4 = \{0, 1, 2, 3\}$ is not a field because $2 \cdot 2 = 0$ but $2 \neq 0$, violating the zero product property.
+\end{eg}
+
+\begin{note}
+    \begin{itemize} These facts are important in applications but not central to linear algebra
+        \item When $m$ is prime, $\Z_m$ is a field
+        \item When $m$ is not prime, $\Z_m$ is not a field (by the zero product property) (doesn't mean no field with $m$ members isn't possible)
+    \end{itemize}
+\end{note}
+
+\subsection{Operations Involving Inverses}
+
+\begin{proposition}[Inverse Properties]\label{prop:inverse-properties}
+    Let $F$ be a field and let $a, b \in F$. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $-0 = 0$
+        \item $1^{-1} = 1$
+        \item $-(-a) = a$
+        \item $(a^{-1})^{-1} = a$ (when $a \neq 0$)
+        \item $(-1) \cdot a = -a$
+        \item $(-a) \cdot b = -(a \cdot b)$
+        \item $(-a) \cdot b = a \cdot (-b)$
+        \item $(-a) \cdot (-b) = a \cdot b$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}\
+    \begin{enumerate}[label=(\roman*)]
+        \item Since $0 + 0 = 0$, we have $-0 = 0$ by uniqueness of additive inverses.
+        
+        \item Since $1 \cdot 1 = 1$, we have $1^{-1} = 1$ by uniqueness of multiplicative inverses.
+        
+        \item Since $(-a) + a = 0$, we have $-(-a) = a$ by uniqueness of additive inverses.
+        
+        \item Since $a^{-1} \cdot a = 1$, we have $(a^{-1})^{-1} = a$ by uniqueness of multiplicative inverses.
+        
+        \item $a + ((-1) \cdot a) = 1 \cdot a + ((-1) \cdot a) = (1 + (-1)) \cdot a = 0 \cdot a = 0$
+        
+        \item $(-a) \cdot b = ((-1) \cdot a) \cdot b = (-1) \cdot (a \cdot b) = -(a \cdot b)$
+        
+        \item $(-a) \cdot b = ((-1) \cdot a) \cdot b = (-1) \cdot (a \cdot b) = a \cdot ((-1) \cdot b) = a \cdot (-b)$
+        
+        \item $(-a) \cdot (-b) = ((-1) \cdot a) \cdot ((-1) \cdot b) = (-1) \cdot (-1) \cdot a \cdot b$
+        
+        Since $(-1) \cdot (-1) = (-1)^{-1} \cdot (-1) = 1$, we get:
+        $(-a) \cdot (-b) = 1 \cdot a \cdot b = a \cdot b$
+    \end{enumerate}
+\end{proof}

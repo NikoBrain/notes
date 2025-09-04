@@ -1,0 +1,184 @@
+\setcounter{chapter}{0}
+\chapter{Fields}
+\section{Definition}
+\lecture{04}{Aug 25 10:15}{Definition}
+
+\subsection{Algebra}
+
+Algebra is the study of equations and calculations. Calculations are done by carrying out operations on objects of an \textbf{algebraic structure}.
+
+\begin{definition*}[Algebraic Structure]
+    A set of objects with operations defined on it.
+\end{definition*}
+
+\subsection{Numbers as Models}
+
+Numbers are an algebraic structure constructed to model certain types of physical objects and their interactions:
+\begin{itemize}
+    \item Objects such as apples and skittles
+    \item Interactions such as trading skittles for apples
+\end{itemize}
+
+Interactions in the natural world have certain characteristics, discovered by observation. Operations on numbers have properties matching those observations.
+
+
+\subsection{The Natural Numbers Model}
+
+The natural numbers $\N$ consist of:
+\begin{itemize}
+    \item A set $\N$ of objects, called numbers
+    \item An algorithm assigning each number a unique name
+    \item An algorithm for deciding which number is "next"
+    \item A binary operation called addition, denoted by $+$
+    \item An algorithm for finding $a + b$ for any $a, b \in \N$
+\end{itemize}
+
+These algorithms are constructed to have properties modeled after observed characteristics of combining physical objects.
+
+\subsection{The Integer Numbers Model}
+
+Additional observations reveal interactions not adequately modeled by $\N$. The integers $\Z$ extend $\N$ by:
+\begin{itemize}
+    \item Adding a new number, called zero and denoted $0$
+    \item Matching each number $a \in \N$ with a new number $-a$
+    \item Extending the addition algorithm for these new numbers
+\end{itemize}
+
+\subsection{Abstraction and Generalization}
+
+Exploration in mathematics proceeds by abstraction and generalization:
+\begin{enumerate}
+    \item Start with a familiar mathematical model whose properties are understood
+    \item Investigate a hypothetical, abstract structure defined by those properties
+    \item Any claim proven about the abstract structure is true for any concrete model satisfying the same axioms
+\end{enumerate}
+
+\subsection{Groups}
+
+\begin{definition}[Group]\label{def:group}
+    A group is a set $G$ equipped with an operation $\star$ that satisfies:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\forall a, b \in G$, $a \star b \in G$ (closure)
+        \item $\forall a, b, c \in G$, $(a \star b) \star c = a \star (b \star c)$ (associativity)
+        \item $\exists e \in G$ such that $\forall a \in G$, $a \star e = e \star a = a$ (neutral element)
+        \item $\forall a \in G$, $\exists b \in G$ such that $a \star b = b \star a = e$ (invertibility)
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Commutative Group]\label{def:commutative-group}
+    A commutative group is a group that also satisfies $\forall a, b \in G$, $a \star b = b \star a$.
+\end{definition}
+
+\begin{eg}\
+    \begin{itemize}
+        \item $(\Z, +)$ is a group
+        \item $(\Z, \cdot)$ is not a group (fails invertibility)
+        \item Hours on a clock with "passage of time" operation forms a group
+    \end{itemize}
+\end{eg}
+
+Groups are important because many different things can be modeled as groups, but they don't capture everything we need for linear algebra.
+
+\subsection{The Rational Numbers Model}
+
+Additional observations lead to the need for division. The rational numbers are:
+\[
+    \Q = \left\{\frac{a}{b} : a, b \in \Z, b \neq 0\right\}
+\]
+
+We can represent rational numbers as ordered pairs $(a,b)$ where:
+\begin{itemize}
+    \item Equality: $(a,b) = (c,d) \iff ad = bc$
+    \item Addition: $(a,b) + (c,d) = (ad + bc, bd)$
+    \item Multiplication: $(a,b) \cdot (c,d) = (ac, bd)$
+\end{itemize}
+
+\subsection{Properties of \Q}
+
+From the definition of operations on $\Q$:
+\begin{enumerate}[label=(\roman*)]
+    \item $\Q$ is closed with respect to both addition and multiplication
+    \item Both operations are associative
+    \item Both operations are commutative
+    \item $(0,1) \in \Q$ is neutral with respect to addition, $(1,1) \in \Q$ is neutral with respect to multiplication
+    \item Multiplication is distributive over addition: $a(b + c) = ab + ac$
+    \item Every $q \in \Q$ is invertible with respect to addition; every $q \neq (0,1)$ is invertible with respect to multiplication
+\end{enumerate}
+
+\subsection{Fields}
+
+\begin{definition}[Field]\label{def:field}
+    A field is a set $F$ equipped with two binary operations, called addition and multiplication and denoted $+$ and $\cdot$ respectively, that satisfy:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\forall a, b \in F$: $a + b \in F$ and $a \cdot b \in F$ (closure)
+        \item $\forall a, b, c \in F$: $(a + b) + c = a + (b + c)$ and $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ (associativity)
+        \item $\forall a, b \in F$: $a + b = b + a$ and $a \cdot b = b \cdot a$ (commutativity)
+        \item $\forall a, b, c \in F$: $a \cdot (b + c) = (a \cdot b) + (a \cdot c)$ (distributivity)
+        \item $\exists \tilde{0} \in F$ and $\exists \tilde{1} \in F$ such that $\forall a \in F$: $a + \tilde{0} = a$ and $a \cdot \tilde{1} = a$ (neutral elements)
+        \item $\forall a \in F$, $\exists a' \in F$ such that $a + a' = \tilde{0}$ (additive inverses)
+        \item $\forall a \neq \tilde{0} \in F$, $\exists a' \in F$ such that $a \cdot a' = \tilde{1}$ (multiplicative inverses)
+        \item $\tilde{0} \neq \tilde{1}$ (distinct neutral elements)
+    \end{enumerate}
+\end{definition}
+
+\begin{note} The two operations are not completely symmetric
+    \begin{itemize}
+        \item Multiplication distributes over addition, but not vice versa
+        \item The additive neutral is not required to have a multiplicative inverse
+    \end{itemize}
+\end{note}
+
+\subsection{Notation and Terminology}
+
+\begin{itemize}
+    \item Elements of a field are called \textbf{scalars}
+    \item We drop the tildes and refer to $\tilde{0}$ and $\tilde{1}$ as "zero" and "one"
+    \item Multiplication precedes addition in order of operations
+    \item We often omit the multiplication symbol: $ab + ac$ instead of $a \cdot b + a \cdot c$
+\end{itemize}
+
+\subsection{Uniqueness of Inverses}
+
+\begin{proposition}[Uniqueness of Additive Inverse]\label{prop:unique-additive-inverse}
+    Let $F$ be a field and $a \in F$. There exists a unique $a' \in F$ such that $a + a' = 0$.
+\end{proposition}
+
+\begin{proof}
+    Let $a \in F$ and suppose $a', a'' \in F$ such that
+    \begin{align*}
+        a' + a &= a + a' = 0 \\
+        a'' + a &= a + a'' = 0
+    \end{align*}
+    
+    Then:
+    \begin{align*}
+        a' &= a' + 0 = a' + (a + a'') = (a' + a) + a'' = 0 + a'' = a''
+    \end{align*}
+\end{proof}
+
+\begin{proposition}[Uniqueness of Multiplicative Inverse]\label{prop:unique-multiplicative-inverse}
+    Let $F$ be a field and $a \neq 0 \in F$. There exists a unique $a' \in F$ such that $a \cdot a' = 1$.
+\end{proposition}
+
+\begin{proof}
+    Let $a \in F$ and suppose $a', a'' \in F$ such that
+    \begin{align*}
+        a' \cdot a &= a \cdot a' = 1 \\
+        a'' \cdot a &= a \cdot a'' = 1
+    \end{align*}
+    
+    Then:
+    \begin{align*}
+        a' &= a' \cdot 1 = a' \cdot (a \cdot a'') = (a' \cdot a) \cdot a'' = 1 \cdot a'' = a''
+    \end{align*}
+\end{proof}
+
+\subsection{Inverse Notation and Operations}
+
+Since inverses are unique:
+\begin{itemize}
+    \item The additive inverse of $a$ is denoted $(-a)$
+    \item The multiplicative inverse of $a$ is denoted $a^{-1}$
+    \item Subtraction: $a - b \coloneqq a + (-b)$
+    \item Division: when $b \neq 0$, $a/b \coloneqq a \cdot b^{-1}$
+\end{itemize}

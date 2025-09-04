@@ -1,0 +1,212 @@
+\section{Numbers}
+\lecture{06}{Aug 24 10:15}{Numbers}
+
+\subsection{Essential vs Nonessential Properties}
+
+\begin{note}
+    The essential properties of natural numbers relate to counting and ordering. Other properties (like primality) are nonessential but useful for examples.
+\end{note}
+
+\begin{eg}
+    The set $\{0, 1, 2, \ldots, p-1\}$ with addition and multiplication modulo $p$ is a field if and only if $p$ is prime.
+\end{eg}
+
+\subsection{Number System Extensions}
+
+\begin{definition*}[Integers]\label{def:integers}
+    Starting with $\N$ and adding zero and additive inverses:
+    \[
+        \Z = \N \cup \{0\} \cup \{-x : x \in \N\}
+    \]
+\end{definition*}
+
+\begin{definition*}[Rationals]\label{def:rationals}
+    Taking ordered pairs of integers:
+    \[
+        \Q = \left\{\left(a,b\right): a, b \in \Z, b \neq 0\right\}
+    \]
+\end{definition*}
+
+\begin{note}
+    Algorithms for addition, multiplication, and ordering extend from $\N$ to $\Z$ to $\Q$. The rigorous justification is handled in real analysis.
+\end{note}
+
+\subsection{Irrational Numbers}
+
+The Pythagorean theorem reveals distances that cannot be expressed as ratios of integers.
+
+\begin{eg}[Pythagoras of Samos]
+    Two unit-length sticks at right angles create a distance $\sqrt{2}$ between their free ends. No ratio of integers accurately describes this distance
+\end{eg}
+
+\begin{note}
+    The existence of irrational numbers has been known since antiquity. Their rigorous construction (e.g., Dedekind cuts) is handled in real analysis.
+\end{note}
+
+\subsection{Real Numbers}
+
+\begin{definition*}[Real Numbers]\label{def:reals}
+    We accept $\R$ as the union of rational and irrational numbers, using geometric intuition of "length" and the number line.
+\end{definition*}
+
+\subsection{Complex Numbers}
+
+\begin{definition}[Complex Numbers]\label{def:complex}
+    We denote by $\C$ the set of ordered pairs of real numbers:
+    \[
+        \C = \{(x,y) : x, y \in \R\}
+    \]
+    with operations:
+
+    Equality: $\quad (x,y) = (x',y') \iff x = x' \land y = y'$
+
+    Addition: $\quad (x,y) + (x',y') = (x+x', y+y')$
+
+    Multiplication: $\quad (x,y)(x',y') = (xx'-yy', xy'+x'y)$
+\end{definition}
+
+\begin{proposition}[Complex Field]\label{prop:complex-field}
+    The set $\C$ with addition and multiplication as defined is a field.
+\end{proposition}
+
+\begin{proof}
+    We verify each field axiom:
+    \begin{enumerate}[label=(\roman*)]
+        \item \textbf{Closure:} Since $\R$ is closed under addition and multiplication, both $(x+x', y+y')$ and $(xx'-yy', xy'+x'y)$ belong to $\C$.
+        
+        \item \textbf{Associativity:} For addition:
+        \begin{align*}
+            &[(x,y) + (x',y')] + (x'',y'') = (x+x', y+y') + (x'',y'') \\
+            &= ((x+x')+x'', (y+y')+y'') = (x+(x'+x''), y+(y'+y'')) \\
+            &= (x,y) + [(x',y') + (x'',y'')]
+        \end{align*}
+        For multiplication:
+        \begin{align*}
+            &[(x,y)(x',y')] (x'',y'') = (xx'-yy', xy'+x'y)(x'',y'') \\
+            &= ((xx'-yy')x'' - (xy'+x'y)y'', (xx'-yy')y'' + (xy'+x'y)x'') \\
+            &= (x(x'x'' - y'y'') - y(x'y'' + y'x''), x(x'y'' + y'x'') + y(x'x'' - y'y'')) \\
+            &= (x,y)[(x',y')(x'',y'')]
+        \end{align*}
+        
+        \item \textbf{Commutativity:} For addition:
+        \[
+            (x,y) + (x',y') = (x+x', y+y') = (x'+x, y'+y) = (x',y') + (x,y)
+        \]
+        For multiplication:
+        \[
+            (x,y)(x',y') = (xx'-yy', xy'+x'y) = (x'x - y'y, x'y + y'x) = (x',y')(x,y)
+        \]
+        \item \textbf{Distributivity:}
+        \begin{align*}
+            &(x,y)[(x',y') + (x'',y'')] = (x,y)(x'+x'', y'+y'') \\
+            &= (x(x'+x'') - y(y'+y''), x(y'+y'') + y(x'+x'')) \\
+            &= (xx' - yy' + xx'' - yy'', xy' + yx' + xy'' + yx'') \\
+            &= (x,y)(x',y') + (x,y)(x'',y'')
+        \end{align*}
+        
+        \item \textbf{Neutral elements:} Let $\tilde{0} = (0,0)$ and $\tilde{1} = (1,0)$. Then:
+        \begin{align*}
+            (x,y) + (0,0) &= (x,y) \\
+            (x,y)(1,0) &= (x \cdot 1 - y \cdot 0, x \cdot 0 + y \cdot 1) = (x,y)
+        \end{align*}
+        
+        \item \textbf{Additive inverses:} Let $-(x,y) = (-x,-y)$. Then:
+        \[
+            (x,y) + (-x,-y) = (0,0)
+        \]
+        
+        \item \textbf{Multiplicative inverses:} For $(x,y) \neq (0,0)$, let:
+        \[
+            (x,y)^{-1} = \left(\frac{x}{x^2+y^2}, \frac{-y}{x^2+y^2}\right)
+        \]
+        Then $(x,y) \cdot (x,y)^{-1} = (1,0)$.
+        
+        \item \textbf{Distinct neutrals:} Since $0 \neq 1$ in $\R$, we have $(0,0) \neq (1,0)$.
+    \end{enumerate}
+\end{proof}
+
+\subsection{Real Numbers as Complex Subset}
+
+The mapping $x \leftrightarrow (x,0)$ identifies $\R$ with the subset $\{(x,0) : x \in \R\} \subset \C$.
+
+This preserves operations:
+\begin{align}
+    x + y &\leftrightarrow (x+y, 0) = (x,0) + (y,0) \\
+    xy &\leftrightarrow (xy, 0) = (x,0)(y,0)
+\end{align}
+
+\subsection{The Imaginary Unit}
+
+\begin{definition*}[Imaginary Unit]\label{def:imaginary-unit}
+    We define $i = (0,1)$, which satisfies $i^2 = -1$:
+    \[
+        i \cdot i = (0,1)(0,1) = (0-1, 0+0) = (-1,0)
+    \]
+\end{definition*}
+
+\begin{notation}
+    Every complex number can be written uniquely as:
+    \[
+        (x,y) = (x,0) + (0,y) = x + yi
+    \]
+\end{notation}
+
+\begin{definition}[Real and Imaginary Parts]\label{def:real-imaginary-parts}
+    For $z = x + yi \in \C$:
+    \begin{align}
+        \Re(z) &= x \quad \text{(real part)} \\
+        \Im(z) &= y \quad \text{(imaginary part)}
+    \end{align}
+\end{definition}
+
+\subsection{Geometric Interpretation}
+
+Complex numbers correspond to points in the Cartesian plane, with the real part as $x$-coordinate and imaginary part as $y$-coordinate.
+
+\subsubsection{Polar Form}
+
+\begin{definition}[Absolute Value and Argument]\label{def:abs-arg}
+    For $z = x + yi \in \C$:
+    \begin{align}
+        |z| &= \sqrt{x^2 + y^2} \quad \text{(absolute value)} \\
+        \arg(z) &= \arctan\left(\frac{y}{x}\right) \quad \text{(argument, with correct quadrant)}
+    \end{align}
+\end{definition}
+
+For complex numbers $z = |z|(\cos\theta + i\sin\theta)$ and $z' = |z'|(\cos\theta' + i\sin\theta')$:
+\[
+    zz' = |z||z'|[\cos(\theta + \theta') + i\sin(\theta + \theta')]
+\]
+
+The absolute value of the product equals the product of absolute values, and the argument of the product equals the sum of arguments.
+
+
+\subsection{Complex Conjugate}
+\begin{definition}[Complex Conjugate]\label{def:conjugate}
+    For $z = x + yi \in \C$, the complex conjugate is:
+    \[
+        \overline{z} = x - yi
+    \]
+\end{definition}
+
+\begin{theorem}[Conjugate Properties]\label{thm:conjugate-props}
+    For $z, z_1, z_2 \in \C$:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\overline{\overline{z}} = z$
+        \item $\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}$
+        \item $\overline{z_1 z_2} = \overline{z_1} \cdot \overline{z_2}$
+        \item $z\overline{z} = |z|^2$
+        \item $z = \overline{z} \iff z \in \R$
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Division}
+
+For $z, z' \in \C$ with $z' \neq 0$:
+\[
+    \frac{z}{z'} = \frac{z\overline{z'}}{z'\overline{z'}} = \frac{z\overline{z'}}{|z'|^2}=\frac{xx'+yy'}{x'^2+y'^2}+i \frac{x'y-y'x}{x'^2+y'^2}
+\]
+
+\begin{note}
+    Elementary functions (exponential, trigonometric, logarithmic) extend to $\C$ while preserving many properties. The exponential function leads to what many consider the most beautiful equation in mathematics: Euler's identity, $e^{i\pi} + 1 = 0$, while considering functions brings us to complex analysis.
+\end{note}

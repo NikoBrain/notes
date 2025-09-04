@@ -1,3 +1,6 @@
+% Toggle theorem background color
+\newif\ifthmbackground
+\thmbackgroundfalse % Set to \thmbackgroundfalse to disable backgrounds
 % Basic Packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -57,7 +60,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+			linecolor=ForestGreen, backgroundcolor={\ifthmbackground ForestGreen!5 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmgreenbox}
@@ -67,7 +70,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=ForestGreen, backgroundcolor=ForestGreen!8,
+			linecolor=ForestGreen, backgroundcolor={\ifthmbackground ForestGreen!8 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmgreen2box}
@@ -77,7 +80,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+			linecolor=NavyBlue, backgroundcolor={\ifthmbackground NavyBlue!5 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmbluebox}
@@ -87,7 +90,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=TealBlue,
+			linecolor=TealBlue, backgroundcolor={\ifthmbackground White!1 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmblueline}
@@ -97,7 +100,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=RawSienna, backgroundcolor=RawSienna!5,
+			linecolor=RawSienna, backgroundcolor={\ifthmbackground RawSienna!5 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmredbox}
@@ -107,7 +110,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=RawSienna, backgroundcolor=RawSienna!8,
+			linecolor=RawSienna, backgroundcolor={\ifthmbackground RawSienna!8 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmred2box}
@@ -117,7 +120,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=SeaGreen, backgroundcolor=SeaGreen!2,
+			linecolor=SeaGreen, backgroundcolor={\ifthmbackground SeaGreen!2 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmgreen3box}
@@ -127,7 +130,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=WildStrawberry, backgroundcolor=WildStrawberry!5,
+			linecolor=WildStrawberry, backgroundcolor={\ifthmbackground WildStrawberry!5 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmpinkbox}
@@ -137,7 +140,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=MidnightBlue, backgroundcolor=MidnightBlue!5,
+			linecolor=MidnightBlue, backgroundcolor={\ifthmbackground MidnightBlue!5 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmblue2box}
@@ -147,7 +150,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=Gray, backgroundcolor=Gray!5,
+			linecolor=Gray, backgroundcolor={\ifthmbackground Gray!5 \else White!1 \fi},
 			nobreak=false
 		}
 ]{notgraybox}
@@ -157,7 +160,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=Gray,
+			linecolor=Gray, backgroundcolor={\ifthmbackground White!1 \else White!1 \fi},
 			nobreak=false
 		}
 ]{notgrayline}
@@ -168,7 +171,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
+			linecolor=NavyBlue, backgroundcolor={\ifthmbackground NavyBlue!1 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmexplanationbox}
@@ -179,7 +182,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=WildStrawberry, backgroundcolor=WildStrawberry!1,
+			linecolor=WildStrawberry, backgroundcolor={\ifthmbackground WildStrawberry!1 \else White!1 \fi},
 			nobreak=false
 		}
 ]{thmanswerbox}
@@ -189,7 +192,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=Violet, backgroundcolor=Violet!1,
+			linecolor=Violet, backgroundcolor={\ifthmbackground Violet!1 \else White!1 \fi},
 			nobreak=false
 		}
 ]{conjpurplebox}
@@ -214,7 +217,7 @@
 	\item[\hskip\labelsep
 	            \color{RawSienna!70!black}\sffamily\bfseries
 	            #1\@addpunct{.}]\ignorespaces
-	\begin{mdframed}[linewidth=2pt,rightline=false, topline=false, bottomline=false,linecolor=RawSienna, backgroundcolor=RawSienna!1]
+	\begin{mdframed}[linewidth=2pt,rightline=false, topline=false, bottomline=false,linecolor=RawSienna, backgroundcolor=\ifthmbackground WildStrawberry!1 \else White!1 \fi]
 		}{%
 		\popQED\endtrivlist\@endpefalse
 	\end{mdframed}
