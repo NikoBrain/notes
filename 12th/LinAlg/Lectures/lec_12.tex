@@ -1,0 +1,60 @@
+\lecture{12}{Sep 17 10:15}{How Many Solutions Are There?}
+
+\section{System Solution Analysis}
+
+\subsection{Consistency}
+\begin{theorem}[Consistency Condition]\label{thm:consistency-condition}
+    A linear system is consistent if and only if its augmented coefficient matrix is row equivalent to a matrix in reduced row echelon form that does not contain a type-B row.
+\end{theorem}
+
+\begin{proof}
+    Form the augmented coefficient matrix of the system and run the Gauss-Jordan elimination algorithm.
+    \begin{itemize}
+        \item All operations during the algorithm are elementary row operations
+        \item All matrices (initial, final, and intermediate) are row equivalent to the original matrix
+        \item All linear systems represented by these matrices are equivalent
+        \item If at any point a type-B row appears, the system is inconsistent
+        \item If the algorithm completes, the output is a RREF matrix without a type-B row
+        \item This matrix represents a system equivalent to the original system
+        \item A solution is available by back substitution
+    \end{itemize}
+\end{proof}
+
+\subsection{Number of Solutions}
+Let $A$ be a linear system with $n$ unknowns over a field $F$, and suppose the augmented coefficient matrix is row equivalent to a RREF that does not contain a type-B row.
+
+\begin{enumerate}
+    \item If the RREF matrix has exactly $n$ non-zero rows, then the system has a \textbf{unique solution}
+    \item If the RREF matrix has $k < n$ non-zero rows, then there are $n - k$ free variables:
+    \begin{itemize}
+        \item If field $F$ has infinitely many scalars, there are \textbf{infinitely many solutions}
+        \item If field $F$ has $N$ different scalars, there are $N^{n-k}$ solutions
+    \end{itemize}
+\end{enumerate}
+
+\begin{note}
+    The RREF matrix has at most $n$ non-zero rows because each non-zero row has a pivot in one of the first $n$ columns, and everything else in a pivot column is zero.
+\end{note}
+
+\subsection{Homogeneous Systems}
+
+\begin{note}
+    A homogeneous system is always consistent because the trivial solution always exists.
+\end{note}
+
+\begin{theorem}[Non-trivial Solutions]\label{thm:nontrivial-solutions}
+    A homogeneous system with more unknowns than equations has a non-trivial solution.
+\end{theorem}
+
+\begin{proof}
+    Let $A$ be a homogeneous system with $m$ equations in $n$ unknowns where $m < n$.
+    \begin{itemize}
+        \item The RREF of the coefficient matrix has no type-B rows (system is homogeneous)
+        \item There are at most $m$ pivots in the RREF matrix (at most one per row)
+        \item Therefore, there are at most $m$ restricted variables
+        \item Therefore, there is at least one free variable since $n - m > 0$
+        \item Any choice of $t \in F$ for the free variable leads to a solution that is an $n$-tuple with $t$ as one component
+        \item Including the choice $t = 1$
+        \item Since $1 \neq 0$ by axiom viii in Definition \ref{def:field}, there exists a non-trivial solution
+    \end{itemize}
+\end{proof}

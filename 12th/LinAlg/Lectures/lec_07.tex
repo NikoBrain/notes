@@ -1,0 +1,125 @@
+
+\chapter{Systems of Linear Equations}
+\lecture{07}{Sep 10 12:38}{A Linear Equation Over a Field}
+\section{A Linear Equation Over a Field}
+
+\begin{proposition}
+    Let $F$ be afield.
+    \begin{itemize}
+        \item $\forall a,b,c \in F$
+        \[
+        a+b=a+c \implies b=c
+        \]        
+        \item $\forall a \neq \tilde{0} \in F$ and $\forall b,c \in F$
+        \[
+        ab=ac \implies b=c
+        \]
+         
+    \end{itemize}
+\end{proposition}
+\begin{proof}
+    \begin{itemize}
+        \item $\exists \left(-a\right) \in F$ such that $\left(-a\right)+a=\tilde{0}$. Then
+        \begin{align*}
+        a+b=a+c \implies \left(-a\right)+\left(a+b\right)=\left(-a\right)+\left(a+c\right) \\
+        \implies \left(\left(-a\right)+a\right)+b=\left(\left(-a\right)+a\right)+c \implies \tilde{0}+b=\tilde{0}+c \implies b=c
+        \end{align*}
+        \item $\exists a^{-1} \in F$ such that $a^{-1}a=\tilde{1}$. Then
+        \begin{align*}
+        ab=ac \implies a^{-1}\left(ab\right)=a^{-1}\left(ac\right) \\
+        \implies \left(a^{-1}a\right)b=\left(a^{-1}a\right)c \implies \tilde{1}b=\tilde{1}c \implies b=c
+        \end{align*} 
+    \end{itemize}
+\end{proof}
+
+\begin{definition}[Standard Form Linear Equation]\label{def:standard-form-linear-equation}
+    A \textbf{Standard form Linear Equation in $n$ unknowns over a field $F$} is an expression of the form
+    \[a_1x_1+a_2x_2+\ldots+a_nx_n=b\]
+    in which the $x_1,\ldots,x_n \in F$ are the \textbf{unknowns}, the $a_1,\ldots,a_n \in F$ are the \textbf{coefficients of the unknowns}, and $b \in F$ is the \textbf{free coefficient}.
+\end{definition}
+\begin{definition*}[Linear Equation]\label{def:linear-equation}
+    An expression that represents the same condition as some standard form linear equation
+\end{definition*}
+\begin{note}\
+    \begin{itemize}
+        \item We often drop an explicit $1$ or $\left(-1\right)$ as a coefficient of an unknown.
+        \item When the number of unknowns is small, it is sometimes convenient to use $a,b,c,x,y,z$ instead.
+    \end{itemize}
+\end{note}
+\begin{definition}[$n$-tuple]\label{def:n-tuple}
+    A finite list of $n$ items, not necessarily distinct, appearing in a particular order.
+    \begin{note}
+        For 2-tuples and 3-tuples, we often use the terms \textbf{pair} and \textbf{triple} respectively.
+    \end{note}
+    \begin{notation}\ 
+        \begin{itemize}
+            \item Write compoments of an $n$-tuple in parentheses, separated by commas. 
+            \item We name an $n$-tuple with roman, lowercase, underlined letters (e.g., $\underline{a}=\left(a_1,a_2,\ldots,a_n\right)$).
+        \end{itemize}
+        \begin{note}
+            In print, $\textbf{a}$ is more common, but harder when writing.
+        \end{note}
+    \end{notation}
+\end{definition}
+\begin{definition}[$F^n$]\label{def:set-of-n-tuples}
+    Let $F$ be a field. The set of all $n$-tuples whose components are elements of $F$ is denoted by $F^n$:
+    \[
+    F^n = \left\{\left(a_1,a_2,\ldots,a_n\right) : \forall i \in \left\{1,2,\ldots,n\right\}, a_i \in F \right\} 
+    \]
+    
+\end{definition}
+\begin{definition}[Solution]\label{def:solution}
+    Let $a_1x_1+a_2x_2+\ldots+a_nx_n=b$ be a linear equation over a field $F$, the $n$-tuple 
+    \[
+    \left(c_1,c_2,\ldots,c_n\right)
+    \]
+    is a \textbf{solution} of the equation if this equality is true:
+    \[
+    a_1c_1+a_2c_2+\ldots+a_nc_n=b
+    \]
+    
+\end{definition}
+
+To ``solve'' an equation with $n$ unknowns over a field $F$ means to characterize precisely the subset of $F^n$ of solutions of that equation.
+\begin{eg}
+    Let us solve this equation over \Q
+    \[
+    2x-3y=7
+    \]
+
+    Using the uniqueness of additive and multiplicative inverses in \Q, we deduce
+    \[2x-3y=7 \iff -3y=7-2x \iff 3y=2x-7 \iff y=\frac{2}{3}x-\frac{7}{3}\]
+
+    Therefore, for any $t \in \Q$, the 2-tuple $\left(t,\frac{2}{3}t-\frac{7}{3}\right)$ is a solution.
+    
+    We can express the set of solutions, $S$ in set builder notation:
+    \[
+    S=\left\{\left(t,\frac{2}{3}t-\frac{7}{3}\right) : t \in \Q \right\}
+    \]
+\end{eg}
+
+\begin{proposition}
+    Consider the linear equation $a_1x_1+a_2x_2+\ldots+a_nx_n=b$ over a field $F$.
+    \begin{itemize}
+        \item If $a_i=\tilde{0}=b,\forall i \in \left\{1,\ldots,n\right\}$ then every $n$-tuple in $F^n$ is a solution. The solution set is $F^n$.
+        \item If $a_i=\tilde{0},\forall i \in \left\{1,\ldots,n\right\}$ and $b \neq \tilde{0}$ then no $n$-tuple in $F^n$ is a solution. The solution set is $\emptyset$.
+        \item If at least one of the $a_i \neq \tilde{0}$ then there exists a solution.
+    \end{itemize}
+\end{proposition}
+\begin{proof}
+    \begin{itemize}
+        \item By Proposition 1.2.1, for any $\left(x_1,\ldots,x_n\right) \in F^n$,
+        \[
+        \tilde{0}x_1+\tilde{0}x_2+\ldots+\tilde{0}x_n=\tilde{0}=b
+        \]
+        \item By Proposition 1.2.1, for any $\left(x_1,\ldots,x_n\right) \in F^n$,
+        \[
+        \tilde{0}x_1+\tilde{0}x_2+\ldots+\tilde{0}x_n=\tilde{0} \neq b
+        \]
+        \item If $a_i \neq \tilde{0}$ then $a_i^{-1}$ exists and, for any $\left(x_1,\ldots,x_{i-1},x_{i+1},\ldots,x_n\right) \in F^{n-1}$, the $n$-tuple
+        \begin{multline*}
+            (x_1,\ldots,x_{i-1},a_i^{-1}(b-a_1x_1-\ldots-a_{i-1}x_{i-1}-\\a_{i+1}x_{i+1}-\ldots-a_nx_n),x_{i+1},\ldots,x_n)
+        \end{multline*}
+        is a solution. 
+    \end{itemize}
+\end{proof}

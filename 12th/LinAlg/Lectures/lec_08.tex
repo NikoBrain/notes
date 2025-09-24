@@ -1,0 +1,75 @@
+\section{A System of Linear Equations}
+\lecture{08}{Sep 11 10:15}{A System of Linear Equations}
+
+\subsection{System Definition}
+
+\begin{definition}[Standard Form Linear System]\label{def:linear-system}
+    A \textbf{standard form linear system of order $m \times n$} over a field $F$ is a collection of standard form linear equations:
+    \begin{align*}
+        a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1 \\
+        a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2 \\
+        &\vdots \\
+        a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m
+    \end{align*}
+    where the $a_{ij}$ and $b_i$ (for $1 \leq i \leq m$, $1 \leq j \leq n$) are scalars of $F$, called the \textbf{coefficients} of the system. The $a_{ij}$ are the \textbf{coefficients of the unknowns} and the $b_i$ are the \textbf{free coefficients}.
+\end{definition}
+
+\begin{definition}[Solution of a System]\label{def:system-solution}
+    An $n$-tuple $\underline{c} = (c_1, \ldots, c_n) \in F^n$ is a \textbf{solution} of an $m \times n$ linear system if it is a solution of each of the $m$ equations of the system.
+\end{definition}
+
+\subsection{Consistency}
+
+The solution set of a linear system is the intersection of the individual solution sets of each equation.
+
+\begin{definition}[Consistency]\label{def:consistency}
+    If the solution set of a system of linear equations is empty, the system is called \textbf{inconsistent}. If the solution set contains at least one solution, the system is called \textbf{consistent}.
+    
+\end{definition}
+\begin{note} 
+    If any equation in the system has the form:
+    \[
+        0x_1 + 0x_2 + \cdots + 0x_n = b \neq 0
+    \]
+    then the system is inconsistent. Later, we'll call this a ``type-B row''
+\end{note}  
+\begin{note}
+    The algorithm for solving linear systems will transform any inconsistent system to one that is obviously inconsistent.
+\end{note}
+
+\subsection{Redundancy}
+
+\begin{definition}[Redundancy]\label{def:redundancy}
+    A linear system is called \textbf{redundant} if one or more of the equations can be dropped without changing the solution set.
+\end{definition}
+
+
+
+\begin{note}
+    The algorithm for solving linear systems will transform any redundant system to one that is obviously redundant.
+\end{note}
+
+\subsection{Homogeneous Systems}
+
+\begin{definition}[Homogeneous System]\label{def:homogeneous}
+    A linear system is called \textbf{homogeneous} if all its free coefficients are zeros. If at least one free coefficient is non-zero, the system is called \textbf{non-homogeneous}.
+\end{definition}
+
+\begin{proposition}[Homogeneous Consistency]\label{prop:homogeneous-consistent}
+    Every homogeneous system is consistent.
+\end{proposition}
+
+\begin{proof}
+    Every homogeneous system has at least one solution, namely the $n$-tuple of zeros:
+    $\underline{0} = (0, 0, \ldots, 0)$
+\end{proof}
+
+\begin{definition}[Trivial Solution]\label{def:trivial-solution}
+    The solution $\underline{0} = (0, 0, \ldots, 0)$ is called the \textbf{trivial solution} of a homogeneous system.
+\end{definition}
+
+\begin{note}
+    A homogeneous system may or may not have other solutions besides the trivial solution.
+
+    There are no non-homogenous systems where $\left(\tilde{0},\tilde{0},\tilde{0}\right)$ is a solution.
+\end{note}

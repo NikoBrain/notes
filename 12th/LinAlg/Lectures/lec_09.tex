@@ -1,0 +1,102 @@
+\lecture{09}{Sep 12 10:15}{Equivalent Systems}
+\section{Equivalent Systems}
+\begin{definition}[Equivalent]\label{def:equivalent}
+    Two linear systems are called \textbf{equivalent} if their solution sets are identitical.
+\end{definition}
+\begin{definition}[Elementary Change]\label{def:elementary-change}
+    An \textbf{elementary change} to a linear system is one of the follow changes:
+    \begin{enumerate}
+        \item Swapping the position of two equations
+        \item Multiplying every coefficient in one equation by a non-zero scalar
+        \item Adding the same multiple of the coefficients of one equation to the respective coefficients of another equation
+    \end{enumerate}
+\end{definition}
+\begin{proposition}\label{prop:elementary-change}
+    Performing an elementary change on a linear system does not change the system's solution set.
+\end{proposition}
+
+
+\begin{proof} Type (i)
+Let $S$ be the solution set of a linear system and let $S'$ be the solution set of the system following the elementary change $R_i \leftrightarrow R_j$.
+
+The system includes the same equations before and after the change, so clearly $S = S'$.
+\end{proof}
+\begin{proof} Type (ii)
+
+Let $S$ be the solution set of a linear system and let $S'$ be the solution set of the system following the elementary change $R_i \to tR_i$, where $t \neq 0 \in F$.
+
+All equations except the $i$-th remain unchanged. For the $i$-th equation:
+
+Suppose the $n$-tuple $c = (c_1, c_2, \ldots, c_n) \in S$, then
+\[a_{i1}c_1 + a_{i2}c_2 + \cdots + a_{in}c_n = b_i\]
+
+Therefore,
+\[ta_{i1}c_1 + ta_{i2}c_2 + \cdots + ta_{in}c_n = t(a_{i1}c_1 + a_{i2}c_2 + \cdots + a_{in}c_n) = tb_i\]
+
+Therefore $c$ is also a solution of the $i$-th equation in the changed system, and $c \in S'$.
+
+Conversely, suppose $c \in S'$, then
+\[ta_{i1}c_1 + ta_{i2}c_2 + \cdots + ta_{in}c_n = tb_i\]
+
+Therefore, because $t \neq 0$,
+\begin{align*}
+a_{i1}c_1 + \cdots + a_{in}c_n &= t^{-1}(ta_{i1}c_1 + ta_{i2}c_2 + \cdots + ta_{in}c_n)\\
+&= t^{-1}(tb_i)= b_i
+\end{align*}
+
+Therefore, $c$ is also a solution of the $i$-th equation in the original system, and $c \in S$.
+Since $S \subseteq S'$ and $S' \subseteq S$, therefore $S = S'$.
+\end{proof}
+\begin{proof} Type (iii)
+
+Let $S$ be the solution set of a linear system and let $S'$ be the solution set of the system following the elementary change $R_i \to R_i + tR_j$ for $t \in F$.
+
+All equations except the $i$-th remain unchanged. For the $i$-th equation:
+
+Suppose the $n$-tuple $c = (c_1, \ldots, c_n) \in S$ is a solution of the original system, then
+\[a_{i1}c_1 + a_{i2}c_2 + \cdots + a_{in}c_n = b_i\]
+and
+\[a_{j1}c_1 + a_{j2}c_2 + \cdots + a_{jn}c_n = b_j\]
+
+Therefore,
+\begin{align*}
+&(ta_{j1} + a_{i1})c_1 + \cdots + (ta_{jn} + a_{in})c_n\\
+&= ta_{j1}c_1 + \cdots + ta_{jn}c_n + a_{i1}c_1 + \cdots + a_{in}c_n\\
+&= t(a_{j1}c_1 + \cdots + a_{jn}c_n) + (a_{i1}c_1 + \cdots + a_{in}c_n)\\
+&= tb_j + b_i
+\end{align*}
+
+This shows that $c$ is also a solution of the $i$-th equation in the changed system and therefore $c \in S'$ and $S \subseteq S'$.
+
+Conversely, suppose $c \in S'$ is a solution of the changed system, then
+\[(a_{i1} + ta_{j1})c_1 + (a_{i2} + ta_{j2})c_2 + \cdots + (a_{in} + ta_{jn})c_n = b_i + tb_j\]
+and
+\[a_{j1}c_1 + a_{j2}c_2 + \cdots + a_{jn}c_n = b_j\]
+
+Therefore,
+\begin{align*}
+&a_{i1}c_1 + \cdots + a_{in}c_n\\
+&= (a_{i1}c_1 + \cdots + a_{in}c_n) + 0\\
+&= (a_{i1}c_1 + \cdots + a_{in}c_n) - ((a_{i1} + ta_{j1})c_1 + \cdots + (a_{in} + ta_{jn})c_n) + (b_i + tb_j)\\
+&= (a_{i1}c_1 + \cdots + a_{in}c_n) - (a_{i1}c_1 + \cdots + a_{in}c_n) + b_i - t(a_{j1}c_1 + \cdots + a_{jn}c_n) + tb_j\\
+&= 0 + b_i - tb_j + tb_j\\
+&= b_i
+\end{align*}
+
+This shows that $c$ is also a solution of the $i$-th equation in the original system and therefore $c \in S$ and $S' \subseteq S$.
+
+Therefore, since $S' \subseteq S$ and $S \subseteq S'$, we have $S = S'$.
+\end{proof}
+
+
+
+\begin{theorem}\label{thm:equivalent-systems}
+    A \textbf{finite sequence of elementary changes} on a linear system leads to an \textbf{equivalent} system.
+\end{theorem}
+\begin{proof}
+    Let $S$ be the solution set of a linear system and $S'$ be the solution set of the system after performing a finite sequence of elementary changes.
+
+    By Proposition \ref{prop:elementary-change}, any single elementary change leads to an equivalent system.
+
+    Equivalency is transitive, because equality of sets is transitive.
+\end{proof}

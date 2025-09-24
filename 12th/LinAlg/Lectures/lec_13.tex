@@ -1,0 +1,135 @@
+\lecture{13}{}{Square Systems and Square Matrices}
+
+\section{Square Matrices}
+An $n \times n$ matrix is called a \textbf{square matrix}. A linear system with $n$ equations in $n$ unknowns has a square coefficient matrix.
+
+\begin{notation}
+    To avoid confusion with coefficient matrices, we will use the following terminology:
+    \begin{itemize}
+        \item \textbf{Augmented coefficient matrix}: includes the constants column $[A | \mathbf{b}]$
+        \item \textbf{Not-augmented coefficient matrix}: contains only the coefficients of the unknowns
+    \end{itemize}
+\end{notation}
+
+In a square matrix of order $n$, the \textbf{main diagonal} is the diagonal from upper left to lower right, consisting of entries $a_{ii}$ for $i \in \{1, 2, \ldots, n\}$.
+
+\begin{definition}[Identity Matrix]\label{def:identity-matrix}
+    The square matrix of order $n$ whose main diagonal entries are equal to $\tilde{1}$ and all other entries are equal to $\tilde{0}$ is called the \textbf{identity matrix of order $n$}, denoted $I_n$.
+    \[
+        I_n = \begin{bmatrix}
+            1 & 0 & \cdots & 0 \\
+            0 & 1 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & 1
+        \end{bmatrix}
+    \]
+    The element in row $i$, column $j$ of $I_n$ equals $\delta_{ij}$ (Kronecker delta).
+\end{definition}
+
+\subsection{RREF and Identity Matrix}
+
+\begin{theorem}[RREF Square Matrix]\label{thm:rref-square-identity}
+    If $A$ is an RREF square matrix of order $n$ with a pivot in every row, then $A = I_n$.
+\end{theorem}
+
+\begin{proof}
+    Let $A$ be as described. Since there's a pivot in every row, there are $n$ pivots total.
+    
+    In RREF, every pivot is in a different column. Suppose the pivot of the $i$-th row is in the $j$-th column.
+    
+    \begin{itemize}
+        \item There are $i-1$ rows above the $i$-th row, whose pivots must be in columns strictly to the left of column $j$, so $i-1 \leq j-1$
+        \item There are $n-i$ rows below the $i$-th row, whose pivots must be in columns strictly to the right of column $j$, so $n-i \leq n-j$
+    \end{itemize}
+    
+    Therefore $i \leq j$ and $j \leq i$, which implies $i = j$.
+    
+    The pivots of $A$ are therefore $a_{ii}$ for $i \in \{1, \ldots, n\}$. In RREF:
+    \begin{itemize}
+        \item All pivots equal $\tilde{1}$
+        \item In every pivot column, all non-pivot entries equal $\tilde{0}$
+    \end{itemize}
+    
+    Therefore $a_{ij} = \delta_{ij}$, which is the definition of $I_n$.
+\end{proof}
+
+\subsection{Unique Solutions for Square Systems}
+
+\begin{lemma}\label{lma:row-equiv-column-deletion}
+    If $A$ and $B$ are row equivalent, and we delete column $j$ from each to make $A'$ and $B'$ respectively, then $A'$ and $B'$ are also row equivalent.
+\end{lemma}
+
+\begin{proof}
+    The same sequence of row operations that leads from $A$ to $B$ also leads from $A'$ to $B'$.
+\end{proof}
+
+\begin{theorem}[Unique Solution Test]\label{thm:unique-solution-test}
+    A linear system of $n$ equations in $n$ unknowns has a unique solution if and only if its not-augmented coefficient matrix is row equivalent to $I_n$.
+\end{theorem}
+
+\begin{proof}
+    Let $A = [A' | b_{\uparrow}]$ be the augmented coefficient matrix, where $A'$ is the not-augmented coefficient matrix.
+    
+    \textbf{($\Rightarrow$):} Suppose $A'$ is row equivalent to $I_n$.
+    
+    Apply the same sequence of operations to $A = [A' | b_{\uparrow}]$ making $[I_n | c_{\uparrow}]$
+    
+    This represents the system: $x_1 = c_1, x_2 = c_2, \ldots, x_n = c_n$
+    
+    This system has the unique solution $\underbar{c}=(c_1, c_2, \ldots, c_n)$
+    
+    \textbf{($\Leftarrow$):} Suppose the system has a unique solution.
+
+    Apply row operations to get RREF matrix $C = [C' | c_{\uparrow}]$
+
+    Since the original system has one solution, so does the equivalent RREF system
+
+    Therefore, there are no free variables, so $C$ has $n$ pivots in the first $n$ columns
+
+    Therefore $C'$ has a pivot in every row and every column
+
+    By Theorem~\ref{thm:rref-square-identity}, $C' = I_n$
+
+    By Lemma~\ref{lma:row-equiv-column-deletion}, $A'$ is row equivalent to $I_n$
+\end{proof}
+
+\begin{corollary}\label{thm:square-all-or-nothing}
+    For a square matrix $A$: if one linear system with coefficient matrix $A$ has a unique solution, then \textbf{all} linear systems with coefficient matrix $A$ have unique solutions.
+    
+    Equivalently: A square system $[A | \mathbf{b}]$ has a unique solution if and only if the corresponding homogeneous system $[A | \mathbf{0}]$ has no non-trivial solution.
+\end{corollary}
+
+\subsection{Square Homogeneous Systems}
+
+\begin{theorem}[Square Homogeneous Dichotomy]\label{thm:square-homogeneous-dichotomy}
+    For the not-augmented coefficient matrix of a homogeneous system of $n$ equations in $n$ unknowns, exactly one of the following is true:
+    \begin{enumerate}
+        \item It is row equivalent to a matrix with a row of zeros $\iff$ the system has a non-trivial solution
+        \item It is row equivalent to $I_n$ $\iff$ the system has no non-trivial solution
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{Proof of (1):}
+    \begin{itemize}
+        \item $(\Rightarrow)$ Suppose $A$ is row equivalent to a matrix $B$ with a row of zeros
+        \item WLOG, assume the zero row is the last row (swap if necessary)
+        \item Apply row operations to get RREF matrix $C$ (the zero row remains)
+        \item A square RREF matrix with a zero row has fewer than $n$ pivots
+        \item Therefore the system has at least one free variable
+        \item Therefore the homogeneous system has a non-trivial solution
+        \item $(\Leftarrow)$ If $A$ has a non-trivial solution, it doesn't have a unique solution
+        \item By Theorem~\ref{thm:unique-solution-test}, $A$ is not row equivalent to $I_n$
+        \item By Theorem~\ref{thm:rref-square-identity}, the RREF of $A$ doesn't have a pivot in every row
+        \item Therefore it has a row of zeros
+    \end{itemize}
+    
+    \textbf{Proof of (2):}
+    \begin{itemize}
+        \item $(\Rightarrow)$ If $A$ is row equivalent to $I_n$, the system has a unique solution
+        \item Since it's homogeneous, that unique solution is the trivial solution
+        \item $(\Leftarrow)$ If the system has no non-trivial solution, by part (1) it's not row equivalent to a matrix with zero rows
+        \item Therefore the RREF of $A$ has no zero rows
+        \item By Theorem~\ref{thm:rref-square-identity}, the RREF of $A$ is $I_n$
+    \end{itemize}
+\end{proof}

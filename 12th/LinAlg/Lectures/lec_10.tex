@@ -1,0 +1,73 @@
+\lecture{10}{Sep 15 10:15}{Gaussian Elimination}
+
+\section{Gaussian Elimination with Back Substitution}
+
+\subsection{Coefficient Matrix}
+\begin{definition}[Matrix]\label{def:matrix}
+    A \textbf{matrix} is a rectangular table of scalars from a field.
+
+    The number of rows and columns is called the \textbf{order} of the matrix. A matrix of order $m \times n$ matrix has $m$ rows and $n$ columns. Individual scalar values are called the \textbf{entries} of the matrix.
+\end{definition}
+\begin{notation}
+    We usually name matrices with uppercase Roman letters and matrix elements have the corresponding lowercase letter.
+    For example:
+    \[
+        A = \begin{bmatrix}
+            a_{11} & a_{12} & a_{13} \\
+            a_{21} & a_{22} & a_{23} \\
+            a_{31} & a_{32} & a_{33}
+        \end{bmatrix}
+    \]
+\end{notation}
+\begin{definition*}[Augmented Coefficient Matrix]\label{def:augmented-coefficient-matrix}
+    Any linear system of $m$ equations with $n$ unknowns is represented fully by an $m \times \left(n+1\right)$ matrix, called the \textbf{augmented coefficient matrix}:
+    \[
+        \begin{bmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
+            a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
+            \vdots & \vdots &  \vdots  & \vdots & \vdots \\
+            a_{m1} & a_{m2} & \cdots & a_{mn} & b_m
+        \end{bmatrix}
+    \]
+\end{definition*}
+
+\begin{definition}[Row Equivalent]\label{def:row-equivalent}
+    Let $A$ and $B$ be matrices of the same order. $A$ is \textbf{row equivalent} to $B$ if we can change $A$ into $B$ by a finite sequence of elementary row operations.
+\end{definition}
+\begin{note}
+    Row equivalence is a valid equivalence relation because it is reflexive, symmetric, and transitive.
+\end{note}
+\begin{definition}[Pivot]\label{def:pivot}
+    A matrix row containing all zeros is called a \textbf{null row}. In any row that is not a null row, the leftmost non-zero entry is called the \textbf{leading coefficient} or the \textbf{pivot}
+\end{definition}
+\subsection{Row Echelon Form}
+\begin{definition}[REF]\label{def:ref}
+    A matrix is said to be in \textbf{row echelon form} (REF) if:
+    \begin{enumerate}
+        \item In every row that is not a null row the leading coefficient is to the right of all the leading coefficients of the rows above it (if any)
+        \item All null rows, if any exist, are below all non-null rows
+    \end{enumerate}
+\end{definition}
+\begin{definition}[eliminated system]\label{def:eliminated-system}
+    A linear system whose augmented coefficient matrix is in row echelon form
+\end{definition}
+\begin{definition}[Restricted and Free Variables]\label{def:restricted-and-free-variables}
+    In an eliminated linear system, $x_j$ is called a \textbf{restricted variable} if there is a pivot in the $j$-th column of its coefficient matrix. Otherwise, it is called a \textbf{free variable}.
+\end{definition}
+\begin{note}
+    In a solution set of an eliminated system, the restricted variables are specified in terms of the free variables. Each free variable in the general solution $n$-tuple is represented by a free parameter.
+\end{note}
+
+\subsection{Gaussian Elimination}
+Given a matrix order of $m \times n$
+\begin{enumerate}
+    \item If all entries are zero, the matrix is already in REF. Stop
+    \item If the matrix has only one row, it is already in REF. Stop
+    \item Identify the first (leftmost) column containing a non-zero entry, column $j$
+    \item If the first (topmost) entry in that column is zero, swap with column with non-zero entry in column $j$
+    \item If there are any non-zero entries left in column $j$ below the topmost row, add multiples of the topmost row to the rows of those entries to make them zero
+    \item Ignore the topmost row and repeat setps $1-5$ on the remaining sub-matrix
+\end{enumerate}
+\begin{note}
+    This algorithm works on any field
+\end{note}
