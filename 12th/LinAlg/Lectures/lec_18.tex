@@ -1,0 +1,72 @@
+\lecture{18}{}{Matrix Equations}
+\section{Equations}
+\begin{note}
+    Now that we know how to perform operations on matrices and check equality, we can write equations with matrices. For example:
+    \begin{itemize}
+        \item $\begin{bmatrix} 1 & 2 & 3 \end{bmatrix} X = \begin{bmatrix} 4 & 5 & 6 \end{bmatrix}$
+        \item $\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} X = \begin{bmatrix} 7 & 8 & 9 \end{bmatrix}$
+        \item $A + tX^3 = B$
+    \end{itemize}
+\end{note}
+
+\begin{note}
+    Important differences from scalar equations:
+    \begin{itemize}
+        \item Not every matrix equation has a solution
+        \item Unlike scalar algebraic equations, the various terms in a matrix equation are not necessarily from the same set (they may have different dimensions)
+    \end{itemize}
+\end{note}
+
+\subsection{The Matrix Equation $AX = B$}
+
+\begin{note}
+    Suppose $A = [a_{ij}]_{m \times n}$ and $B = [b_{ij}]_{m \times 1}$. What is the shape of a matrix that may be a solution to $AX = B$?
+    
+    For the product $AX$ to be defined and have shape $m \times 1$, we need $X = [x_{ij}]_{n \times 1}$.
+    
+    Recall that a matrix of order $n \times 1$ is called a column vector (Definition~\ref{def:row-column-vectors}).
+\end{note}
+
+\begin{notation}
+    For a column vector $X_{n \times 1}$, we also use the notation $\mathbf{x}$ (or simply $x$ when context is clear). There is a natural one-to-one correspondence between $F^n$ (the set of $n$-tuples) and $M_{n \times 1}(F)$ (the set of column vectors).
+\end{notation}
+
+\subsection{Connection to Linear Systems}
+
+Let $A = [a_{ij}]_{m \times n}$ and $\mathbf{b} = [b_i]_{m \times 1}$. Consider the matrix equation
+\[
+A\mathbf{x} = \mathbf{b}
+\]
+
+Expanding using the definitions of matrix equality and matrix multiplication, we have:
+\[
+A\mathbf{x} = \begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_m
+\end{bmatrix}
+\]
+
+This gives us:
+\begin{align*}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2 \\
+&\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m
+\end{align*}
+
+\begin{theorem}[Matrix Form of Linear Systems]\label{thm:matrix-linear-system}
+    The matrix equation $A\mathbf{x} = \mathbf{b}$ is equivalent to a system of $m$ linear equations in $n$ unknowns, where $A$ is the coefficient matrix and $\mathbf{b}$ is the constants column vector.
+\end{theorem}
+
+\begin{note}
+    This compact notation provides a powerful way to represent and work with linear systems. We will use this formulation when we return to solving systems of linear equations.
+\end{note}

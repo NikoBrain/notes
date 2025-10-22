@@ -1,0 +1,99 @@
+\chapter{Matrix Algebra}
+\lecture{14}{}{Definition and Notation}
+\section{Notation}
+
+\begin{definition}[Matrix]\label{def:matrix}
+    A \textbf{matrix} is a rectangular table of scalars from a field.
+    \begin{itemize}
+        \item The number of rows and columns is called the \textbf{order} of the matrix
+        \item A matrix of order $m \times n$ (read: "em-by-en") has $m$ rows and $n$ columns
+        \item The individual scalar values are called the \textbf{entries} of the matrix
+    \end{itemize}
+\end{definition}
+
+In general, a matrix $A$ of order $m \times n$ is written as:
+\[
+A = \begin{bmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}
+\]
+
+\begin{notation}\
+    \begin{itemize}
+        \item To emphasize the matrix order, we may write $A_{m \times n}$
+        \item The entry in row $i$, column $j$ of $A$ is called the $(i,j)$ entry and denoted $a_{ij}$
+        \item Rarely, a comma is needed to distinguish, e.g., $a_{11,2}$ from $a_{1,12}$
+        \item A matrix $A$ of order $m \times n$ with entries $a_{ij}$ is denoted $A = [a_{ij}]_{m \times n}$
+        \item An anonymous matrix of order $m \times n$ with entries $a_{ij}$ is denoted $[a_{ij}]_{m \times n}$
+        \item An anonymous $(i,j)$ entry of $A$ is denoted $[A]_{ij}$
+    \end{itemize}
+\end{notation}
+
+\begin{definition}[Row and Column Vectors]\label{def:row-column-vectors}\
+    \begin{itemize}
+        \item A matrix of order $1 \times n$ is called a \textbf{row matrix} or \textbf{row vector} of order $n$
+        \item A matrix of order $n \times 1$ is called a \textbf{column matrix} or \textbf{column vector} of order $n$
+    \end{itemize}
+\end{definition}
+
+\begin{notation}\
+    \begin{itemize}
+        \item The $i$-th row of matrix $A$ is denoted $[A]_i^r$
+        \item The $j$-th column of matrix $A$ is denoted $[A]_j^c$
+    \end{itemize}
+\end{notation}
+
+\begin{eg}
+    If $A = [a_{ij}]_{m \times n}$, then for all $i \in \{1, \ldots, m\}$ and $j \in \{1, \ldots, n\}$:
+    \[
+    [A]_i^r = \begin{bmatrix} a_{i1} & \cdots & a_{in} \end{bmatrix}
+    \]
+    \[
+    [A]_j^c = \begin{bmatrix} a_{1j} \\ \vdots \\ a_{mj} \end{bmatrix}
+    \]
+\end{eg}
+
+\begin{definition}[Transpose]\label{def:transpose}
+    Let $A = [a_{ij}]_{m \times n}$. The \textbf{transpose} of $A$, denoted $A^t$, is the $n \times m$ matrix whose $(i,j)$ entry is the $(j,i)$ entry of $A$:
+    \[
+    [A^t]_{ij} = a_{ji}
+    \]
+\end{definition}
+
+\begin{definition}[Square Matrix]\label{def:square-matrix}
+    A matrix of order $n \times n$ is called a \textbf{square matrix of order $n$}.
+\end{definition}
+
+\begin{definition}[Diagonals]\label{def:diagonals}
+    Let $A = [a_{ij}]_{n \times n}$ be a square matrix of order $n$.
+    \begin{itemize}
+        \item The $n$-tuple $(a_{11}, a_{22}, \ldots, a_{nn})$ is called the \textbf{main diagonal} of $A$
+        \item The $n$-tuple $(a_{1n}, a_{2,n-1}, \ldots, a_{n1})$ is called the \textbf{secondary diagonal} of $A$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Diagonal Matrix]\label{def:diagonal-matrix}
+    A matrix $[a_{ij}]_{n \times n}$ is called a \textbf{diagonal matrix} if $i \neq j \Rightarrow a_{ij} = 0$.
+\end{definition}
+
+\begin{definition}[Matrix Equality]\label{def:matrix-equality}
+    The matrices $A_{m \times n}$ and $B_{p \times q}$ are \textbf{equal} if $m = p$ and $n = q$ and for every $i \in \{1, \ldots, m\}$ and $j \in \{1, \ldots, n\}$, $[A]_{ij} = [B]_{ij}$.
+\end{definition}
+
+\begin{definition}[Symmetric Matrix]\label{def:symmetric-matrix}
+    A matrix $A$ is called a \textbf{symmetric matrix} if $A^t = A$.
+\end{definition}
+
+\begin{notation}
+    To refer to the set of all matrices of order $m \times n$ with entries from the field $F$, we write
+    \[
+    M_{m \times n}(F)
+    \]
+    For square matrices of order $n$, we write simply
+    \[
+    M_n(F)
+    \]
+\end{notation}

@@ -1,0 +1,212 @@
+\lecture{20}{}{Elementary Matrices}
+\section{Elementary}
+\begin{note}
+    Regular matrices have properties analogous to "nonzero" numbers. For example, you can move a regular matrix to the other side of an equation, or cancel it if it appears on both sides. But how do we determine if a given matrix is regular? And if it is regular, how do we find its inverse?
+\end{note}
+
+\begin{definition}[Elementary Matrix]\label{def:elementary-matrix}
+    $A \in M_n(F)$ is called \textbf{elementary} if we can get $A$ by performing one elementary row operation on $I_n$.
+\end{definition}
+
+\begin{notation}
+    If we denote an elementary row operation by $\phi$, then $\phi(A)$ denotes the matrix obtained by performing the operation $\phi$ on the matrix $A$. Any elementary matrix is therefore $\phi(I_n)$ for some elementary row operation $\phi$.
+\end{notation}
+
+\begin{proposition}[Elementary Matrix Multiplication]\label{prop:elementary-mult}
+    Let $A \in M_n(F)$ and let $\phi$ be an elementary row operation. Then
+    \[
+    \phi(A) = \phi(I_n) A
+    \]
+\end{proposition}
+
+\begin{proof}
+    We use Lemma~\ref{lem:row-column-products}: $[AB]_k^r = [A]_k^r B$. We consider each type of elementary row operation.
+    
+    \textbf{Case 1}: Let $\phi: R_i \leftrightarrow R_j$.
+    
+    For any $k \neq i, j$:
+    \[
+    [\phi(A)]_k^r = [A]_k^r \quad \text{and} \quad [\phi(I)]_k^r = [I]_k^r
+    \]
+    Therefore:
+    \[
+    [\phi(I)A]_k^r = [\phi(I)]_k^r A = [I]_k^r A = [IA]_k^r = [A]_k^r = [\phi(A)]_k^r
+    \]
+    
+    For $k = i$:
+    \[
+    [\phi(A)]_i^r = [A]_j^r \quad \text{and} \quad [\phi(I)]_i^r = [I]_j^r
+    \]
+    Therefore:
+    \[
+    [\phi(I)A]_i^r = [\phi(I)]_i^r A = [I]_j^r A = [IA]_j^r = [A]_j^r = [\phi(A)]_i^r
+    \]
+    
+    Similarly for $k = j$. Therefore $[\phi(I)A]_k^r = [\phi(A)]_k^r$ for all $k$.
+    
+    \textbf{Case 2}: Let $\phi: R_i \to tR_i$.
+    
+    For $k \neq i$:
+    \[
+    [\phi(A)]_k^r = [A]_k^r \quad \text{and} \quad [\phi(I)]_k^r = [I]_k^r
+    \]
+    Therefore:
+    \[
+    [\phi(I)A]_k^r = [\phi(I)]_k^r A = [I]_k^r A = [IA]_k^r = [A]_k^r = [\phi(A)]_k^r
+    \]
+    
+    For $k = i$:
+    \[
+    [\phi(A)]_i^r = t[A]_i^r \quad \text{and} \quad [\phi(I)]_i^r = t[I]_i^r
+    \]
+    Therefore:
+    \[
+    [\phi(I)A]_i^r = [\phi(I)]_i^r A = t[I]_i^r A = t([I]_i^r A) = t[IA]_i^r = t[A]_i^r = [\phi(A)]_i^r
+    \]
+    
+    \textbf{Case 3}: Let $\phi: R_i \to R_i + tR_j$.
+    
+    For $k \neq i$:
+    \[
+    [\phi(A)]_k^r = [A]_k^r \quad \text{and} \quad [\phi(I)]_k^r = [I]_k^r
+    \]
+    Therefore:
+    \[
+    [\phi(I)A]_k^r = [A]_k^r = [\phi(A)]_k^r
+    \]
+    
+    For $k = i$:
+    \[
+    [\phi(A)]_i^r = [A]_i^r + t[A]_j^r \quad \text{and} \quad [\phi(I)]_i^r = [I]_i^r + t[I]_j^r
+    \]
+    Therefore:
+    \[
+    [\phi(I)A]_i^r = [\phi(I)]_i^r A = ([I]_i^r + t[I]_j^r)A = [I]_i^r A + t[I]_j^r A = [A]_i^r + t[A]_j^r = [\phi(A)]_i^r
+    \]
+    
+    In all cases, $[\phi(I)A]_k^r = [\phi(A)]_k^r$ for all $k$, so $\phi(A) = \phi(I)A$.
+\end{proof}
+
+\begin{corollary}[Sequence of Elementary Operations]\label{cor:elementary-sequence}
+    Suppose $B$ is the matrix obtained by performing the elementary operations $\phi_1, \phi_2, \ldots, \phi_{k-1}, \phi_k$ (in that order) on the matrix $A$. Then
+    \[
+    B = \phi_k(I) \phi_{k-1}(I) \cdots \phi_2(I) \phi_1(I) A
+    \]
+\end{corollary}
+
+\begin{proof}
+    By induction on $k$.
+    
+    \textbf{Base case ($k=1$)}: This is Proposition~\ref{prop:elementary-mult}.
+    
+    \textbf{Induction hypothesis}: If $C$ is the matrix obtained by performing $\phi_1, \phi_2, \ldots, \phi_k$ on $A$, then
+    \[
+    C = \phi_k(I) \cdots \phi_1(I) A
+    \]
+    
+    \textbf{Induction step}: Suppose $B$ is obtained by performing $\phi_1, \phi_2, \ldots, \phi_k, \phi_{k+1}$ on $A$. Then $B$ is obtained by performing the single operation $\phi_{k+1}$ on $C$. Thus:
+    \[
+    B = \phi_{k+1}(C) = \phi_{k+1}(I) C = \phi_{k+1}(I) \phi_k(I) \cdots \phi_1(I) A
+    \]
+\end{proof}
+
+\begin{conclusion}[Reverse Operation]\label{cncl:reverse-operation}
+    Let $\phi$ be an elementary row operation. The \textbf{reverse operation}, denoted $\phi^{-1}$, is defined as:
+    \begin{itemize}
+        \item If $\phi: R_i \leftrightarrow R_j$, then $\phi^{-1}: R_i \leftrightarrow R_j$ (note: $\phi = \phi^{-1}$)
+        \item If $\phi: R_i \to tR_i$, then $\phi^{-1}: R_i \to t^{-1}R_i$ (note: $t \neq 0 \in F$)
+        \item If $\phi: R_i \to R_i + tR_j$, then $\phi^{-1}: R_i \to R_i - tR_j$ (note: $i \neq j$)
+    \end{itemize}
+    For any $\phi$ and $A$: $\phi^{-1}(\phi(A)) = A$ and $(\phi^{-1})^{-1} = \phi$.
+\end{conclusion}
+
+\begin{conclusion}[Elementary Matrices are Regular]\label{cncl:elementary-regular}
+    Every elementary matrix $\phi(I)$ is regular, and its inverse is $\phi^{-1}(I)$.
+\end{conclusion}
+
+\begin{proof}
+    For any $A$ and any $\phi$:
+    \[
+    \phi^{-1}(\phi(A)) = A = \phi(\phi^{-1}(A))
+    \]
+    
+    By Corollary~\ref{cor:elementary-sequence}:
+    \[
+    \phi^{-1}(I) \phi(I) A = A = \phi(I) \phi^{-1}(I) A
+    \]
+    
+    This holds for any $A$, including $A = I$:
+    \[
+    \phi^{-1}(I) \phi(I) I = I = \phi(I) \phi^{-1}(I) I
+    \]
+    
+    Therefore:
+    \[
+    \phi^{-1}(I) \phi(I) = I \quad \text{and} \quad \phi(I) \phi^{-1}(I) = I
+    \]
+    
+    So $\phi(I)$ has an inverse, namely $\phi^{-1}(I)$, which means $[\phi(I)]^{-1} = \phi^{-1}(I)$.
+\end{proof}
+
+\begin{proposition}[Products of Elementary Matrices are Regular]\label{prop:product-elementary-regular}
+    Let $A \in M_n(F)$. If
+    \[
+    A = \phi_1(I) \phi_2(I) \cdots \phi_{k-1}(I) \phi_k(I)
+    \]
+    then $A$ is regular, and its inverse is
+    \[
+    A^{-1} = \phi_k^{-1}(I) \phi_{k-1}^{-1}(I) \cdots \phi_2^{-1}(I) \phi_1^{-1}(I)
+    \]
+    In words: any matrix that is a product of finitely many elementary matrices is regular.
+\end{proposition}
+
+\begin{proof}
+    Each $\phi_i(I)$ is regular by Proposition~\ref{prop:elementary-regular}, with $[\phi_i(I)]^{-1} = \phi_i^{-1}(I)$. By Theorem~\ref{thm:product-regular}, the product of finitely many regular matrices is regular, and:
+    \[
+    [\phi_1(I) \cdots \phi_k(I)]^{-1} = [\phi_k(I)]^{-1} \cdots [\phi_1(I)]^{-1} = \phi_k^{-1}(I) \cdots \phi_1^{-1}(I)
+    \]
+\end{proof}
+
+\begin{theorem}[Characterization of Regular Matrices]\label{thm:regular-elementary-product}
+    If $A \in M_n(F)$ is regular, then $A$ is a product of elementary matrices.
+\end{theorem}
+
+\begin{proof}
+    Let $A \in M_n(F)$ be regular. Consider the matrix equation
+    \[
+    A\mathbf{x} = \mathbf{0}
+    \]
+    
+    Multiplying both sides from the left by $A^{-1}$:
+    \[
+    A^{-1}(A\mathbf{x}) = A^{-1}\mathbf{0} \implies (A^{-1}A)\mathbf{x} = \mathbf{0} \implies I\mathbf{x} = \mathbf{0} \implies \mathbf{x} = \mathbf{0}
+    \]
+    
+    Therefore this equation has only one solution, namely $\mathbf{x} = \mathbf{0}$.
+    
+    Since $A$ is the coefficient matrix of a homogeneous system of $n$ equations in $n$ unknowns with only the trivial solution, by Theorem~\ref{thm:square-homogeneous-dichotomy}, $A$ is row-equivalent to $I_n$.
+    
+    Therefore, there exists a sequence of elementary row operations $\phi_1, \ldots, \phi_k$ such that:
+    \[
+    \phi_k(\cdots \phi_1(A) \cdots) = I_n
+    \]
+    
+    By Corollary~\ref{cor:elementary-sequence}, is a sequence of elementary matrices $\phi_1(I_n), \ldots, \phi_k(I_n)$ such that:
+    \[
+    \phi_k(I_n) \cdots \phi_1(I_n) A = BA = I_n
+    \]
+    
+    where $B = \phi_k(I_n) \cdots \phi_1(I_n)$.
+    
+    By Proposition~\ref{prop:product-elementary-regular}, $B$ is regular with inverse:
+    \[
+    B^{-1} = \phi_1^{-1}(I_n) \cdots \phi_k^{-1}(I_n)
+    \]
+    
+    Since $BA = I_n$, we have $A = B^{-1}$. Therefore:
+    \[
+    A = \phi_1^{-1}(I_n) \cdots \phi_k^{-1}(I_n)
+    \]
+    
+    which is a product of elementary matrices.
+\end{proof}

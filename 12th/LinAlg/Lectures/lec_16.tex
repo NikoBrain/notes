@@ -1,0 +1,148 @@
+\lecture{16}{}{Properties of Matrix Multiplication}
+\section{Properties}
+\begin{proposition}[Zero Matrix Multiplication]\label{prop:zero-matrix-mult}
+    \begin{enumerate}[label=(\roman*)]
+        \item For all $A \in M_{m \times n}(F)$ and all $p \in \mathbb{N}$, $A_{m \times n} O_{n \times p} = O_{m \times p}$
+        \item For all $B \in M_{n \times p}(F)$ and all $m \in \mathbb{N}$, $O_{m \times n} B_{n \times p} = O_{m \times p}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \textbf{(i)}: Let $A = [a_{ij}]_{m \times n}$. Then for any $p \in \mathbb{N}$ and for all $i,j$,
+    \[
+    [A_{m \times n} O_{n \times p}]_{ij} = \sum_{k=1}^{n} [A]_{ik}[O]_{kj} = \sum_{k=1}^{n} a_{ik} \cdot 0 = \sum_{k=1}^{n} 0 = 0
+    \]
+    
+    \textbf{(ii)}: Let $B = [b_{ij}]_{n \times p}$. Then for any $m \in \mathbb{N}$ and for all $i,j$,
+    \[
+    [O_{m \times n} B_{n \times p}]_{ij} = \sum_{k=1}^{n} [O]_{ik}[B]_{kj} = \sum_{k=1}^{n} 0 \cdot b_{kj} = \sum_{k=1}^{n} 0 = 0
+    \]
+\end{proof}
+
+\begin{lemma}[Row and Column Products]\label{lem:row-column-products}
+    Let $A = [a_{ij}]_{m \times n}$, $B = [b_{ij}]_{n \times p}$, and let $C = [c_{ij}]_{m \times p} = AB$. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $[C]_i^r = [A]_i^r B$
+        \item $[C]_j^c = A[B]_j^c$
+        \item $[c_{ij}]_{1 \times 1} = [A]_i^r [B]_j^c$
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \textbf{(i)}: The LHS is a $1 \times p$ matrix whose $(1,j)$ entry is $c_{ij}$. The RHS is a product of a $1 \times n$ matrix with an $n \times p$ matrix, resulting in a $1 \times p$ matrix whose $(1,j)$ entry is $\sum_{k=1}^{n} a_{ik}b_{kj} = c_{ij}$.
+    
+    \textbf{(ii)}: The LHS is an $m \times 1$ matrix whose $(i,1)$ entry is $c_{ij}$. The RHS is a product of an $m \times n$ matrix with an $n \times 1$ matrix, resulting in an $m \times 1$ matrix whose $(i,1)$ entry is $\sum_{k=1}^{n} a_{ik}b_{kj} = c_{ij}$.
+    
+    \textbf{(iii)}: Both the LHS and RHS are $1 \times 1$ matrices with the single element $c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj}$.
+\end{proof}
+
+\begin{proposition}[Zero Row/Column Preservation]\label{prop:zero-row-column}
+    Let $A \in M_{m \times n}(F)$ and $B \in M_{n \times p}(F)$.
+    \begin{enumerate}[label=(\roman*)]
+        \item If the $i$-th row of $A$ is all zeros, then the $i$-th row of $AB$ is all zeros
+        \item If the $j$-th column of $B$ is all zeros, then the $j$-th column of $AB$ is all zeros
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    This follows directly from Lemma~\ref{lem:row-column-products} and Proposition~\ref{prop:zero-matrix-mult}.
+\end{proof}
+
+\begin{proposition}[Transpose of Product]\label{prop:transpose-product}
+    Let $A \in M_{m \times n}(F)$ and $B \in M_{n \times p}(F)$. Then
+    \[
+    (AB)^t = B^t A^t
+    \]
+\end{proposition}
+
+\begin{proof}
+    First, we verify the orders match. Since $AB$ is $m \times p$, we have $(AB)^t$ is $p \times m$. Also, $B^t$ is $p \times n$ and $A^t$ is $n \times m$, so $B^t A^t$ is defined and is $p \times m$.
+    
+    Now we verify the entries are equal. For all $i,j$:
+    \begin{align*}
+    [(AB)^t]_{ij} &= [AB]_{ji} = \sum_{k=1}^{n} a_{jk}b_{ki} = \sum_{k=1}^{n} b_{ki}a_{jk} = \sum_{k=1}^{n} [B]_{ki}[A]_{jk} \\
+    &= \sum_{k=1}^{n} [B^t]_{ik}[A^t]_{kj} = [B^t A^t]_{ij}
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[Associativity of Matrix Multiplication]\label{thm:matrix-mult-assoc}
+    Let $A = [a_{ij}]_{m \times n}$, $B = [b_{ij}]_{n \times p}$, and $C = [c_{ij}]_{p \times q}$ be matrices with entries in the same field $F$. Then
+    \[
+    (AB)C = A(BC)
+    \]
+\end{theorem}
+
+\begin{proof}
+    First, we verify the orders. $AB$ is defined and is $m \times p$, so $(AB)C$ is defined and is $m \times q$. Also, $BC$ is defined and is $n \times q$, so $A(BC)$ is defined and is $m \times q$.
+    
+    Now we verify the entries are equal. For all $i,j$:
+    \begin{align*}
+    [(AB)C]_{ij} &= \sum_{k=1}^{p} [AB]_{ik} c_{kj} = \sum_{k=1}^{p} \left(\sum_{l=1}^{n} a_{il}b_{lk}\right) c_{kj} = \sum_{k=1}^{p} \sum_{l=1}^{n} a_{il}b_{lk}c_{kj} \\
+    &= \sum_{l=1}^{n} \sum_{k=1}^{p} a_{il}b_{lk}c_{kj} = \sum_{l=1}^{n} a_{il} \left(\sum_{k=1}^{p} b_{lk}c_{kj}\right) = \sum_{l=1}^{n} a_{il}[BC]_{lj} \\
+    &= [A(BC)]_{ij}
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[Distributivity of Matrix Multiplication]\label{thm:matrix-mult-distrib}
+    Let $A = [a_{ij}]_{m \times n} \in M_{m \times n}(F)$ and $B = [b_{ij}]_{m \times n} \in M_{m \times n}(F)$.
+    \begin{enumerate}[label=(\roman*)]
+        \item \textbf{Right distributivity}: For any $C = [c_{ij}]_{n \times p} \in M_{n \times p}(F)$,
+        \[
+        (A + B)C = AC + BC
+        \]
+        \item \textbf{Left distributivity}: For any $D = [d_{ij}]_{q \times m} \in M_{q \times m}(F)$,
+        \[
+        D(A + B) = DA + DB
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{(i)}: For all $i,j$,
+    \begin{align*}
+    [(A+B)C]_{ij} &= \sum_{k=1}^{n} [A+B]_{ik}c_{kj} = \sum_{k=1}^{n} (a_{ik} + b_{ik})c_{kj} \\
+    &= \sum_{k=1}^{n} (a_{ik}c_{kj} + b_{ik}c_{kj}) = \sum_{k=1}^{n} a_{ik}c_{kj} + \sum_{k=1}^{n} b_{ik}c_{kj} \\
+    &= [AC]_{ij} + [BC]_{ij} = [AC + BC]_{ij}
+    \end{align*}
+    
+\end{proof}
+
+\begin{proposition}[Scalar Factoring]\label{prop:scalar-factoring}
+    Let $A = [a_{ij}]_{m \times n}$ and $B = [b_{ij}]_{n \times p}$, and let $t \in F$. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $t(AB) = (tA)B$
+        \item $t(AB) = A(tB)$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \textbf{(i)}: For all $i,j$,
+    \begin{align*}
+    [t(AB)]_{ij} &= t[AB]_{ij} = t\sum_{k=1}^{n} a_{ik}b_{kj} = \sum_{k=1}^{n} ta_{ik}b_{kj} \\
+    &= \sum_{k=1}^{n} [tA]_{ik}b_{kj} = [(tA)B]_{ij}
+    \end{align*}
+\end{proof}
+
+\begin{definition}[Identity Matrix]\label{def:identity-matrix}
+    The \textbf{identity matrix of order $n$}, denoted $I_n$, is the matrix
+    \[
+    I_n = [\delta_{ij}]_{n \times n}
+    \]
+    where $\delta_{ij}$ is the Kronecker delta ($\delta_{ij} = 1$ if $i = j$ and $\delta_{ij} = 0$ if $i \neq j$). In other words, $I_n$ is the square matrix of order $n$ whose main diagonal entries are all equal to $1$ and all other entries are equal to zero.
+\end{definition}
+
+\begin{theorem}[Identity Matrix Property]\label{thm:identity-property}
+    For all $A = [a_{ij}]_{m \times n}$:
+    \begin{enumerate}[label=(\roman*)]
+        \item $I_m A = A$
+        \item $A I_n = A$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{(i)}: The shapes work out: $I_m$ is $m \times m$ and $A$ is $m \times n$, so $I_m A$ is $m \times n$. For all $i,j$,
+    \begin{align*}
+    [I_m A]_{ij} &= \sum_{k=1}^{m} [I_m]_{ik}[A]_{kj} = \sum_{k=1}^{m} \delta_{ik}[A]_{kj} \\
+    &= 0 \cdot [A]_{1j} + 0 \cdot [A]_{2j} + \cdots + 1 \cdot [A]_{ij} + \cdots + 0 \cdot [A]_{mj} = [A]_{ij}
+    \end{align*}
+\end{proof}

@@ -1,0 +1,149 @@
+\lecture{17}{}{Fun with Squares}
+\section{Squares}
+\begin{note}
+    The set $M_n(F)$ has special properties with respect to matrix multiplication:
+    \begin{itemize}
+        \item $M_n(F)$ is closed with respect to matrix multiplication (the product of two $n \times n$ matrices is always defined and is also $n \times n$)
+        \item The matrix $I_n$ is the neutral element with respect to multiplication in $M_n(F)$
+        \item The neutral element with respect to a binary operation is always unique; $I_n$ is the only matrix satisfying $I_n A = AI_n = A$ for all $A \in M_n(F)$
+    \end{itemize}
+\end{note}
+
+\begin{note}
+    However, this does not mean we cannot find $A, B \in M_n(F)$ with $I_n \neq A, B$ such that $AB = BA = A$.
+\end{note}
+
+\subsection{Commutativity}
+
+\begin{note}
+    In general, for matrices $A \in M_{m \times n}(F)$ and $B \in M_{p \times q}(F)$:
+    \begin{itemize}
+        \item $AB$ is not always defined
+        \item Even when $AB$ is defined, $BA$ is not always defined
+        \item Even when $AB$ and $BA$ are both defined, they might not have the same shape
+        \item Even when $AB$ and $BA$ are both defined and have the same shape, they might not be equal
+    \end{itemize}
+\end{note}
+
+\begin{definition}[Commuting Matrices]\label{def:commuting-matrices}
+    Two square matrices $A$ and $B$ of the same order are said to \textbf{commute} if
+    \[
+    AB = BA
+    \]
+\end{definition}
+
+\begin{note}
+    A necessary condition for $AB = BA$ is that $A$ and $B$ must both be square and of the same order.
+\end{note}
+
+\begin{definition}[Scalar Matrix]\label{def:scalar-matrix}
+    A matrix $A \in M_n(F)$ is called a \textbf{scalar matrix} if there exists $t \in F$ such that $A = tI_n$. That is, a scalar matrix is a diagonal matrix where all diagonal entries are equal.
+\end{definition}
+
+\begin{result}[Scalar Matrices Commute]\label{rslt:scalar-commute}
+    Any scalar matrix commutes with any square matrix of the same order.
+\end{result}
+
+\begin{proof}
+    Let $A, B \in M_n(F)$ and suppose $A$ is scalar. Then there exists $t \in F$ such that $A = tI_n$. Therefore:
+    \begin{align*}
+    AB &= (tI_n)B \\
+    &= t(I_nB) && \text{(Proposition~\ref{prop:scalar-factoring}(i))} \\
+    &= tB && \text{(Theorem~\ref{thm:identity-property}(i))} \\
+    &= t(BI_n) && \text{(Theorem~\ref{thm:identity-property}(ii))} \\
+    &= (tI_n)B && \text{(Proposition~\ref{prop:scalar-factoring}(ii))} \\
+    &= B(tI_n) && \text{(Proposition~\ref{prop:scalar-factoring}(i))} \\
+    &= BA
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[Diagonal Matrices Commute]\label{thm:diagonal-commute}
+    Diagonal matrices of the same order commute.
+\end{theorem}
+
+\begin{proof}
+    Let $A, B \in M_n(F)$ be diagonal. Then $AB$ and $BA$ are both defined and are square of order $n$. For all $i, j \in \{1, \ldots, n\}$:
+    
+    For $AB$:
+    \begin{align*}
+    [AB]_{ij} &= \sum_{k=1}^{n} [A]_{ik}[B]_{kj}
+    \end{align*}
+    
+    Since $A$ is diagonal, $[A]_{ik} = 0$ whenever $i \neq k$. The only nonzero term in the sum occurs when $k = i$:
+    \[
+    [AB]_{ij} = [A]_{ii}[B]_{ij}
+    \]
+    
+    Since $B$ is diagonal, $[B]_{ij} = 0$ when $i \neq j$. Therefore:
+    \[
+    [AB]_{ij} = [A]_{ii}[B]_{ii}\delta_{ij}
+    \]
+    
+    Similarly, for $BA$:
+    \begin{align*}
+    [BA]_{ij} &= \sum_{k=1}^{n} [B]_{ik}[A]_{kj}
+    \end{align*}
+    
+    Since $B$ is diagonal, the only nonzero term occurs when $k = i$:
+    \[
+    [BA]_{ij} = [B]_{ii}[A]_{ij}
+    \]
+    
+    Since $A$ is diagonal, $[A]_{ij} = 0$ when $i \neq j$. Therefore:
+    \[
+    [BA]_{ij} = [B]_{ii}[A]_{ii}\delta_{ij} = [A]_{ii}[B]_{ii}\delta_{ij}
+    \]
+    
+    Thus $[AB]_{ij} = [BA]_{ij}$ for all $i,j$, so $AB = BA$.
+\end{proof}
+
+\begin{note}
+    We have found sufficient conditions for $AB = BA$:
+    \begin{itemize}
+        \item At least one of them is scalar
+        \item Both of them are diagonal
+    \end{itemize}
+    However, there is no simple necessary and sufficient condition for commutativity.
+\end{note}
+
+\subsection{Matrix Powers}
+
+\begin{definition}[Matrix Power]\label{def:matrix-power}
+    Let $A \in M_n(F)$ be a square matrix and let $p \in \mathbb{N} \cup \{0\}$. The \textbf{matrix power} $A^p$ is defined recursively:
+    \begin{itemize}
+        \item If $p = 0$: $A^0 \coloneqq I_n$
+        \item If $p > 0$: $A^p \coloneqq A^{p-1}A$
+    \end{itemize}
+\end{definition}
+
+\begin{note}
+    This definition gives us:
+    \begin{itemize}
+        \item $A^1 = A$
+        \item $A^2 = AA$
+        \item $A^3 = AAA$
+        \item And so on
+    \end{itemize}
+\end{note}
+
+\begin{proposition}[Powers Commute]\label{prop:powers-commute}
+    If $B$ and $C$ are powers of the same matrix $A$, then they commute.
+\end{proposition}
+
+\begin{proof}
+    Let $B = A^r$ and $C = A^s$ for some $r, s \in \mathbb{N} \cup \{0\}$. By associativity of matrix multiplication:
+    \[
+    A^r A^s = \underbrace{A \cdot A \cdots A}_{r+s \text{ times}} = A^s A^r
+    \]
+    Therefore $BC = CB$.
+\end{proof}
+
+\begin{eg}
+    Consider the Fibonacci sequence defined by:
+    \begin{itemize}
+        \item $a_1 = 1$
+        \item $a_2 = 1$
+        \item $a_n = a_{n-1} + a_{n-2}$ for all $n > 2$
+    \end{itemize}
+    Matrix powers can be used to compute $a_{32}$ without computing all of $a_n$ for $n \in \{1, \ldots, 31\}$. (This technique uses the matrix $\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$ and its powers.)
+\end{eg}

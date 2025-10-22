@@ -202,7 +202,9 @@
 \declaretheorem[style=thmgreen2box, name=Definition, numbered=no]{definition*}
 \declaretheorem[style=thmredbox, name=Theorem, sibling=definition]{theorem}
 \declaretheorem[style=thmred2box, name=Theorem, numbered=no]{theorem*}
-\declaretheorem[style=thmredbox, name=Lemma, sibling=definition]{lemma}
+\declaretheorem[style=thmpinkbox, name=Lemma, sibling=definition]{lemma}
+\declaretheorem[style=thmblue2box, name=Result, sibling=definition]{result}
+\declaretheorem[style=thmgreen2box, name=Conclusion, sibling=definition]{conclusion}
 \declaretheorem[style=thmredbox, name=Proposition, sibling=definition]{proposition}
 \declaretheorem[style=thmredbox, name=Corollary, sibling=definition]{corollary}
 \declaretheorem[style=thmpinkbox, name=Problem, numberwithin=section]{problem}
@@ -217,9 +219,9 @@
 	\normalfont \topsep-2\p@\@plus6\p@\relax
 	\trivlist
 	\item[\hskip\labelsep
-	            \color{RawSienna!70!black}\sffamily\bfseries
+	            \color{NavyBlue!70!black}\sffamily\bfseries
 	            #1\@addpunct{.}]\ignorespaces
-	\begin{mdframed}[linewidth=2pt,rightline=false, topline=false, bottomline=false,linecolor=RawSienna, backgroundcolor=\ifthmbackground WildStrawberry!1 \else White!1 \fi]
+	\begin{mdframed}[linewidth=2pt,rightline=false, topline=false, bottomline=false,linecolor=NavyBlue, backgroundcolor=\ifthmbackground WildStrawberry!1 \else White!1 \fi]
 		}{%
 		\popQED\endtrivlist\@endpefalse
 	\end{mdframed}

@@ -1,0 +1,103 @@
+\lecture{21}{}{How to Invert a Matrix}
+\section{Inverting}
+\begin{theorem}[Regularity and Row Equivalence]\label{thm:regular-row-equiv}
+    A matrix $A \in M_n(F)$ is regular if and only if it is row equivalent to $I_n$.
+\end{theorem}
+
+\begin{proof}
+    \textbf{($\Rightarrow$)}: Suppose $A$ is row equivalent to $I_n$. Then there exists a sequence of elementary row operations $\phi_1, \ldots, \phi_k$ such that:
+    \[
+    A = \phi_1(\phi_2(\cdots \phi_k(I_n) \cdots))
+    \]
+    
+    Therefore:
+    \[
+    A = \phi_1(I_n) \phi_2(I_n) \cdots \phi_k(I_n) I_n = \phi_1(I_n) \phi_2(I_n) \cdots \phi_k(I_n)
+    \]
+    
+    So $A$ is a product of elementary matrices, and therefore $A$ is regular by Proposition~\ref{prop:product-elementary-regular}.
+    
+    \textbf{($\Leftarrow$)}: Suppose $A$ is regular. By Theorem~\ref{thm:regular-elementary-product}, $A$ is a product of elementary matrices. Therefore there exists a sequence of elementary matrices $\phi_1(I), \ldots, \phi_k(I)$ such that:
+    \[
+    A = \phi_1(I_n) \phi_2(I_n) \cdots \phi_k(I_n)
+    \]
+    
+    Therefore:
+    \[
+    A = \phi_1(I_n) \phi_2(I_n) \cdots \phi_k(I_n) I_n = \phi_1(\phi_2(\cdots \phi_k(I_n) \cdots))
+    \]
+    
+    So $A$ is row equivalent to $I_n$.
+\end{proof}
+
+\begin{proposition}[Properties of Row Equivalence]\label{prop:row-equiv-properties}
+    \begin{enumerate}[label=(\roman*)]
+        \item Any two regular matrices are row equivalent to each other
+        \item Two row equivalent matrices are either both regular or both singular
+        \item If $A, B$ are row equivalent (regular or singular), there exists a regular $C$ such that $B = CA$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \textbf{(i)}: If $A$ and $B$ are both regular, then by Theorem~\ref{thm:regular-row-equiv}, each is row equivalent to $I_n$, and therefore they are row equivalent to each other.
+    
+    \textbf{(ii)}: If $A$ and $B$ are row equivalent and one is row equivalent to $I_n$, then the other is also row equivalent to $I_n$. By Theorem~\ref{thm:regular-row-equiv}, either both are regular or both are singular.
+    
+    \textbf{(iii)}: Since $A$ and $B$ are row equivalent, there exists a sequence of elementary row operations relating them. By Corollary~\ref{cor:elementary-sequence}, $B = CA$ where $C$ is a product of elementary matrices. By Proposition~\ref{prop:product-elementary-regular}, $C$ is regular.
+\end{proof}
+\begin{note}
+    Given $A \in M_n(F)$, we perform Gauss-Jordan elimination while keeping track of the row operations. There are exactly two possibilities:
+    \begin{enumerate}[label=(\roman*)]
+        \item We end with a matrix that has a row of zeros
+        \item We end with the identity matrix $I_n$
+    \end{enumerate}
+\end{note}
+
+\begin{note}
+    \textbf{Case (i)}: If we end with a row of zeros, then $A$ is not regular.
+    
+    \textbf{Case (ii)}: If we end with $I_n$, then $A$ is regular. The Gauss-Jordan elimination found that:
+    \[
+    \phi_k(\cdots \phi_1(A) \cdots) = I_n
+    \]
+    
+    Therefore:
+    \[
+    \phi_k(I_n) \cdots \phi_1(I_n) A = I_n
+    \]
+    
+    Since $A$ is regular, we have:
+    \[
+    A^{-1} = \phi_k(I_n) \cdots \phi_1(I_n) = \phi_k(I_n) \cdots \phi_1(I_n) I_n = \phi_k(\cdots \phi_1(I_n) \cdots)
+    \]
+    
+    \textbf{In words}: We construct the inverse of $A$ by performing on $I_n$ the same row operations, in the same order, that were performed on $A$ during Gauss-Jordan elimination.
+\end{note}
+
+\begin{theorem}[Characterizations of Regularity]\label{thm:regularity-characterizations}
+    Let $A \in M_n(F)$. The following are equivalent (each is true if and only if any of the others are true):
+    \begin{enumerate}[label=(\roman*)]
+        \item $A$ is regular
+        \item $A$ is a product of elementary matrices
+        \item $A$ is row equivalent to $I_n$
+        \item There exists a regular matrix $C$ such that $CA = I$
+        \item For every column vector $\mathbf{b} \in M_{n \times 1}(F)$, there is a unique solution to the equation $A\mathbf{x} = \mathbf{b}$
+        \item The equation $A\mathbf{x} = \mathbf{0}$ does not have a nontrivial solution
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Most of these are restatements of previous results:
+    
+    \textbf{(i) $\Leftrightarrow$ (ii)}: This follows from Proposition~\ref{prop:product-elementary-regular} and Theorem~\ref{thm:regular-elementary-product}.
+    
+    \textbf{(i) $\Leftrightarrow$ (iii)}: This is Theorem~\ref{thm:regular-row-equiv}.
+    
+    \textbf{(iii) $\Leftrightarrow$ (iv)}: This is a particular case of Proposition~\ref{prop:row-equiv-properties}(iii) with $B = I$.
+    
+    \textbf{(i) $\Rightarrow$ (v)}: If $A$ is regular, then $\mathbf{x} = A^{-1}\mathbf{b}$ is the unique solution to $A\mathbf{x} = \mathbf{b}$.
+    
+    \textbf{(v) $\Rightarrow$ (vi)}: If (v) holds, then for $\mathbf{b} = \mathbf{0}$, there is a unique solution. Since $\mathbf{x} = \mathbf{0}$ is a solution, it must be the unique solution, so there is no nontrivial solution.
+    
+    \textbf{(vi) $\Rightarrow$ (iii)}: This is a restatement of Theorem~\ref{thm:square-homogeneous-dichotomy}(ii).
+\end{proof}
