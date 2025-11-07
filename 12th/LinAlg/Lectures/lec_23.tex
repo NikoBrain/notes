@@ -1,0 +1,200 @@
+\lecture{23}{}{Descartes}
+\section{Cartesian Coordinates}
+
+
+\begin{note}
+    A Cartesian reference frame consists of:
+    \begin{itemize}
+        \item A point in the plane chosen as the origin
+        \item Two perpendicular directions chosen as the $x$ and $y$ axes
+    \end{itemize}
+    This framework establishes a one-to-one-to-one correspondence between:
+    \begin{itemize}
+        \item 2-tuples $(a_1, a_2) \in \R^2$
+        \item Points $\mathbf{a}$ in the plane with $x$-coordinate $a_1$ and $y$-coordinate $a_2$
+        \item Plane vectors $\vec{a}$ with tail at the origin and head at $\mathbf{a}$
+    \end{itemize}
+    We refer to members of $\R^2$ as 2-tuples, points, or vectors almost interchangeably, as context dictates.
+\end{note}
+
+
+
+\begin{definition}[Equality of $n$-Tuples]\label{def:tuple-equality}
+    The $n$-tuple $a = (a_1, a_2, \ldots, a_n)$ and the $m$-tuple $b = (b_1, b_2, \ldots, b_m)$ are said to be \textbf{equal}, denoted by $a = b$, if $n = m$ and $a_i = b_i$ for all $i$, $1 \leq i \leq n$.
+\end{definition}
+
+\begin{definition}[Addition of $n$-Tuples]\label{def:tuple-addition}
+    Let $F$ be a field. The \textbf{sum} of $a = (a_1, \ldots, a_n)$ and $b = (b_1, \ldots, b_n)$ in $F^n$ is denoted $a + b$ and defined by
+    \[
+    a + b \coloneqq (a_1 + b_1, \ldots, a_n + b_n)
+    \]
+\end{definition}
+
+\begin{definition}[Scalar Multiplication]\label{def:scalar-mult}
+    Let $F$ be a field. \textbf{Multiplication} of $a = (a_1, \ldots, a_n) \in F^n$ by a scalar $t \in F$ is denoted by the juxtaposition $ta$ and defined by
+    \[
+    ta \coloneqq (ta_1, \ldots, ta_n)
+    \]
+\end{definition}
+
+\begin{theorem}[Properties of Addition on $F^n$]\label{thm:tuple-addition-properties}
+    Let $F$ be a field and $n \in \N$. Then:
+    \begin{enumerate}[label=\roman*.]
+        \item The set $F^n$ is closed with respect to $n$-tuple addition: $\forall a, b \in F^n$, $(a + b) \in F^n$.
+        \item $n$-tuple addition is associative: $\forall a, b, c \in F^n$, $(a + b) + c = a + (b + c)$.
+        \item $n$-tuple addition is commutative: $\forall a, b \in F^n$, $a + b = b + a$.
+        \item The $n$-tuple $0 = (\tilde{0}, \ldots, \tilde{0})$ (where $\tilde{0} \in F$ is the additive identity in $F$) is the additive identity in $F^n$: $\forall a \in F^n$, $a + 0 = a$.
+        \item All elements of $F^n$ are invertible with respect to $n$-tuple addition. For every $a = (a_1, \ldots, a_n) \in F^n$, the $n$-tuple $-a = (-a_1, \ldots, -a_n)$ is the unique element of $F^n$ satisfying $a + (-a) = 0$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Each property follows immediately from the definition of $n$-tuple addition and the corresponding properties of addition in $F$.
+\end{proof}
+
+\begin{notation}
+    As usual, the uniqueness of the additive inverse allows a shorthand notation called subtraction:
+    \[
+    a - b \coloneqq a + (-b)
+    \]
+\end{notation}
+
+\begin{theorem}[Properties of Scalar Multiplication]\label{thm:scalar-mult-properties}
+    Let $F$ be a field and $n \in \N$. For every $a, b \in F^n$ and every $t, s \in F$:
+    \begin{enumerate}[label=\roman*.]
+        \item $\tilde{0}a = 0$ (where $\tilde{0}$ is the additive identity in $F$ and $0$ is the additive identity in $F^n$)
+        \item $\tilde{1}a = a$ (where $\tilde{1}$ is the multiplicative identity in $F$)
+        \item $(-\tilde{1})a = -a$
+        \item $s(ta) = (st)a$
+        \item $(s + t)a = sa + ta$
+        \item $t(a + b) = ta + tb$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We prove each property by showing equality of corresponding components.
+    
+    \textbf{Property i}: For $a = (a_1, \ldots, a_n)$, we have $\tilde{0}a = (\tilde{0}a_1, \ldots, \tilde{0}a_n) = (\tilde{0}, \ldots, \tilde{0}) = 0$ since $\tilde{0}a_i = \tilde{0}$ in $F$ for all $i$.
+    
+    \textbf{Property ii}: $\tilde{1}a = (\tilde{1}a_1, \ldots, \tilde{1}a_n) = (a_1, \ldots, a_n) = a$ since $\tilde{1}a_i = a_i$ in $F$ for all $i$.
+    
+    \textbf{Property iii}: $(-\tilde{1})a = ((-\tilde{1})a_1, \ldots, (-\tilde{1})a_n) = (-a_1, \ldots, -a_n) = -a$ since $(-\tilde{1})a_i = -a_i$ in $F$ for all $i$.
+    
+    \textbf{Property iv}: $s(ta) = s(ta_1, \ldots, ta_n) = (s(ta_1), \ldots, s(ta_n)) = ((st)a_1, \ldots, (st)a_n) = (st)a$ by associativity of multiplication in $F$.
+    
+    \textbf{Property v}: $(s + t)a = ((s + t)a_1, \ldots, (s + t)a_n) = (sa_1 + ta_1, \ldots, sa_n + ta_n) = (sa_1, \ldots, sa_n) + (ta_1, \ldots, ta_n) = sa + ta$ by distributivity in $F$.
+    
+    \textbf{Property vi}: For $a = (a_1, \ldots, a_n)$ and $b = (b_1, \ldots, b_n)$, we have $t(a + b) = t(a_1 + b_1, \ldots, a_n + b_n) = (t(a_1 + b_1), \ldots, t(a_n + b_n)) = (ta_1 + tb_1, \ldots, ta_n + tb_n) = (ta_1, \ldots, ta_n) + (tb_1, \ldots, tb_n) = ta + tb$ by distributivity in $F$.
+\end{proof}
+
+\begin{note}
+    Thanks to property iii, we can use the usual shorthand notation: $ta - sb \coloneqq ta + (-s)b$.
+\end{note}
+
+
+
+\begin{lemma}\label{lem:axis-addition}
+    Let $a, b \in \R^2$. If the corresponding vectors $\vec{a}$, $\vec{b}$ both lie on the $x$-axis or both lie on the $y$-axis, then
+    \[
+    \vec{a} \oplus \vec{b} = a + b
+    \]
+\end{lemma}
+
+\begin{proof}
+    If $a = (a, 0)$ and $b = (b, 0)$, then $a + b = (a + b, 0)$. The corresponding plane vector sum lies on the $x$-axis and has signed length $a + b$. The argument is analogous for vectors lying on the $y$-axis.
+\end{proof}
+
+\begin{lemma}\label{lem:perpendicular-addition}
+    Let $a, b \in \R^2$. If the corresponding plane vector $\vec{a}$ lies on the $x$-axis and the corresponding plane vector $\vec{b}$ lies on the $y$-axis, then
+    \[
+    \vec{a} \oplus \vec{b} = a + b
+    \]
+\end{lemma}
+
+\begin{proof}
+    The premise implies $a = (a, 0)$ and $b = (0, b)$, and therefore $a + b = (a, b)$. By the definition of arrow addition using the parallelogram (in this case a rectangle), $\vec{a} \oplus \vec{b}$ is the vector corresponding to the point $(a, b)$.
+\end{proof}
+
+\begin{proposition}[Equivalence of Algebraic and Geometric Addition]\label{prop:addition-equivalence}
+    For all $a, b \in \R^2$ and corresponding plane vectors $\vec{a}$, $\vec{b}$,
+    \[
+    a + b = \vec{a} \oplus \vec{b}
+    \]
+\end{proposition}
+
+\begin{proof}
+    Let $a = (a_1, a_2)$ and $b = (b_1, b_2)$. Their algebraic sum is $a + b = (a_1 + b_1, a_2 + b_2)$.
+    
+    We can decompose $a$ as $a = (a_1, 0) + (0, a_2)$. By Lemma~\ref{lem:perpendicular-addition}, since the corresponding arrows lie on the $x$ and $y$ axes,
+    \[
+    \vec{a} = \widehat{(a_1, 0)} \oplus \widehat{(0, a_2)}
+    \]
+    
+    Similarly, $\vec{b} = \widehat{(b_1, 0)} \oplus \widehat{(0, b_2)}$.
+    
+    Thus, by commutativity and associativity of $\oplus$ (Propositions 4.1.6 and 4.1.7),
+    \[
+    \vec{a} \oplus \vec{b} = \left[\widehat{(a_1, 0)} \oplus \widehat{(0, a_2)}\right] \oplus \left[\widehat{(b_1, 0)} \oplus \widehat{(0, b_2)}\right] = \left[\widehat{(a_1, 0)} \oplus \widehat{(b_1, 0)}\right] \oplus \left[\widehat{(0, a_2)} \oplus \widehat{(0, b_2)}\right]
+    \]
+    
+    By Lemma~\ref{lem:axis-addition},
+    \[
+    \widehat{(a_1, 0)} \oplus \widehat{(b_1, 0)} = (a_1, 0) + (b_1, 0) = (a_1 + b_1, 0)
+    \]
+    and
+    \[
+    \widehat{(0, a_2)} \oplus \widehat{(0, b_2)} = (0, a_2) + (0, b_2) = (0, a_2 + b_2)
+    \]
+    
+    Finally, by Lemma~\ref{lem:perpendicular-addition} again,
+    \[
+    \vec{a} \oplus \vec{b} = \widehat{(a_1 + b_1, 0)} \oplus \widehat{(0, a_2 + b_2)} = (a_1 + b_1, 0) + (0, a_2 + b_2) = (a_1 + b_1, a_2 + b_2) = a + b
+    \]
+\end{proof}
+
+\begin{note}
+    The identification of $\vec{a} \oplus \vec{b}$ with $a + b$ gives us a way to do geometry algebraically without sketches and protractors. Now that we know they are the same, we don't need both $+$ and $\oplus$. We will use $a$ and $a + b$ to denote both algebraic and geometric meanings, depending on context. For example, $a$ can mean the 2-tuple $(a_1, a_2) \in \R^2$ or the plane vector with tail at the origin and head at the point $(a_1, a_2)$, and $a + b$ can mean either componentwise addition in $\R^2$ or parallelogram-rule addition in the plane.
+\end{note}
+
+
+
+\begin{proposition}[Geometric Interpretation of Scalar Multiplication]\label{prop:scalar-mult-geometry}
+    Let $a \in \R^2$ and let $t \in \R$. For the plane vectors $a$ and $ta$:
+    \begin{enumerate}[label=\roman*.]
+        \item $ta$ lies on the same line as $a$
+        \item $ta$ is $|t|$ times longer than $a$
+        \item $ta$ is in the same direction as $a$ if $t > 0$
+        \item $ta$ is in the opposite direction as $a$ if $t < 0$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    If $t = 0$, then $ta = 0$ is the zero vector, which lies on every line through the origin, has length zero, and is considered to point in every direction, satisfying the proposition trivially. Now assume $t \neq 0$.
+    
+    \textbf{Case 1}: If $a$ lies on the $x$-axis or $y$-axis, then $a = (a, 0)$ or $a = (0, a)$. Thus:
+    \begin{enumerate}[label=\roman*.]
+        \item $ta = (ta, 0)$ or $ta = (0, ta)$, in both cases lying on the same axis as $a$.
+        \item The length of $a$ is $|a|$ and the length of $ta$ is $|ta| = |t||a|$.
+        \item If $t > 0$, then $\text{sgn}(ta) = \text{sgn}(a)$ and the arrows are in the same direction.
+        \item If $t < 0$, then $\text{sgn}(ta) = -\text{sgn}(a)$ and the arrows are in opposite directions.
+    \end{enumerate}
+    
+    \textbf{Case 2}: If $a$ is not on the $x$-axis or $y$-axis, then $a = (a_1, a_2)$ with $a_1, a_2 \neq 0$, and
+    \[
+    ta = t[(a_1, 0) + (0, a_2)] = (ta_1, 0) + (0, ta_2)
+    \]
+    
+    Consider the right triangle with vertices $O = (0, 0)$, $A = (a_1, 0)$, $B = (a_1, a_2)$, and the right triangle with vertices $O = (0, 0)$, $A' = (ta_1, 0)$, $B' = (ta_1, ta_2)$.
+    
+    Since the ratios of lengths of corresponding legs are equal (both equal to $|t|$), the triangles are similar. Therefore:
+    \begin{enumerate}[label=\roman*.]
+        \item The hypotenuse angles are equal, so they lie on the same line.
+        \item The ratio of hypotenuse lengths is also $|t|$, so $|ta| = |t||a|$.
+        \item If $t > 0$, both triangles lie in the same quadrant, so $ta$ and $a$ point in the same direction.
+        \item If $t < 0$, the triangles lie in opposite quadrants, so $ta$ and $a$ point in opposite directions.
+    \end{enumerate}
+\end{proof}
+
+\begin{note}
+    In looser but more helpful phrasing, Proposition~\ref{prop:scalar-mult-geometry} says that $ta$ is the arrow obtained by stretching (or shrinking) the arrow $a$ by a factor $|t|$, keeping it on the same line, in the same direction if $t > 0$ and reversing direction if $t < 0$.
+\end{note}

@@ -1,0 +1,89 @@
+
+\chapter{Vector Spaces}
+\lecture{22}{}{Arrows}
+\section{Vector Arrows}
+\begin{definition}[Plane Vector]\label{def:plane-vector}
+    A \textbf{plane vector} is a directed line segment in the plane (an arrow). The point of origin is called its \textbf{tail}, and the end point is called its \textbf{head}.
+\end{definition}
+
+\begin{note}
+    While vectors have a tail and a head, their most important characteristics are their length and the direction they point in.
+\end{note}
+
+\begin{definition}[Same Direction]\label{def:same-direction}
+    Two vectors are in the \textbf{same direction} if:
+    \begin{itemize}
+        \item They lie on a single line and, if we translate them along said line until their tails coincide, their heads lie on the same ray of this line that originates from this point; or
+        \item They lie on parallel lines and, if their heads and tails are connected by straight line segments, a quadrilateral is formed.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Opposite Directions]\label{def:opposite-directions}
+    Two vectors are in \textbf{opposite directions} if they lie on the same line or on parallel lines and they are not in the same direction.
+\end{definition}
+
+\begin{definition}[Equal Vectors]\label{def:equal-vectors}
+    Two vectors that have the same length and are in the same direction are \textbf{equal}. Equal vectors whose tails and heads do not coincide are sometimes referred to as \textbf{copies} of the same vector. Any point in the plane is a copy of the vector of zero length.
+\end{definition}
+
+
+\begin{definition}[Vector Addition]\label{def:vector-addition}
+    We add a plane vector to another plane vector by choosing a copy of the second vector whose tail coincides with the head of the first vector and then drawing an arrow from the tail of the first to the head of the (copy of the) second.
+\end{definition}
+
+\begin{notation}
+    Addition of plane vectors $\vec{a}$ and $\vec{b}$ is denoted $\vec{a} \oplus \vec{b}$.
+\end{notation}
+
+\begin{proposition}[Commutativity of Vector Addition]\label{prop:vector-addition-commutative}
+    For any two plane vectors $\vec{a}, \vec{b}$:
+    \[
+    \vec{a} \oplus \vec{b} = \vec{b} \oplus \vec{a}
+    \]
+\end{proposition}
+
+\begin{proof}
+    We verify this by considering all possible cases of vector orientations:
+    \begin{itemize}
+        \item If $\vec{a}$ and $\vec{b}$ are in the same direction, then both $\vec{a} \oplus \vec{b}$ and $\vec{b} \oplus \vec{a}$ form the diagonal of a degenerate parallelogram (a line segment).
+        \item If $\vec{a}$ and $\vec{b}$ are in opposite directions (whether of same length or not), both sums form the same resulting vector.
+        \item If $\vec{a}$ and $\vec{b}$ are neither in the same nor opposite directions (forming either an acute or obtuse angle), then by the parallelogram law, both $\vec{a} \oplus \vec{b}$ and $\vec{b} \oplus \vec{a}$ represent the diagonal of the same parallelogram.
+    \end{itemize}
+    In all cases, the two sums yield equal vectors.
+\end{proof}
+
+\begin{proposition}[Associativity of Vector Addition]\label{prop:vector-addition-associative}
+    For any three plane vectors $\vec{a}, \vec{b}, \vec{c}$:
+    \[
+    (\vec{a} \oplus \vec{b}) \oplus \vec{c} = \vec{a} \oplus (\vec{b} \oplus \vec{c})
+    \]
+\end{proposition}
+
+\begin{proof}
+    Consider three vectors $\vec{a}, \vec{b}, \vec{c}$. 
+    
+    For $(\vec{a} \oplus \vec{b}) \oplus \vec{c}$: First form $\vec{a} \oplus \vec{b}$ by placing the tail of $\vec{b}$ at the head of $\vec{a}$, then place the tail of $\vec{c}$ at the head of this sum. The result is a vector from the tail of $\vec{a}$ to the head of $\vec{c}$.
+    
+    For $\vec{a} \oplus (\vec{b} \oplus \vec{c})$: First form $\vec{b} \oplus \vec{c}$ by placing the tail of $\vec{c}$ at the head of $\vec{b}$, then place the tail of this sum at the head of $\vec{a}$. The result is again a vector from the tail of $\vec{a}$ to the head of $\vec{c}$.
+    
+    Both computations yield the same vector from the tail of $\vec{a}$ to the head of $\vec{c}$ (following the chain $\vec{a} \to \vec{b} \to \vec{c}$).
+\end{proof}
+
+\begin{note}
+    As with any associative binary operation, we can drop the parentheses and write, for any finite number of arrows:
+    \[
+    \vec{a}_1 \oplus \vec{a}_2 \oplus \cdots \oplus \vec{a}_n
+    \]
+    with no parentheses and no ambiguity.
+\end{note}
+
+\begin{note}
+    As with any binary operation that is both commutative and associative, in a finite sum the terms can be written in any order, and the sequence of binary additions carried out in any order. For example:
+    \[
+    \vec{a} \oplus \vec{b} \oplus \vec{c} \oplus \vec{d} = (\vec{a} \oplus \vec{b}) \oplus (\vec{c} \oplus \vec{d}) = \vec{a} \oplus (\vec{c} \oplus (\vec{b} \oplus \vec{d}))
+    \]
+\end{note}
+
+\begin{note}
+    Analogous definitions of vectors and vector addition work the same way in three-dimensional space; geometry in space is harder to visualize.
+\end{note}

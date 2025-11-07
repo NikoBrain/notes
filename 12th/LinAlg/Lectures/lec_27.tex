@@ -1,0 +1,118 @@
+\lecture{27}{}{Spans}
+\section{Spans}
+\begin{definition}[Linear Combination]\label{def:linear-combination}
+    Let $V$ be a vector space over a field $F$.
+    \begin{enumerate}[label=\roman*.]
+        \item A \textbf{linear combination} of vectors $v_1, \ldots, v_n \in V$ is a sum of the form
+        \[
+        \lambda_1 v_1 + \cdots + \lambda_n v_n = \sum_{i=1}^{n} \lambda_i v_i
+        \]
+        where $\lambda_1, \ldots, \lambda_n \in F$.
+        
+        \item Given a subset $S \subseteq V$, if a vector $u \in V$ is equal to some linear combination of vectors in $S$, we say that $u$ is \textbf{linearly dependent on} the set $S$.
+    \end{enumerate}
+\end{definition}
+
+\begin{note}
+    Properties of linear combinations:
+    \begin{itemize}
+        \item The scalars $\lambda_i$ are called the \textbf{coefficients} of the linear combination.
+        \item The number of vectors in a linear combination is arbitrary but finite.
+        \item The coefficients $\lambda_i$ may be zero; therefore $0$ is linearly dependent on any nonempty set of vectors.
+        \item If $u$ is dependent on $S \subseteq V$, then it is also dependent on $S \cup W$ for any $W \subseteq V$ (additional vectors can be added with zero coefficients).
+    \end{itemize}
+\end{note}
+
+\begin{definition}[Span]\label{def:span}
+    Let $K \subseteq V$ be a subset of a vector space $V$. The set of all possible linear combinations of vectors from $K$ is called the \textbf{span} of $K$ and denoted $\mathrm{Sp}(K)$. More precisely,
+    \[
+    \mathrm{Sp}(K) = \left\{ \sum_{i=1}^{n} \lambda_i v_i : n \in \N, v_1, \ldots, v_n \in K, \lambda_1, \ldots, \lambda_n \in F \right\}
+    \]
+    For completeness, we define $\mathrm{Sp}(\emptyset) = \{0\}$.
+\end{definition}
+
+\begin{theorem}[Properties of Span]\label{thm:span-properties}
+    Let $K$ be a nonempty subset of a vector space $V$ over field $F$. Then:
+    \begin{enumerate}[label=\roman*.]
+        \item $\mathrm{Sp}(K)$ is a subspace of $V$ that contains $K$.
+        \item If $W$ is a subspace of $V$ that contains $K$, then $W$ also contains $\mathrm{Sp}(K)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{Part i}: First, we show that $K \subseteq \mathrm{Sp}(K)$. For any $w \in K$, we have $w = \tilde{1} \cdot w$, which is a linear combination of a single vector from $K$, so $w \in \mathrm{Sp}(K)$. Thus $K \subseteq \mathrm{Sp}(K)$.
+    
+    Next, we show that $\mathrm{Sp}(K)$ is a subspace using Theorem~\ref{thm:subspace-test}. Let $u, v \in \mathrm{Sp}(K)$ and $\lambda, \mu \in F$. Then there exist:
+    \begin{itemize}
+        \item vectors $u_1, \ldots, u_p \in K$ and scalars $\alpha_1, \ldots, \alpha_p \in F$ such that $u = \alpha_1 u_1 + \cdots + \alpha_p u_p$
+        \item vectors $v_1, \ldots, v_q \in K$ and scalars $\beta_1, \ldots, \beta_q \in F$ such that $v = \beta_1 v_1 + \cdots + \beta_q v_q$
+    \end{itemize}
+    Therefore,
+    \[
+    \lambda u + \mu v = \lambda\alpha_1 u_1 + \cdots + \lambda\alpha_p u_p + \mu\beta_1 v_1 + \cdots + \mu\beta_q v_q \in \mathrm{Sp}(K)
+    \]
+    since this is a linear combination of vectors from $K$. By Theorem~\ref{thm:subspace-test}, $\mathrm{Sp}(K)$ is a subspace.
+    
+    \textbf{Part ii}: Let $W$ be a subspace of $V$ that contains $K$. Let $u \in \mathrm{Sp}(K)$. Then there exist vectors $u_1, \ldots, u_p \in K$ and scalars $\alpha_1, \ldots, \alpha_p \in F$ such that
+    \[
+    u = \alpha_1 u_1 + \cdots + \alpha_p u_p
+    \]
+    Since $K \subseteq W$, we have $u_i \in W$ for all $i$. Since $W$ is a subspace, it is closed under scalar multiplication, so $\alpha_i u_i \in W$ for all $i$. Since $W$ is closed under addition, $\alpha_1 u_1 + \cdots + \alpha_p u_p \in W$. Therefore $u \in W$, which shows $\mathrm{Sp}(K) \subseteq W$.
+\end{proof}
+
+\begin{theorem}[Uniqueness of Minimal Subspace]\label{thm:span-minimal}
+    Let $K$ be a nonempty subset of a vector space $V$ and let $W$ be a subspace of $V$ that contains $K$ and is contained in every subspace of $V$ that contains $K$. Then $W = \mathrm{Sp}(K)$.
+\end{theorem}
+
+\begin{proof}
+    We prove equality by showing mutual containment.
+    
+    By Theorem~\ref{thm:span-properties}.ii, since $W$ is a subspace that contains $K$, we have $\mathrm{Sp}(K) \subseteq W$.
+    
+    By Theorem~\ref{thm:span-properties}.i, $\mathrm{Sp}(K)$ is a subspace that contains $K$. By the premise, $W$ is contained in every subspace of $V$ that contains $K$, so $W \subseteq \mathrm{Sp}(K)$.
+    
+    Therefore $W = \mathrm{Sp}(K)$.
+\end{proof}
+
+\begin{note}
+    Theorem~\ref{thm:span-minimal} characterizes $\mathrm{Sp}(K)$ as the \textit{smallest} subspace containing $K$. That is, $\mathrm{Sp}(K)$ is the unique minimal subspace of $V$ containing $K$.
+\end{note}
+
+\begin{theorem*}[Properties of Span Operations]\label{thm:span-operations}
+    Let $V$ be a vector space.
+    \begin{enumerate}[label=\roman*.]
+        \item A subset $U \subseteq V$ is a subspace if and only if $\mathrm{Sp}(U) = U$.
+        \item For every $K \subseteq V$, $\mathrm{Sp}(\mathrm{Sp}(K)) = \mathrm{Sp}(K)$.
+    \end{enumerate}
+\end{theorem*}
+
+\begin{proof}
+    \textbf{Part i}: ($\Rightarrow$) Suppose $U$ is a subspace. By Theorem~\ref{thm:span-properties}.i, $U \subseteq \mathrm{Sp}(U)$. For the reverse inclusion, let $u \in \mathrm{Sp}(U)$. Then $u = \lambda_1 u_1 + \cdots + \lambda_n u_n$ for some $u_i \in U$ and $\lambda_i \in F$. Since $U$ is a subspace, it is closed under scalar multiplication and addition, so $u \in U$. Thus $\mathrm{Sp}(U) \subseteq U$, and therefore $\mathrm{Sp}(U) = U$.
+    
+    ($\Leftarrow$) Suppose $\mathrm{Sp}(U) = U$. By Theorem~\ref{thm:span-properties}.i, $\mathrm{Sp}(U)$ is a subspace, so $U$ is a subspace.
+    
+    \textbf{Part ii}: By Theorem~\ref{thm:span-properties}.i, $\mathrm{Sp}(K)$ is a subspace. By part i, $\mathrm{Sp}(\mathrm{Sp}(K)) = \mathrm{Sp}(K)$.
+\end{proof}
+
+\begin{definition*}[Row Space]\label{def:row-space}
+    Let $A \in M_{m \times n}(F)$ and denote by $a_i \in F^n$ the vector whose components are the entries in the $i$-th row of $A$. The subspace $\mathrm{Sp}(a_1, \ldots, a_m)$ is called the \textbf{row space} of $A$.
+\end{definition*}
+
+\begin{note}
+    Row-equivalent matrices have the same row space. This follows from the fact that elementary row operations produce linear combinations of the original rows.
+\end{note}
+
+\begin{theorem}[Equality of Spans]\label{thm:span-equality}
+    Let $K, T$ be nonempty subsets of a vector space $V$ over $F$. Then $\mathrm{Sp}(K) = \mathrm{Sp}(T)$ if and only if $K \subseteq \mathrm{Sp}(T)$ and $T \subseteq \mathrm{Sp}(K)$.
+\end{theorem}
+
+\begin{proof}
+    ($\Rightarrow$) Suppose $\mathrm{Sp}(K) = \mathrm{Sp}(T)$. By Theorem~\ref{thm:span-properties}.i, $K \subseteq \mathrm{Sp}(K)$ and $T \subseteq \mathrm{Sp}(T)$. Therefore $K \subseteq \mathrm{Sp}(K) = \mathrm{Sp}(T)$ and $T \subseteq \mathrm{Sp}(T) = \mathrm{Sp}(K)$.
+    
+    ($\Leftarrow$) Suppose $K \subseteq \mathrm{Sp}(T)$ and $T \subseteq \mathrm{Sp}(K)$. By Theorem~\ref{thm:span-properties}.ii:
+    \begin{itemize}
+        \item Since $K \subseteq \mathrm{Sp}(T)$ and $\mathrm{Sp}(T)$ is a subspace containing $\mathrm{Sp}(T)$, we have $\mathrm{Sp}(K) \subseteq \mathrm{Sp}(\mathrm{Sp}(T)) = \mathrm{Sp}(T)$
+        \item Since $T \subseteq \mathrm{Sp}(K)$ and $\mathrm{Sp}(K)$ is a subspace containing $\mathrm{Sp}(K)$, we have $\mathrm{Sp}(T) \subseteq \mathrm{Sp}(\mathrm{Sp}(K)) = \mathrm{Sp}(K)$.
+    \end{itemize}
+    Since $\mathrm{Sp}(K) \subseteq \mathrm{Sp}(T)$ and $\mathrm{Sp}(T) \subseteq \mathrm{Sp}(K)$, we conclude $\mathrm{Sp}(K) = \mathrm{Sp}(T)$.
+\end{proof}

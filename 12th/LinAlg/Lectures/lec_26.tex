@@ -1,0 +1,50 @@
+\lecture{26}{}{Subspaces}
+\section{Subspaces}
+\begin{definition}[Subspace]\label{def:subspace}
+    A subset $W \subseteq V$ of a vector space $V$ over a field $F$ is called a \textbf{subspace} of $V$ if it is a vector space over $F$ using the addition and multiplication-by-a-scalar defined in $V$.
+\end{definition}
+
+\begin{note}
+    When verifying that $W \subseteq V$ is a subspace, we need not check all ten space axioms. Since $V$ is already a vector space, axioms ii (commutativity), iii (associativity of addition), vii, viii, ix (distributivity properties), and x (scalar identity) are automatically satisfied for any subset. We only need to verify axioms i (closure under addition), iv (existence of zero), v (existence of inverses), and vi (closure under scalar multiplication).
+    
+    Furthermore, if $W$ is a subspace of $V$, then the zero vector of $W$ is the same as the zero vector of $V$, and the additive inverse of any $u \in W$ is the same in both $W$ and $V$.
+\end{note}
+
+\begin{theorem}[Subspace Test]\label{thm:subspace-test}
+    A nonempty subset $W \subseteq V$ of a vector space $V$ over a field $F$ is a subspace of $V$ if and only if for any $w_1, w_2 \in W$ and any $\lambda_1, \lambda_2 \in F$,
+    \[
+    \lambda_1 w_1 + \lambda_2 w_2 \in W
+    \]
+\end{theorem}
+
+\begin{proof}
+    We show that this single condition implies all four necessary axioms:
+    \begin{itemize}
+        \item Axiom i (closure under addition): Take $\lambda_1 = \lambda_2 = \tilde{1}$. Then for any $w_1, w_2 \in W$, we have $w_1 + w_2 = \tilde{1}w_1 + \tilde{1}w_2 \in W$.
+        
+        \item Axiom iv (existence of zero): Since $W \neq \emptyset$, there exists some $w \in W$. Take $\lambda_1 = \lambda_2 = \tilde{0}$. Then $\tilde{0}w + \tilde{0}w = 0 + 0 = 0 \in W$.
+        
+        \item Axiom v (existence of inverses): For any $w \in W$, take $\lambda_1 = -\tilde{1}$ and $\lambda_2 = \tilde{0}$. Then $(-\tilde{1})w + \tilde{0}w = -w + 0 = -w \in W$.
+        
+        \item Axiom vi (closure under scalar multiplication): For any $w \in W$ and $\lambda \in F$, take $\lambda_1 = \lambda$ and $\lambda_2 = \tilde{0}$. Then $\lambda w + \tilde{0}w = \lambda w + 0 = \lambda w \in W$.
+    \end{itemize}
+    
+    Conversely, if $W$ is a subspace, then it satisfies closure under both addition and scalar multiplication, so the condition holds.
+\end{proof}
+
+\begin{note}
+    While Theorem~\ref{thm:subspace-test} provides a compact way to express the subspace condition, in practice it is often clearer to verify the three conditions separately:
+    \begin{enumerate}[label=\roman*.]
+        \item $0 \in W$ (existence of zero)
+        \item For all $w_1, w_2 \in W$, $w_1 + w_2 \in W$ (closure under addition)
+        \item For all $w \in W$ and $\lambda \in F$, $\lambda w \in W$ (closure under scalar multiplication)
+    \end{enumerate}
+\end{note}
+
+\begin{note}
+    Every vector space $V$ has at least two subspaces, called the \textbf{trivial subspaces}:
+    \begin{itemize}
+        \item $W = \{0\}$ (the zero subspace)
+        \item $W = V$ (the whole space)
+    \end{itemize}
+\end{note}

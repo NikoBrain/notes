@@ -1,0 +1,40 @@
+\lecture{24}{}{Spacedef}
+\section{Definition/Examples}
+
+
+\begin{definition}[Linear Vector Space]\label{def:vector-space}
+    Let $F$ be a field. A \textbf{linear vector space over $F$} is a set $V$ equipped with a binary operation $+: V \times V \to V$, called \textbf{addition}, and an operation $\cdot: F \times V \to V$, called \textbf{multiplication by a scalar}, that satisfy the following properties (called axioms of the space):
+    
+    \textbf{Axioms of addition:}
+    \begin{enumerate}[label=\roman*.]
+        \item \textbf{Closure}: $\forall u, w \in V$, $u + w \in V$
+        \item \textbf{Commutativity}: $\forall u, w \in V$, $u + w = w + u$
+        \item \textbf{Associativity}: $\forall u, w, v \in V$, $(u + w) + v = u + (w + v)$
+        \item \textbf{Additive identity}: $\exists 0 \in V$ such that $\forall u \in V$, $u + 0 = u$
+        \item \textbf{Additive inverse}: $\forall u \in V$, $\exists (-u) \in V$ such that $u + (-u) = 0$
+    \end{enumerate}
+    
+    \textbf{Axioms of scalar multiplication:}
+    \begin{enumerate}[label=\roman*., resume]
+        \item \textbf{Closure}: $\forall u \in V$ and $\forall \lambda \in F$, $\lambda \cdot u \in V$
+        \item \textbf{Distributivity over vector addition}: $\forall u, w \in V$ and $\forall \lambda \in F$, $\lambda(u + w) = \lambda u + \lambda w$
+        \item \textbf{Distributivity over scalar addition}: $\forall u \in V$ and $\forall \lambda, \mu \in F$, $(\lambda + \mu)u = \lambda u + \mu u$
+        \item \textbf{Associativity-like property}: $\forall u \in V$ and $\forall \lambda, \mu \in F$, $(\lambda\mu)u = \lambda(\mu u)$
+        \item \textbf{Multiplicative identity}: $\forall u \in V$, if $\tilde{1} \in F$ is the multiplicative identity, then $\tilde{1} \cdot u = u$
+    \end{enumerate}
+\end{definition}
+
+\begin{notation}
+    \begin{itemize}
+        \item Members of $V$ are called \textbf{vectors}; we use Latin underlined letters to denote vectors, e.g., $\underline{u}, \underline{w}$.
+        \item Members of $F$ are called \textbf{scalars}; we use Greek letters to denote scalars, e.g., $\lambda, \mu$.
+        \item We use the same symbol $+$ to denote addition in $V$ and addition in $F$; context distinguishes between the two operations.
+        \item We use the same symbol $\cdot$ (or, more often, juxtaposition) to denote scalar multiplication and multiplication in $F$; context distinguishes between the two operations.
+        \item We denote the additive identity in $F$ by $\tilde{0}$ and the additive identity in $V$ by $0$.
+        \item \textbf{Linear vector space} is often shortened to \textbf{linear space}, \textbf{vector space}, or simply \textbf{space}.
+    \end{itemize}
+\end{notation}
+
+\begin{note}
+    The axioms of vector addition are the same as the axioms of addition in the field $F$. It follows that every property of addition between scalars that relied only on the addition axioms will hold for addition between vectors, in any vector space over any field.
+\end{note}

@@ -1,0 +1,201 @@
+\lecture{25}{}{Immediate Properties of Vector Spaces}
+
+\section{Immediate Properties}
+
+\begin{note}
+    We now list various properties that must hold for any vector space over any field. These properties have been seen before in other contexts (as properties of $n$-tuples, matrices, or numbers). The proofs utilize only the properties guaranteed by the axioms of the space, making them universally applicable.
+\end{note}
+
+\begin{theorem}[Generalized Associativity]\label{thm:generalized-associativity}
+    Let $V$ be a vector space over the field $F$ and let $u_1, \ldots, u_n \in V$. Every possible parenthesis ordering of the expression
+    \[
+    u_1 + u_2 + u_3 + \cdots + u_n
+    \]
+    is equivalent to the left-associated ordering:
+    \[
+    (\cdots((u_1 + u_2) + u_3) \cdots + u_n)
+    \]
+\end{theorem}
+
+\begin{proof}
+    This is a particular case of the general Theorem 0.3.7.
+\end{proof}
+
+\begin{theorem}[Generalized Distributivity]\label{thm:generalized-distributivity}
+    Let $V$ be a vector space over the field $F$.
+    \begin{enumerate}[label=\roman*.]
+        \item For any $u \in V$ and any $\lambda_1, \ldots, \lambda_n \in F$,
+        \[
+        (\lambda_1 + \cdots + \lambda_n)u = \lambda_1 u + \cdots + \lambda_n u
+        \]
+        \item For any $\lambda \in F$ and any $u_1, \ldots, u_n \in V$,
+        \[
+        \lambda(u_1 + \cdots + u_n) = \lambda u_1 + \cdots + \lambda u_n
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We prove both parts by induction.
+    
+    \textbf{Part i}:
+    
+    \textit{Base case} ($n = 2$): $(\lambda_1 + \lambda_2)u = \lambda_1 u + \lambda_2 u$ is axiom viii.
+    
+    \textit{Induction hypothesis}: Suppose $(\lambda_1 + \cdots + \lambda_k)u = \lambda_1 u + \cdots + \lambda_k u$ for any $k$ scalars.
+    
+    \textit{Induction step}:
+    \begin{align*}
+        (\lambda_1 + \cdots + \lambda_k + \lambda_{k+1})u &= ((\lambda_1 + \cdots + \lambda_k) + \lambda_{k+1})u = (\lambda_1 + \cdots + \lambda_k)u + \lambda_{k+1}u \\
+        &= (\lambda_1 u + \cdots + \lambda_k u) + \lambda_{k+1}u = \lambda_1 u + \cdots + \lambda_k u + \lambda_{k+1}u
+    \end{align*}
+    
+    \textbf{Part ii}:
+    
+    \textit{Base case} ($n = 2$): $\lambda(u_1 + u_2) = \lambda u_1 + \lambda u_2$ is axiom vii.
+    
+    \textit{Induction hypothesis}: Suppose $\lambda(u_1 + \cdots + u_k) = \lambda u_1 + \cdots + \lambda u_k$ for any $k$ vectors.
+    
+    \textit{Induction step}:
+    \begin{align*}
+        \lambda(u_1 + \cdots + u_k + u_{k+1}) &= \lambda((u_1 + \cdots + u_k) + u_{k+1}) = \lambda(u_1 + \cdots + u_k) + \lambda u_{k+1} \\
+        &= (\lambda u_1 + \cdots + \lambda u_k) + \lambda u_{k+1} = \lambda u_1 + \cdots + \lambda u_k + \lambda u_{k+1}
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[Uniqueness]\label{thm:uniqueness}
+    Let $V$ be a vector space over the field $F$.
+    \begin{enumerate}[label=\roman*.]
+        \item The neutral vector in $V$ (the zero vector, $0$) is unique.
+        \item The inverse of any $u \in V$ is unique.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{Part i}: Suppose $0$ and $0'$ are both neutral with respect to vector addition. Then
+    \[
+    0 = 0 + 0' = 0'
+    \]
+    where the first equality holds because $0'$ is neutral, and the second equality holds because $0$ is neutral.
+    
+    \textbf{Part ii}: Suppose $u'$ and $u''$ are both inverses of $u$. Then
+    \begin{align*}
+        u' = u' + 0 = u' + (u + u'') = (u' + u) + u'' = 0 + u'' = u''
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[Properties of Zeros and Identity]\label{thm:zeros-identity}
+    Let $V$ be a vector space over the field $F$.
+    \begin{enumerate}[label=\roman*.]
+        \item $\forall u \in V$, $u + u = u \implies u = 0$
+        \item $\forall \lambda \in F$, $\lambda 0 = 0$
+        \item $\forall u \in V$, $\tilde{0}u = 0$ (where $\tilde{0}$ is the additive identity in $F$)
+        \item If $\lambda u = 0$, then $\lambda = \tilde{0}$ or $u = 0$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{Part i}: Suppose $u + u = u$. Then
+    \begin{align*}
+        u = u + 0 = u + (u + (-u)) = (u + u) + (-u) = u + (-u) = 0
+    \end{align*}
+    
+    \textbf{Part ii}: For any $\lambda \in F$, $\lambda 0 = \lambda(0 + 0) = \lambda 0 + \lambda 0$, so by part i, $\lambda 0 = 0$.
+    
+    \textbf{Part iii}: For any $u \in V$, $\tilde{0}u = (\tilde{0} + \tilde{0})u = \tilde{0}u + \tilde{0}u$, so by part i, $\tilde{0}u = 0$.
+    
+    \textbf{Part iv}: Suppose $\lambda u = 0$ and $\lambda \neq \tilde{0}$. Then $\lambda$ has a multiplicative inverse $\lambda^{-1}$ in $F$. Thus
+    \begin{align*}
+        u = \tilde{1}u = (\lambda^{-1}\lambda)u = \lambda^{-1}(\lambda u) = \lambda^{-1}0 = 0
+    \end{align*}
+    Therefore, if $\lambda \neq \tilde{0}$, then $u = 0$.
+\end{proof}
+
+\begin{theorem}[Properties of Negation]\label{thm:negation}
+    Let $V$ be a vector space over the field $F$.
+    \begin{enumerate}[label=\roman*.]
+        \item $\forall u \in V$, $(-\tilde{1})u = -u$ (where $-\tilde{1}$ is the additive inverse of $\tilde{1}$ in $F$)
+        \item $\forall u \in V$ and $\forall \lambda \in F$, $(-\lambda)u = -(\lambda u)$
+        \item $\forall u \in V$ and $\forall \lambda \in F$, $\lambda(-u) = -(\lambda u)$
+        \item $\forall u \in V$, $-(-u) = u$
+        \item $\forall u, w \in V$, $-(u + w) = (-u) + (-w)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{Part i}: We show that $(-\tilde{1})u$ is the additive inverse of $u$:
+    \begin{align*}
+        u + (-\tilde{1})u &= \tilde{1}u + (-\tilde{1})u = (\tilde{1} + (-\tilde{1}))u = \tilde{0}u = 0 
+    \end{align*}
+    By uniqueness of the additive inverse (Theorem~\ref{thm:uniqueness}.ii), $(-\tilde{1})u = -u$.
+    
+    \textbf{Part ii}: For any $\lambda \in F$ and $u \in V$,
+    \begin{align*}
+        \lambda u + (-\lambda)u &= (\lambda + (-\lambda))u = \tilde{0}u = 0 
+    \end{align*}
+    By uniqueness of the additive inverse, $(-\lambda)u = -(\lambda u)$.
+    
+    \textbf{Part iii}: For any $\lambda \in F$ and $u \in V$,
+    \begin{align*}
+        \lambda u + \lambda(-u) &= \lambda(u + (-u)) = \lambda 0 = 0 
+    \end{align*}
+    By uniqueness of the additive inverse, $\lambda(-u) = -(\lambda u)$.
+    
+    \textbf{Part iv}: We have $u + (-u) = 0$ by axiom v. Adding $-(-u)$ to both sides:
+    \begin{align*}
+        (u + (-u)) + (-(-u)) &= 0 + (-(-u)) \\ \quad u + ((-u) + (-(-u))) &= -(-u) \\ \quad u + 0 &= -(-u), \quad u = -(-u)
+    \end{align*}
+    
+    \textbf{Part v}: We show that $(-u) + (-w)$ is the additive inverse of $u + w$:
+    \begin{align*}
+        (u + w) + ((-u) + (-w)) &= (u + w) + ((-w) + (-u)) \\
+        &= ((u + w) + (-w)) + (-u) \\
+        &= (u + (w + (-w))) + (-u) = (u + 0) + (-u) \\
+        &= u + (-u) =0
+    \end{align*}
+    By uniqueness of the additive inverse, $-(u + w) = (-u) + (-w)$.
+\end{proof}
+
+\begin{definition}[Subtraction]\label{def:subtraction}
+    Let $V$ be a vector space over the field $F$. For all $u, w \in V$, the \textbf{difference} $u - w$ is the vector
+    \[
+    u - w \coloneqq u + (-w)
+    \]
+\end{definition}
+
+\begin{note}
+    The definition works because, by Theorem~\ref{thm:uniqueness}.ii, the inverse of $w$ is unique.
+\end{note}
+
+\begin{theorem}[Properties of Subtraction]\label{thm:subtraction}
+    Let $V$ be a vector space over the field $F$. For all $u, v, w \in V$:
+    \begin{enumerate}[label=\roman*.]
+        \item $(u - v) + w = u - (v - w)$
+        \item $(u - v) - w = u - (v + w)$
+        \item $u - w = 0 \iff u = w$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{Part i}:
+    \begin{align*}
+        (u-v)+w &= (u+(-v))+w = u+((-v)+w) = u+(w+(-v)) \\
+        &= u+(w-v) = u+((-(-v))+(-w)) = u+(-(v+(-w))) \\
+        &= u+(-(v-w)) = u-(v-w)
+    \end{align*}
+
+    \textbf{Part ii}:
+    \begin{align*}
+        (u-v)-w &= (u+(-v))-w = (u+(-v))+(-w) \\
+        &= u+((-v)+(-w)) = u+(-(v+w)) = u-(v+w)
+    \end{align*}
+
+    \textbf{Part iii}: ($\Rightarrow$) Suppose $u-w=0$. Then
+    \begin{align*}
+        u &= u+0 = u+(w+(-w)) = (u+(-w))+w = (u-w)+w = 0+w = w
+    \end{align*}
+    Conversely, ($\Leftarrow$) if $u=w$ then
+    \begin{align*}
+        u-w &= u+(-w) = w+(-w) = 0
+    \end{align*}
+\end{proof}
