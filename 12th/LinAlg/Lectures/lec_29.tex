@@ -1,0 +1,92 @@
+\lecture{29}{}{The Space $F^n$}
+
+\section{$F^n$}
+
+
+\begin{theorem}[Linear Combinations as Systems of Equations]\label{thm:linear-combination-system}
+    Given a field $F$ and $k$ vectors in $F^n$, a vector $b = (b_1, \ldots, b_n) \in F^n$ is a linear combination of $a_1, \ldots, a_k$ with coefficients $s_1, \ldots, s_k$ if and only if the $k$-tuple $(s_1, \ldots, s_k)$ is a solution of the linear system whose augmented coefficient matrix is
+    \[
+    S = \begin{pmatrix}
+    a_{11} & a_{12} & \cdots & a_{1k} & b_1 \\
+    \vdots & \vdots & & \vdots & \vdots \\
+    a_{n1} & a_{n2} & \cdots & a_{nk} & b_n
+    \end{pmatrix}
+    \]
+    where the columns of $S$ are the vectors $a_1, \ldots, a_k, b$.
+\end{theorem}
+
+\begin{proposition}[Independence as Homogeneous Systems]\label{prop:independence-system}
+    The vectors $a_1, \ldots, a_k \in F^n$ are linearly independent if and only if the homogeneous system of $n$ equations in $k$ unknowns whose coefficient matrix has $a_1, \ldots, a_k$ as columns does not have a non-trivial solution.
+\end{proposition}
+
+\begin{proof}
+    This is an application of Theorem~\ref{thm:linear-combination-system} to the case $b = 0$.
+\end{proof}
+
+\begin{theorem}[More Vectors Than Dimension Implies Dependence]\label{thm:more-than-n-dependent}
+    Given $a_1, \ldots, a_k \in F^n$, if $k > n$ then they are linearly dependent.
+\end{theorem}
+
+\begin{proof}
+    Let $a_1 = (a_{11}, a_{21}, \ldots, a_{n1}), \ldots, a_k = (a_{1k}, a_{2k}, \ldots, a_{nk})$. By Proposition~\ref{prop:independence-system}, the vectors are linearly dependent iff there is a non-trivial solution to the homogeneous system with the non-augmented coefficient matrix from Theorem \ref{thm:linear-combination-system}
+    This is a homogeneous system of $n$ equations in $k$ unknowns. By Theorem 2.6.2, if $k > n$ the system has a non-trivial solution.
+\end{proof}
+
+\begin{definition}[Standard Basis Vectors]\label{def:standard-basis}
+    In $F^n$, the vectors
+    \begin{align*}
+    e_1 &= (1, 0, 0, \ldots, 0) \\
+    e_i &= (0, 0, 0, \ldots, 1, \ldots, 0) \\
+    e_n &= (0, 0, 0, \ldots, 1)
+    \end{align*}
+    are called the \textbf{standard basis vectors} of $F^n$. We use the same notation $e_i$ in different spaces; for example, in $\R^4$ we write $e_2 = (0,1,0,0)$ while in $\R^6$ we write $e_2 = (0,1,0,0,0,0)$.
+\end{definition}
+
+\begin{theorem}[Standard Basis Vectors are Independent]\label{thm:standard-basis-independent}
+    The $n$ standard basis vectors in $F^n$ are linearly independent.
+\end{theorem}
+
+\begin{proof}
+    Consider the equation $s_1 e_1 + \cdots + s_n e_n = 0$. This expands to $(s_1, 0, \ldots, 0) + (0, s_2, \ldots, 0) + \cdots + (0, 0, \ldots, s_n) = (0, 0, \ldots, 0)$, which gives $(s_1, s_2, \ldots, s_n) = (0, 0, \ldots, 0)$. Thus $s_i = 0$ for all $i$, so the only solution is trivial.
+\end{proof}
+
+
+\begin{definition}[Spanning Set]
+    Let $V$ be a vector space. Vectors $a_1, \ldots, a_k \in V$ \textbf{span} $V$ if $\mathrm{Sp}(a_1, \ldots, a_k) = V$. For $a_1, \ldots, a_k \in F^n$, they span $F^n$ if $\forall b \in F^n$, $\exists s_i \in F$ such that $\sum_{i=1}^{k} s_i a_i = b$.
+\end{definition}
+
+\begin{theorem}[Standard Basis Vectors Span $F^n$]\label{thm:standard-basis-span}
+    The standard basis vectors of $F^n$ span $F^n$.
+\end{theorem}
+
+\begin{proof}
+    For any $b = (b_1, \ldots, b_n) \in F^n$,
+    \[
+    b_1 e_1 + \cdots + b_n e_n = (b_1, 0, \ldots, 0) + \cdots + (0, 0, \ldots, b_n) = (b_1, b_2, \ldots, b_n) = b
+    \]
+\end{proof}
+
+\begin{lemma}[Dependent Linear Combinations]\label{lem:dependent-combinations}
+    Let $a_1, \ldots, a_k \in F^n$ be any $k$ vectors and let $b_1, \ldots, b_m \in F^n$ be $m$ vectors that are each a linear combination of the $a$ vectors. If $m > k$, then the vectors $b_1, \ldots, b_m$ are not independent.
+\end{lemma}
+
+\begin{proof}
+    Let $b_i = \sum_{j=1}^{k} x_{ji} a_j$. Then for any $s_1, \ldots, s_m \in F$,
+    \[
+    \sum_{i=1}^{m} s_i b_i = \sum_{i=1}^{m} s_i \sum_{j=1}^{k} x_{ji} a_j = \sum_{j=1}^{k} \left(\sum_{i=1}^{m} s_i x_{ji}\right) a_j
+    \]
+    A non-trivial solution to the homogeneous system (known $x_{ji}$, unknown $s_i$)
+    will provide a non-trivial linear combination $\sum_{i=1}^{m} s_i b_i = 0$. When $m > k$, a non-trivial solution exists by Theorem 2.6.2.
+\end{proof}
+
+\begin{theorem}[Fewer Than $n$ Cannot Span]\label{thm:fewer-than-n-no-span}
+    Let $a_1, \ldots, a_k \in F^n$. If $k < n$, then the vectors do not span $F^n$.
+\end{theorem}
+
+\begin{proof}
+    Suppose $a_1, \ldots, a_k$ span $F^n$ and $k < n$. Then every vector $b \in F^n$ is a linear combination of the $a$ vectors. In particular, $e_1, \ldots, e_n$ are linear combinations of the $a$ vectors. Therefore there are $n$ vectors that are each a linear combination of the $k$ vectors $a_1, \ldots, a_k$. By Lemma~\ref{lem:dependent-combinations}, $e_1, \ldots, e_n$ are not linearly independent. But by Theorem~\ref{thm:standard-basis-independent}, they are. Contradiction. Therefore $a_1, \ldots, a_k$ do not span $F^n$.
+\end{proof}
+
+\begin{conclusion*}
+    By Theorem~\ref{thm:fewer-than-n-no-span}, if $k < n$ then $a_1, \ldots, a_k$ do not span ($F^n$). By Theorem~\ref{thm:more-than-n-dependent}, if $k > n$ then $a_1, \ldots, a_k$ are not independent. Therefore, a set of vectors that is independent and spans $F^n$ has exactly $n$ vectors.
+\end{conclusion*}

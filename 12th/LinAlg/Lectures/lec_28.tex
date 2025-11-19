@@ -1,0 +1,25 @@
+\lecture{28}{}{Linear Independence}
+
+\section{Linear Independence}
+
+\begin{definition}[Linear Independence]\label{def:linear-independence}
+    Let $V$ be a vector space over a field $F$ and let $K$ be a subset of $V$. 
+    $K$ is called \textbf{linearly dependent} if there exist distinct vectors $v_1, \ldots, v_n \in K$ and scalars $\lambda_1, \ldots, \lambda_n \in F$, not all zero, such that
+        \[
+        \lambda_1 v_1 + \cdots + \lambda_n v_n = 0
+        \]
+\end{definition}
+
+\begin{note}
+    Any set containing the zero vector cannot be independent, and the empty set is linearly independent (vacuously true).
+\end{note}
+
+\begin{theorem}[Characterization of Linear Dependence]\label{thm:linear-dependence-characterization}
+    Let $V$ be a vector space over $F$ and let $K$ be a subset of $V$ containing at least two vectors. Then $K$ is linearly dependent if and only if at least one of the vectors in $K$ is equal to a linear combination of other vectors in $K$.
+\end{theorem}
+
+\begin{proof}
+    ($\Rightarrow$) Suppose $K$ is linearly dependent. Then there exist distinct vectors $v_1, \ldots, v_n \in K$ and scalars $\lambda_1, \ldots, \lambda_n \in F$, not all zero, such that $\lambda_1 v_1 + \cdots + \lambda_n v_n = 0$. WLOG, suppose $\lambda_1 \neq 0$. If $n = 1$, then $\lambda_1 v_1 = 0 \implies v_1 = 0$; take any $w \neq v_1 \in K$ and $v_1 = 0 \cdot w$ is the required linear combination. If $n > 1$, then $\lambda_1 v_1 = -\lambda_2 v_2 - \cdots - \lambda_n v_n$, so $v_1 = \lambda_1^{-1}(-\lambda_2) v_2 + \cdots + \lambda_1^{-1}(-\lambda_n) v_n$ is the required linear combination.
+    
+    ($\Leftarrow$) Suppose $\exists w \in K$ that is a linear combination of other vectors in $K$. Then there exist $n$ distinct vectors $v_1, \ldots, v_n \in K$ and scalars $\lambda_1, \ldots, \lambda_n$ such that $\lambda_1 v_1 + \cdots + \lambda_n v_n = w$. Therefore $\lambda_1 v_1 + \cdots + \lambda_n v_n + (-1)w = 0$. Since $-1 \neq 0$, this is a non-trivial linear combination equal to $0$, so $K$ is linearly dependent.
+\end{proof}
