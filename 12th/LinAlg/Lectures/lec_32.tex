@@ -1,0 +1,49 @@
+\lecture{32}{}{Dimension of a Vector Space}
+
+\section{Dimension of a Vector Space}
+
+\begin{lemma}[Steinitz Exchange Lemma]\label{lem:steinitz}
+    Let $A = \{\underline{v}_1, \ldots, \underline{v}_k\}$ and $B = \{\underline{w}_1, \ldots, \underline{w_m}\}$ be subsets of a vector space $V$ over field $F$. If $A$ is a spanning set and $B$ is independent, then $m \leq k$.
+\end{lemma}
+
+\begin{proof}
+    We will show that if $m > k$, there is a non-trivial linear combination $\sum_{i=1}^{m} x_i \underline{w}_i = 0$.
+    Since $\mathrm{Sp}(A) = V$, there exist $\lambda_{ji} \in F$ such that for all $\underline{w}_i \in B$,
+    $\underline{w}_i = \sum_{j=1}^{k} \lambda_{ji} \underline{v}_j$.
+    A linear combination of vectors from $B$ is of the form
+    $\sum_{i=1}^{m} x_i \underline{w}_i = \sum_{i=1}^{m} x_i \sum_{j=1}^{k} \lambda_{ji} \underline{v}_j = \sum_{j=1}^{k} \left(\sum_{i=1}^{m} \lambda_{ji} x_i\right) \underline{v}_j$.
+    If $m > k$, the homogeneous system has a non-trivial solution (by Theorem \ref{thm:nontrivial-solutions}), meaning there exist $x_i \in F$, not all zero, such that $\sum_{i=1}^{m} \lambda_{ji} x_i = 0$ for all $j = 1, \ldots, k$. This makes $0$ a non-trivial linear combination of $B$ vectors, meaning $B$ is not independent. Therefore, if $B$ is independent, $m \leq k$.
+\end{proof}
+
+\begin{theorem}[Properties of $n$-Vector Bases]\label{thm:n-basis-properties}
+    Let $V$ be a vector space over field $F$. If $V$ has a basis with $n$ vectors, then:
+    \begin{enumerate}[label=(\roman*)]
+        \item Any set in $V$ with more than $n$ vectors is dependent
+        \item Any set in $V$ with fewer than $n$ vectors does not span $V$
+        \item Any independent set of $n$ vectors in $V$ is a spanning set
+        \item Any spanning set of $V$ with $n$ vectors is independent
+        \item Every basis of $V$ has exactly $n$ vectors
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $B = \{\underline{v}_1, \ldots, \underline{v}_n\}$ be a basis of $V$, and let $K = \{\underline{w}_1, \ldots, \underline{w}_k\} \subseteq V$.
+    
+    (i) Since $B$ is a spanning set, by Lemma~\ref{lem:steinitz}, if $k > n$ then $K$ is dependent.
+    
+    (ii) If $k < n$ and $K$ is a spanning set, by Lemma~\ref{lem:steinitz}, $B$ would not be independent, which is a contradiction.
+    
+    (iii) If $k = n$ and $K$ is independent and $\mathrm{Sp}(K) \neq V$, there is a $u \notin K$ not dependent on $K$, and $K \cup \{\underline{u}\}$ would be an independent set (Lemma \ref{lem:truths}.v) with $n+1$ vectors, in contradiction to part (i).
+    
+    (iv) If $k = n$ and $\mathrm{Sp}(K) = V$ and $K$ is not independent, there exists $u \in K$ that is a linear combination of the other vectors in $K$, and the set $K - \{\underline{u}\}$ would be a spanning set (Lemma \ref{lem:truths}.vii) with $n-1$ vectors, in contradiction to part (ii).
+    
+    (v) Being independent, a basis must have no more than $n$ vectors (by part (i)); being a spanning set it must have at least $n$ vectors (by part (ii)).
+\end{proof}
+
+\begin{definition}[Dimension]\label{def:dimension}
+    Let $V$ be a finitely-generated vector space. The \textbf{dimension} of $V$ is the number of vectors in a basis of $V$, denoted $\dim V$. For completeness, we define $\dim \{\underline{0}\} = 0$.
+\end{definition}
+
+\begin{theorem}[Completion to a Basis]\label{thm:completion}
+    If $A = \{\underline{v}_1, \ldots, \underline{v}_k\}$ is an independent set in an $n$-dimensional space $V$, there exist vectors $\underline{w}_{k+1}, \ldots, \underline{w}_n \in V$ such that $B = \{\underline{v}_1, \ldots, \underline{v}_k, \underline{w}_{k+1}, \ldots, \underline{w}_n\}$ is a basis of $V$. In other words, any linearly independent set in an $n$-dimensional space can be completed to a basis.
+\end{theorem}

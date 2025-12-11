@@ -1,0 +1,66 @@
+\lecture{33}{}{Coordinates and the Great Isomorphism}
+
+\section{Coordinates and the Great Isomorphism}
+\addtocounter{definition}{-1}
+\begin{definition}[Ordered Basis]\label{def:ordered-basis}
+    A sequence $\underline{v}_1, \ldots, \underline{v}_n$ of vectors in $V$ is called an \textbf{ordered basis} if it is independent and spanning.
+\end{definition}
+\begin{note}
+    Note that while $\{\underline{v}, \underline{w}, \underline{u}\}$ and $\{\underline{w}, \underline{u}, \underline{v}\}$ are the same set (and thus the same basis), the sequences $\underline{v}, \underline{w}, \underline{u}$ and $\underline{w}, \underline{u}, \underline{v}$ are not the same ordered basis, since $\alpha\underline{v} + \beta\underline{w} + \gamma\underline{u} \neq \alpha\underline{w} + \beta\underline{u} + \gamma\underline{v}$.
+\end{note}
+
+
+\begin{definition}[Coordinates]\label{def:coordinates}
+    Let $B = \underline{w}_1, \ldots, \underline{w}_n$ be a basis of the vector space $V$ over $F$ and let $\underline{v} \in V$. The scalars $\alpha_1, \ldots, \alpha_n \in F$ appearing in the linear combination
+    \[
+    \underline{v} = \alpha_1 \underline{w}_1 + \cdots + \alpha_n \underline{w}_n
+    \]
+    are called the \textbf{coordinates} of $\underline{v}$ under the (ordered) basis $B$. The $n$-tuple $(\alpha_1, \ldots, \alpha_n) \in F^n$ is called the \textbf{coordinate vector} of $\underline{v}$ under the basis $B$ and denoted $[\underline{v}]_B$. The column vector $\begin{bmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{bmatrix}$ is also called the coordinate vector of $\underline{v}$ under the basis $B$ and denoted $[\underline{v}]_B$.
+\end{definition}
+
+\begin{theorem}[The Coordinate Isomorphism]\label{thm:coordinate-isomorphism}
+    Let $V$ be a vector space over $F$ and let $B = \{\underline{v}_1, \ldots, \underline{v}_n\}$ be a basis of $V$. The mapping $f: V \to F^n$ that matches every vector $\underline{v} \in V$ with its coordinate vector $[\underline{v}]_B \in F^n$ is:
+    \begin{enumerate}[label=(\roman*)]
+        \item One-to-one: $[\underline{w}]_B = [\underline{w}']_B \implies \underline{w} = \underline{w}'$
+        \item Onto: $\forall \underline{u} \in F^n$, $\exists \underline{w} \in V$ such that $[\underline{w}]_B = \underline{u}$
+        \item Preserves vector addition: $\forall \underline{w}, \underline{w}' \in V$, $[\underline{w}]_B + [\underline{w}']_B = [\underline{w} + \underline{w}']_B$
+        \item Preserves scalar multiplication: $\forall \underline{w} \in V$ and $\forall \lambda \in F$, $\lambda[\underline{w}]_B = [\lambda\underline{w}]_B$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    (i) Let $\underline{u} = (u_1, \ldots, u_n) = [\underline{w}]_B$ and $\underline{u}' = (u_1', \ldots, u_n') = [\underline{w}']_B$. If $\underline{u} = \underline{u}'$, then $u_i = u_i'$ for all $i \in \{1, \ldots, n\}$, and
+    $\underline{w} = \sum_{i=1}^{n} u_i \underline{v}_i = \sum_{i=1}^{n} u_i' \underline{v}_i = \underline{w}'$
+    
+    (ii) Let $\underline{u} = (u_1, \ldots, u_n) \in F^n$. Then $\underline{w} = \sum_{i=1}^{n} u_i \underline{v}_i \in V$ and by definition $[\underline{w}]_B = \underline{u}$.
+    
+    (iii) Let $\underline{u} = (u_1, \ldots, u_n) = [\underline{w}]_B$ and $\underline{u}' = (u_1', \ldots, u_n') = [\underline{w}']_B$. Then
+    $[\underline{w} + \underline{w}']_B = \left[\sum_{i=1}^{n} u_i \underline{v}_i + \sum_{i=1}^{n} u_i' \underline{v}_i\right]_B = \left[\sum_{i=1}^{n} (u_i + u_i') \underline{v}_i\right]_B = (u_1 + u_1', \ldots, u_n + u_n') = \underline{u} + \underline{u}' = [\underline{w}]_B + [\underline{w}']_B$
+    
+    (iv) Let $\underline{u} = (u_1, \ldots, u_n) = [\underline{w}]_B$ and let $\lambda \in F$. Then
+    $[\lambda\underline{w}]_B = \left[\lambda \sum_{i=1}^{n} u_i \underline{v}_i\right]_B = \left[\sum_{i=1}^{n} \lambda u_i \underline{v}_i\right]_B = (\lambda u_1, \ldots, \lambda u_n) = \lambda \underline{u} = \lambda[\underline{w}]_B$
+\end{proof}
+
+\begin{definition}[Isomorphism]\label{def:isomorphism}
+    A mapping from one vector space to another that is one-to-one, onto, and preserves vector addition and scalar multiplication is called an \textbf{isomorphism}.
+\end{definition}
+
+\begin{theorem}[Properties of Coordinate Vectors]\label{thm:coordinate-properties}
+    Let $B$ be a basis of the vector space $V$ over field $F$. Then:
+    \begin{enumerate}[label=(\roman*)]
+        \item $[\underline{v}]_B = \underline{0} \in F^n$ if and only if $\underline{v} = \underline{0} \in V$
+        \item $[-\underline{v}]_B = -[\underline{v}]_B$
+        \item $\left[\sum_{i=1}^{k} \lambda_i \underline{v}_i\right]_B = \sum_{i=1}^{k} \lambda_i [\underline{v}_i]_B$ for any $k$ vectors $\underline{v}_1, \ldots, \underline{v}_k$
+        \item $\{\underline{v}_1, \ldots, \underline{v}_k\} \subseteq V$ is independent if and only if $\{[\underline{v}_1]_B, \ldots, [\underline{v}_k]_B\} \subseteq F^n$ is independent
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Parts (i), (ii), and (iii) follow directly from Theorem~\ref{thm:coordinate-isomorphism}.
+    
+    (iv) We prove the contrapositive in both directions.
+    
+    First direction: If $\{\underline{v}_1, \ldots, \underline{v}_k\}$ are dependent, there exist $\lambda_1, \ldots, \lambda_k \in F$, not all zero, such that $\sum_{i=1}^{k} \lambda_i \underline{v}_i = \underline{0} \in V$. By parts (i) and (iii), $\underline{0} \in F^n = [\underline{0} \in V]_B = \left[\sum_{i=1}^{k} \lambda_i \underline{v}_i\right]_B = \sum_{i=1}^{k} \lambda_i [\underline{v}_i]_B$ is a non-trivial linear combination of $\underline{0} \in F^n$, proving that $\{[\underline{v}_i]_B\}$ are dependent.
+    
+    Second: If $\{[\underline{v}_1]_B, \ldots, [\underline{v}_k]_B\}$ are dependent, there exist $\lambda_1, \ldots, \lambda_k \in F$, not all zero, such that $\sum_{i=1}^{k} \lambda_i [\underline{v}_i]_B = \underline{0} \in F^n$. By parts (i) and (iii), $[\underline{0} \in V]_B = \underline{0} \in F^n = \sum_{i=1}^{k} \lambda_i [\underline{v}_i]_B = \left[\sum_{i=1}^{k} \lambda_i \underline{v}_i\right]_B $ and thus by Theorem~\ref{thm:coordinate-isomorphism}(i), $\underline{0} \in V = \sum_{i=1}^{k} \lambda_i \underline{v}_i$ is a non-trivial linear combination, proving that $\{\underline{v}_i\}$ are dependent.
+\end{proof}

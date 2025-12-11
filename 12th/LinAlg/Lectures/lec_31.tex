@@ -1,0 +1,48 @@
+\lecture{31}{}{Bases and Dimensions}
+
+\section{Bases and Dimensions}
+
+\begin{definition}[Basis]\label{def:basis}
+    Let $V$ be a vector space over field $F$. A set $B \subseteq V$ is called a \textbf{basis} of $V$ if $B$ is linearly independent and $B$ spans $V$ (i.e., $\mathrm{Sp}(B) = V$)
+\end{definition}
+
+\begin{definition}[Finitely Generated]\label{def:finitely-generated}
+    A vector space $V$ is \textbf{finitely generated} if there exists a finite set $T$ such that $\mathrm{Sp}(T) = V$.
+\end{definition}
+
+\begin{note}
+    Infinite sets of vectors spanning spaces leads to complications making theorems more cumbersome, so we restrict ourselves to finitely generated spaces.
+\end{note}
+
+\begin{theorem}[Existence of Finite Basis]\label{thm:finite-basis-exists}
+    Every finitely-generated vector space $V$ has a finite basis.
+\end{theorem}
+
+\begin{proof}
+    Let $B$ be a set of $n$ vectors that spans $V$ and assume without loss of generality that $\underline{0} \notin B$.
+    
+    If $n = 0$, then $B = \emptyset$ and is independent and therefore a basis (this is the trivial case where $V = \{\underline{0}\}$, from Definition \ref{def:span}).
+    
+    If $n = 1$, then $B = \{\underline{v}\}$ is independent (Lemma \ref{lem:truths})and therefore a basis.
+    
+    If $B$ is linearly independent, then it is a basis. Otherwise, there exists a vector $\underline{v}_1 \in B$ that is a linear combination of the other vectors in $B$. The set $B_1 = B - \{\underline{v}_1\}$ includes $n-1$ vectors and, since $\underline{v}_1$ is dependent on $B_1$, we have $\mathrm{Sp}(B_1 \cup \{\underline{v}_1\}) = \mathrm{Sp}(B_1) = V$ (Lemma \ref{lem:truths}.viii).
+    
+    If $B_1$ is independent, then it is a basis. Otherwise, there exists $\underline{v}_2$ that is dependent on the set $B_2 = B_1 - \{\underline{v}_2\}$ with $n-2$ vectors, and $\mathrm{Sp}(B_2) = V$.
+    
+    After at most $n-1$ such steps, we will find a finite set that is both spanning and independent, and therefore a basis.
+\end{proof}
+
+\begin{theorem}[Uniqueness of Basis Representation]\label{thm:unique-representation}
+    Let $V$ be a vector space over field $F$ and let $B = \{\underline{u}_1, \ldots, \underline{u}_n\}$ be a basis of $V$. Then every $\underline{w} \in V$ is a unique linear combination of the basis vectors.
+\end{theorem}
+
+\begin{proof}
+    Let $w \in V$. Since $\mathrm{Sp}(B) = V$, there exist $\lambda_1, \ldots, \lambda_n \in F$ such that
+    $\underline{w} = \sum_{i=1}^{n} \lambda_i \underline{u}_i$
+    
+    Suppose there is another combination with coefficients $\mu_1, \ldots, \mu_n \in F$ such that
+    $\underline{w} = \sum_{i=1}^{n} \mu_i \underline{u}_i$
+    Then
+    $\underline{0} = \underline{w} - \underline{w} = \sum_{i=1}^{n} \lambda_i \underline{u}_i - \sum_{i=1}^{n} \mu_i \underline{u}_i = \sum_{i=1}^{n} (\lambda_i - \mu_i) \underline{u}_i$
+    Since $B$ is a basis, it is independent. Therefore, for all $i \in \{1, \ldots, n\}$, we have $\lambda_i - \mu_i = 0$. Hence $\lambda_i = \mu_i$ for all $i \in \{1, \ldots, n\}$.
+\end{proof}
